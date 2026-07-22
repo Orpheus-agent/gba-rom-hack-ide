@@ -1,8 +1,8 @@
 /**
  * The universal detection result.
  *
- * §5 (Clarified Terms) of MASTER_PROMPT_ROM_INTROSPECTION.md binds every
- * detector in the engine to produce a typed result carrying:
+ * Every detector in the engine is bound to produce a typed result
+ * carrying:
  *   - a discrete `status` ∈ {detected, partial, not_detected}
  *   - a numeric `confidence` ∈ [0,1]
  *   - structured `evidence` items naming the heuristic/signature/pointer/trace
@@ -10,10 +10,11 @@
  *
  * A bare value with no confidence or evidence is NOT a valid detection output
  * anywhere in the system. Returning zeros/empties marked as `detected` is the
- * defining bug PD 1 ("No empty success") exists to kill - see `assertNoEmptySuccess`.
+ * defining bug the "no empty success" rule exists to kill - see
+ * `assertNoEmptySuccess`.
  *
- * Every system in §15 routes through these types. Helpers below are the only
- * sanctioned constructors so the invariants can never be silently broken by
+ * Every detected system routes through these types. The helpers below are the
+ * only sanctioned constructors, so the invariants cannot be silently broken by
  * a future detector.
  */
 

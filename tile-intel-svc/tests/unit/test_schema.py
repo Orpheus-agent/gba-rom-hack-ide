@@ -1,7 +1,7 @@
-﻿"""Phase 8A-5 â€” Schema creation + cross-dialect portability.
+"""Phase 8A-5 - Schema creation + cross-dialect portability.
 
 Verifies the SQLAlchemy models declare cleanly + create_all works
-against SQLite (proxy for cross-dialect portability â€” Postgres has
+against SQLite (proxy for cross-dialect portability - Postgres has
 already been verified via `alembic upgrade head` in dev).
 """
 
@@ -136,7 +136,7 @@ def test_tileset_crud_round_trip(factory):
 
 
 def test_unique_constraints(factory):
-    """The plan calls out several unique constraints â€” verify a
+    """The plan calls out several unique constraints - verify a
     representative one fires (tileset slug). The rest follow the
     same SQL idiom."""
     with factory.session() as session:
@@ -246,7 +246,7 @@ def test_metatile_tags_many_to_many(factory):
 
 
 def test_adjacency_observation_and_rule(factory):
-    """Observations + rules tables â€” both keyed on metatile IDs.
+    """Observations + rules tables - both keyed on metatile IDs.
     Demonstrate the rule's JSON columns serialise correctly."""
     with factory.session() as session:
         ts = Tileset(
@@ -328,7 +328,7 @@ def test_adjacency_observation_and_rule(factory):
 
 def test_embeddings_lookup_indexes(factory):
     """The embeddings_lookup table is hit twice per query
-    (entity â†’ uuid + uuid â†’ metadata). Verify the row inserts and the
+    (entity -> uuid + uuid -> metadata). Verify the row inserts and the
     indexes exist."""
     with factory.session() as session:
         session.add(
@@ -364,7 +364,7 @@ def test_behaviors_seed_table(factory):
                 category="encounter",
                 walkable=True,
                 has_encounter=True,
-                description="Tall grass â€” wild PokÃ©mon encounters.",
+                description="Tall grass - wild Pokemon encounters.",
             )
         )
     with factory.session() as session:

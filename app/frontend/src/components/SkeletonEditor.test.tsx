@@ -109,11 +109,9 @@ function setProjectLoaded(): void {
     load: {
       kind: 'loaded',
       data: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         rootListing: { entries: [] } as any,
         session: { id: 'test-session', projectRoot: '/x', openedAtUtc: '' },
       },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any,
   }));
 }

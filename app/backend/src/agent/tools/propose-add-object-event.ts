@@ -78,7 +78,6 @@ export const PROPOSE_ADD_OBJECT_EVENT_DESCRIPTION =
 const u8 = z.number().int().min(0).max(0xff);
 const u16 = z.number().int().min(0).max(0xffff);
 const tileCoord = z.number().int().min(0).max(0x7fff);
-const nibble = z.number().int().min(0).max(0xf);
 
 /** Movement-type input: number 0..255 OR symbolic name like
  *  "MOVEMENT_TYPE_FACE_RIGHT". String resolution happens at the

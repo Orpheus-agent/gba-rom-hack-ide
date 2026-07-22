@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import type { spawn } from 'node:child_process';
 import type { ChildProcessWithoutNullStreams } from 'node:child_process';
 import type { AgentTurnEvent } from '@rom-editor/shared';
 import { spawnCompat, killProcessTree } from './spawn-compat.js';

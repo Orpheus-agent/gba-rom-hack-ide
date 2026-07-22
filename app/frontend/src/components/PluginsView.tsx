@@ -63,7 +63,6 @@ export function PluginsView({ manifest }: PluginsViewProps) {
     // We deliberately exclude selectedId from deps - it's only used to pick a
     // default on first load, and re-running this effect on every selection
     // would re-fetch the plugins list.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
   const plugins = load.kind === 'loaded' ? load.data.plugins : [];

@@ -49,7 +49,6 @@ export const PROPOSE_AUTHOR_SCENE_DESCRIPTION =
   'transactional semantics.';
 
 const u8 = z.number().int().min(0).max(0xff);
-const u16 = z.number().int().min(0).max(0xffff);
 
 export const proposeAuthorSceneInputShape = {
   sceneId: z.string().min(1).max(60),

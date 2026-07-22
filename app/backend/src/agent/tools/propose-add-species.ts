@@ -105,7 +105,7 @@ export interface ProposeAddSpeciesResult {
 
 export async function proposeAddSpecies(
   _ctx: ToolContext,
-  args: z.infer<typeof speciesArgsSchema>,
+  args: z.infer<z.ZodObject<typeof proposeAddSpeciesInputShape>>,
 ): Promise<ProposeAddSpeciesResult> {
   const plan: PlannedSpeciesCall[] = [];
   const warnings: string[] = [];
@@ -183,6 +183,3 @@ export async function proposeAddSpecies(
       `Execute each via the agent\'s normal flow, then propose_batch_apply for atomic landing.`,
   };
 }
-
-// Helper to expose the schema's inferred type for the function signature.
-const speciesArgsSchema = z.object(proposeAddSpeciesInputShape);

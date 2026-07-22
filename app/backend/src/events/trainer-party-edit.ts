@@ -138,7 +138,7 @@ function spliceTrainerBlock(source: string, trainerId: string, newBlock: string)
     }
   }
   // Preserve trailing blank lines that separated this block from the next.
-  let tail = endIdx;
+  const tail = endIdx;
   const newLines = newBlock.split('\n');
   // Keep exactly one blank line before the next `===` block if there was one.
   const before = lines.slice(0, startIdx);

@@ -32,7 +32,6 @@ import {
   useViewStore,
   type EntityKind,
 } from '../state';
-import { useAgentStore } from '../state/agent';
 import { displayName, prettifyMapGroup, prettifyMapName } from '../lib/displayName';
 import {
   composeBinaryRomMetatilePixels,
@@ -586,7 +585,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
                 ? reason.message
                 : String(reason);
           failed.push({ offset: off, message });
-          // eslint-disable-next-line no-console
+           
           console.warn(
             `[Phase G-RC2] OW sprite fetch failed @ 0x${off.toString(16)}: ${message}`,
           );
@@ -851,7 +850,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
             // the binary-rom load effect).
             void refetchBinaryRomMap();
           } catch (e) {
-            // eslint-disable-next-line no-console
+             
             console.error('paint failed:', e);
           }
         })();
@@ -876,7 +875,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
             });
             void refetchBinaryRomMap();
           } catch (e) {
-            // eslint-disable-next-line no-console
+             
             console.error('collision toggle failed:', e);
           }
         })();
@@ -923,7 +922,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
             }
             void refetchBinaryRomMap();
           } catch (e) {
-            // eslint-disable-next-line no-console
+             
             console.error('fill failed:', e);
           }
         })();
@@ -1066,7 +1065,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
               } catch (e) {
                 // Failure is surfaced by the subsequent rescan and the form;
                 // log to console for now so the operator sees the cause.
-                // eslint-disable-next-line no-console
+                 
                 console.error(
                   kind === 'healLocation'
                     ? 'editBinaryRomHealLocation failed:'
@@ -1376,7 +1375,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
                         });
                         void refetchBinaryRomMap();
                       } catch (e) {
-                        // eslint-disable-next-line no-console
+                         
                         console.error('undo failed:', e);
                       }
                     })();
@@ -1400,7 +1399,7 @@ export function MapEditor({ manifest, map, onClose }: MapEditorProps) {
                         });
                         void refetchBinaryRomMap();
                       } catch (e) {
-                        // eslint-disable-next-line no-console
+                         
                         console.error('redo failed:', e);
                       }
                     })();

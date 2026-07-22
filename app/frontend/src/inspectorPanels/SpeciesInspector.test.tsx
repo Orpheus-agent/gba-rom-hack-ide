@@ -8,7 +8,6 @@ import {
 } from '../state';
 import type {
   AbilityEntry,
-  BattleMoveEntry,
   ProjectManifest,
   SpeciesEntry,
   SpeciesLearnsetEntry,

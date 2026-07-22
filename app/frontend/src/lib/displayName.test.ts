@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { ProjectManifest } from '@rom-editor/shared';
+import { isSymbolDatabaseAvailable } from './symbols';
 import {
   aiFlagNames,
   displayName,
@@ -173,7 +174,12 @@ describe('resolveDisplayName - maps', () => {
 // the op-log → identity trust signal). On modernized CFRU+DPE ROMs,
 // the overlay asserts vanilla names for `binary_map_${bank}_${num}`
 // synthetic ids and overrides the byte-derived MapGroup categorisation.
-describe('Phase 6.5 - vanilla-truth overlay', () => {
+// The vanilla-truth payload (firered-vanilla.json) is generated from the
+// user's own pret checkout and is not distributed with this repository,
+// so these content assertions only run once it exists. The "returns the
+// synthetic id when nothing overlays it" behaviour is covered above and
+// runs unconditionally.
+describe.runIf(isSymbolDatabaseAvailable())('Phase 6.5 - vanilla-truth overlay', () => {
   const overlaySafeManifest = (): ProjectManifest => ({
     schemaVersion: 1,
     generatedAtUtc: '2026-05-27T00:00:00.000Z',

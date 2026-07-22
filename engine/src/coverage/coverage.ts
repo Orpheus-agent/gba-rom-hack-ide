@@ -1,18 +1,18 @@
 /**
  * ROM-coverage metric infrastructure.
  *
- * §5 of MASTER_PROMPT_ROM_INTROSPECTION.md defines ROM coverage as:
- *   "fraction of ROM bytes that are either confidently classified into a
- *    known system OR explicitly enumerated as scored UNKNOWN regions."
- * §7 + §9.7 require it to be reported, monotone non-decreasing, and
- * everything that isn't covered counts as `unaccounted` (a regression metric
- * that must trend to zero before Phase 3 exits).
+ * ROM coverage is defined as the fraction of ROM bytes that are either
+ * confidently classified into a known system OR explicitly enumerated as
+ * scored UNKNOWN regions. It must be reported, must be monotone
+ * non-decreasing across a run, and everything not covered counts as
+ * `unaccounted` - a regression metric that has to trend to zero.
  *
- * PD 8 forbids silently ignoring any byte region - that's exactly what this
- * module exists to prevent: every region either gets classified into one of
- * the §3 Phase-3 classes or gets recorded explicitly as `UNKNOWN` with a
- * probable class + score. Bytes that are neither classified nor scored-unknown
- * fall into `unaccounted` and a phase Exit Gate will refuse to pass.
+ * The invariant this module exists to enforce: no byte region is ever
+ * silently ignored. Every region either gets classified into one of the
+ * known region kinds or gets recorded explicitly as `UNKNOWN` with a
+ * probable class + score. Bytes that are neither classified nor
+ * scored-unknown fall into `unaccounted`, and `assertMonotoneCoverage`
+ * refuses to let a run regress.
  *
  * The class is byte-range bookkeeping over a ROM of known size:
  *

@@ -66,7 +66,6 @@ export function PreviewView({ manifest }: PreviewViewProps) {
     // the player tile or manifest changes; otherwise recording a hit would
     // trigger an infinite recursion. The arm/disarm UI updates breakpoint
     // membership but evaluation re-fires on the next player move.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerPos, selectedMapId, manifest]);
 
   const selectedMap = useMemo<MapNode | null>(

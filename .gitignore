@@ -28,6 +28,16 @@
 /symbols/*
 !/symbols/.gitkeep
 
+# Per-ROM-family symbol databases: bulk game content extracted from a
+# pret decomp checkout (maps, wild encounters, species/move/item rosters).
+# Rebuild: node scripts/build-symbols.mjs + build-vanilla-frlg-truth.mjs
+# See app/frontend/src/lib/symbols/data/README.md.
+/app/frontend/src/lib/symbols/data/firered-vanilla.json
+/app/frontend/src/lib/symbols/data/emerald-vanilla.json
+/app/frontend/src/lib/symbols/data/firered-cfru.json
+/app/frontend/src/lib/symbols/data/firered-cfru-dpe.json
+/app/frontend/src/lib/symbols/data/emerald-expansion.json
+
 # Built ROMs, extracted audio, and exploratory renders
 /overnight-build/
 /artifacts/
@@ -88,11 +98,6 @@ out/
 .vitest-cache/
 playwright-report/
 test-results/
-
-# --- Agent / harness session state ---
-.claude/
-.loop/
-.loop-editor/
 
 # --- Scratch ---
 /.scratch-*.mjs

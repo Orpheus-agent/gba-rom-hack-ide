@@ -76,11 +76,6 @@ export function isVanillaFrlgIdentity(manifest: ProjectManifest): boolean {
   return code === 'BPRE' || code === 'BPRG';
 }
 
-interface FlagMatch {
-  readonly flagId: string;
-  readonly marker: StoryArcMarker;
-}
-
 function matchFlag(
   flagId: string,
   manifest: ProjectManifest,

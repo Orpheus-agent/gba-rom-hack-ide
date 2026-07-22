@@ -51,7 +51,7 @@ export function UndoRedoButtons() {
       await rescan();
       setTick((t) => t + 1);
     } catch (e) {
-      // eslint-disable-next-line no-console
+       
       console.error('undo failed:', e);
     } finally {
       setBusy(false);
@@ -66,7 +66,7 @@ export function UndoRedoButtons() {
       await rescan();
       setTick((t) => t + 1);
     } catch (e) {
-      // eslint-disable-next-line no-console
+       
       console.error('redo failed:', e);
     } finally {
       setBusy(false);

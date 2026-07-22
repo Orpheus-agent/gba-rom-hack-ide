@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, describe, it } from 'vitest';
+import { cleanup, render } from '@testing-library/react';
 import type { ProjectManifest } from '@rom-editor/shared';
 import { emptyManifest } from '@rom-editor/shared';
 import { AbilitiesView } from '../components/AbilitiesView';

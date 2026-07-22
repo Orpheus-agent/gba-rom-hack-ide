@@ -17,7 +17,7 @@
  * savedataLayout.ts; nothing in this file hardcodes a hex address.
  */
 
-import { EmulatorMemory } from './emulatorMemory';
+import type { EmulatorMemory } from './emulatorMemory';
 import {
   getSaveBlockLayout,
   SAVEBLOCK_POINTERS,

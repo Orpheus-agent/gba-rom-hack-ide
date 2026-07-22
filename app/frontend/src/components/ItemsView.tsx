@@ -147,7 +147,8 @@ function ItemEditor({ item }: { item: ItemEntry }): JSX.Element {
   useEffect(() => {
     setValues({ ...initial });
     setState({ kind: 'idle' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Reset-on-selection: deps are intentionally just item.id, not the
+    // derived `initial` object, which is rebuilt on every render.
   }, [item.id]);
 
   const dirty = Object.keys(initial).some(

@@ -10,6 +10,7 @@ import { MapsGraph } from './MapsGraph';
 // The AttributionPanel and ExportPatchCard remain in IdentityCard for
 // the post-modernize surface.
 import { AttributionPanel } from './AttributionPanel';
+import { SymbolDbNotice } from './SymbolDbNotice';
 import { ExportPatchCard } from './ExportPatchCard';
 import { MapsBrowser } from './MapsBrowser';
 import { MapsSearch } from './MapsSearch';
@@ -803,7 +804,6 @@ function MapsViewBody({
   setSelectedId,
   highlightedIds,
   handleMatchedChange,
-  openMapInEditor,
 }: {
   sessionId: string;
   manifest: ProjectManifest;
@@ -1188,6 +1188,7 @@ function IdentityCard({
       {identity.romBinary && (
         <RomBinarySection rom={identity.romBinary} />
       )}
+      <SymbolDbNotice />
       {identity.fork === 'CFRU' && (
         <AttributionPanel sessionId={sessionId} variant="inline" />
       )}
@@ -2185,8 +2186,3 @@ function BuildViewWired() {
   return <BuildView manifest={scan.data.manifest} />;
 }
 
-function formatBytes(n: number): string {
-  if (n < 1024) return `${n} B`;
-  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
-  return `${(n / 1024 / 1024).toFixed(1)} MB`;
-}

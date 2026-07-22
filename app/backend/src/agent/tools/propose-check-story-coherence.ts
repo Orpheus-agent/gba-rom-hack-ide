@@ -30,7 +30,6 @@
 import { z } from 'zod';
 import { promises as fsp } from 'node:fs';
 import path from 'node:path';
-import type { ProjectManifest } from '@rom-editor/shared';
 import { readManifest } from '../../scan/manifest-io.js';
 import type { ToolContext } from '../types.js';
 

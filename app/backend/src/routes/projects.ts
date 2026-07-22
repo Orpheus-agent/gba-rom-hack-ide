@@ -8,7 +8,7 @@ import type {
   ProjectOpenRequest,
   ProjectOpenResponse,
 } from '@rom-editor/shared';
-import { ProjectSessionStore } from '../projects/session-store.js';
+import type { ProjectSessionStore } from '../projects/session-store.js';
 import {
   NotADirectoryError,
   NotFoundError,

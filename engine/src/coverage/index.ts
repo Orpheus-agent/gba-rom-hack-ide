@@ -1,7 +1,9 @@
 /**
  * Public barrel for the ROM-coverage module.
  *
- * See §5 + §7 + §9.7 of MASTER_PROMPT_ROM_INTROSPECTION.md for the contract.
+ * Contract: coverage is reported for every ingest, is monotone
+ * non-decreasing, and every ROM byte is classified, scored-UNKNOWN, or
+ * counted as `unaccounted`. See coverage.ts for the full statement.
  */
 export type {
   CoverageRegion,

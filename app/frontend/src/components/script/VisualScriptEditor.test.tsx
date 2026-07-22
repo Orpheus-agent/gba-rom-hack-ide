@@ -198,14 +198,12 @@ describe('VisualScriptEditor', () => {
           flagId: null,
           trainerType: null,
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ] as any,
     } as ProjectManifest;
     // Clear any previous prefill.
     useViewStore.setState({
       sceneBootPrefill: null,
       activeView: 'maps',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
     render(<VisualScriptEditor scriptId="script_oak" manifest={mWithEvent} />);
     fireEvent.click(screen.getByTestId('visual-script-card-boot-script_oak__1'));
@@ -225,7 +223,6 @@ describe('VisualScriptEditor', () => {
     useViewStore.setState({
       sceneBootPrefill: null,
       activeView: 'maps',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
     render(<VisualScriptEditor scriptId="script_oak" manifest={m} />);
     fireEvent.click(screen.getByTestId('visual-script-card-boot-script_oak__1'));

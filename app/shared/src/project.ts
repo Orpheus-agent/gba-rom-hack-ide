@@ -1,6 +1,6 @@
 // Project session + filesystem listing contracts shared between backend and
-// frontend. Per MASTER_PROMPT §5, the universal vocabulary stays in
-// vocabulary.ts; these are session and IO envelopes around an opened project.
+// frontend. The universal entity vocabulary lives in vocabulary.ts and
+// nowhere else; these are session and IO envelopes around an opened project.
 
 export interface ProjectOpenRequest {
   readonly projectRoot: string;

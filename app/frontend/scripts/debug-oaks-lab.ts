@@ -3,7 +3,7 @@
 // does, the bug is UX-only (buried in 288-entry Interiors list). If
 // it doesn't, the overlay isn't firing and that's the real bug.
 import { readFileSync } from 'node:fs';
-import { displayName, prettifyMapGroup } from '../src/lib/displayName';
+import { displayName } from '../src/lib/displayName';
 import { lookupMapGroup } from '../src/lib/displayName';
 import { inferStructures } from '../src/lib/structures';
 

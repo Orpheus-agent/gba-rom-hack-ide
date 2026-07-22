@@ -1,11 +1,9 @@
 /**
  * Gen-3 Pokémon GBA in-game text codec.
  *
- * Per `MASTER_PROMPT_UNIVERSAL_WORKSPACE.md` §15 Phase UW-7 (Category 7
- * Dialogue/text/localization), the engine needs a Gen-3 text decoder so
- * every consumer (editor backend, scripts decompiler, dialogue tree
- * extractor) reads encoded ROM strings via the SAME canonical
- * implementation (PD 13).
+ * Single source of truth for text decoding: every consumer (editor
+ * backend, scripts decompiler, dialogue tree extractor) reads encoded
+ * ROM strings via THIS implementation rather than rolling its own.
  *
  * The Gen-3 ROMs encode in-game strings (species names, move names,
  * trainer names, dialogue, item names, etc.) in a custom single-byte
@@ -14,11 +12,12 @@
  * signature-scan needles like "BULBASAUR" to locate gSpeciesNames
  * tables in hacked ROMs that have relocated them).
  *
- * Per PD 12 boundary respected: the character mapping is a charset
+ * Copyright boundary respected: the character mapping is a charset
  * specification (not copyrighted) widely documented in the public
  * `pret/pokefirered` + `pret/pokeemerald` decomp repos' `charmap.txt`.
+ * No game text is embedded here, only the encoding table.
  *
- * PD 5 (no FireRed/Emerald-only path): the codec works on ANY Gen-3
+ * No FireRed/Emerald-only path: the codec works on ANY Gen-3
  * Pokémon ROM - same charset across the FireRed/LeafGreen/Emerald/Ruby
  * /Sapphire family AND across every hack derived from them (CFRU,
  * Unbound, Radical Red, etc., all keep the Gen-3 charset by

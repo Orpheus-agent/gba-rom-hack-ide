@@ -70,7 +70,7 @@ export async function renderRegionAtlasScene(
     };
   }
 
-  const { Application, Container, Graphics, Text, Sprite, Texture } = pixi;
+  const { Application, Container, Graphics, Sprite, Texture } = pixi;
   void Sprite;
   void Texture;
   const hostRect = host.getBoundingClientRect();

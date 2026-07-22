@@ -5,14 +5,14 @@ import { runEngineOnRom } from './engine-client.js';
 /**
  * EngineClient integration test - UW Phase UW-0 P13 substrate verification.
  *
- * Per `MASTER_PROMPT_UNIVERSAL_WORKSPACE.md`:
- *   - PD 13 (Engine ↔ Editor SSOT): the editor backend's ONLY path to ROM
- *     introspection is `runEngineOnRom`. This test proves the wire is
+ * Invariants under test:
+ *   - Engine/editor single source of truth: the editor backend's ONLY path
+ *     to ROM introspection is `runEngineOnRom`. This test proves the wire is
  *     intact: backend → engine via the npm `file:` dep → full ingest
  *     pipeline → WorkspaceModel.
- *   - PD 1 (No empty success): every detector returns typed data with
- *     evidence or a typed `not_detected`. The orchestrator throws on
- *     violation; this test would fail if any detector violated.
+ *   - No empty success: every detector returns typed data with evidence or a
+ *     typed `not_detected`. The orchestrator throws on violation; this test
+ *     would fail if any detector violated it.
  *
  * This is the cumulative end-to-end test skeleton's first member. As
  * subsequent UW phases land, additional tests assert per-category

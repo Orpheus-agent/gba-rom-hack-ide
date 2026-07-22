@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { PatchGenerationError, generatePatch } from './patch-gen.js';
+import { generatePatch } from './patch-gen.js';
 // PD 13 (UW-0-T8): IPS roundtrip-verify routes through the engine.
 import { patch as enginePatch } from '@rom-introspection/engine';
 

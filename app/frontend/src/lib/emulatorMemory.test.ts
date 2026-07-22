@@ -139,13 +139,13 @@ describe('gbaAddressToSavestateOffset', () => {
 
 describe('EmulatorMemory - isSupported', () => {
   it('returns true when the host has all four savestate methods', () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     expect(m.isSupported()).toBe(true);
   });
 
   it('returns false when forceAutoSaveState is missing', () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     // Strip method to simulate the binding missing it (host methods
     // are typed as optional, so this is a valid delete).
     delete host.forceAutoSaveState;
@@ -154,7 +154,7 @@ describe('EmulatorMemory - isSupported', () => {
   });
 
   it('returns false when getAutoSaveState is missing', () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     // Strip method to simulate the binding missing it (host methods
     // are typed as optional, so this is a valid delete).
     delete host.getAutoSaveState;
@@ -163,7 +163,7 @@ describe('EmulatorMemory - isSupported', () => {
   });
 
   it('returns false when uploadAutoSaveState is missing', () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     // Strip method to simulate the binding missing it (host methods
     // are typed as optional, so this is a valid delete).
     delete host.uploadAutoSaveState;
@@ -172,7 +172,7 @@ describe('EmulatorMemory - isSupported', () => {
   });
 
   it('returns false when loadAutoSaveState is missing', () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     // Strip method to simulate the binding missing it (host methods
     // are typed as optional, so this is a valid delete).
     delete host.loadAutoSaveState;
@@ -231,7 +231,7 @@ describe('EmulatorMemory - read path', () => {
   });
 
   it('rejects reads that span the EWRAM/IWRAM boundary', async () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     // 1 byte past EWRAM end → out of range
     await expect(m.readBytes(0x0203FFFF, 2)).rejects.toThrow(/outside/);
@@ -286,7 +286,7 @@ describe('EmulatorMemory - write path', () => {
   });
 
   it('writeU8 rejects values outside u8 range', async () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     await expect(m.writeU8(0x02000000, -1)).rejects.toThrow(/u8 out of range/);
     await expect(m.writeU8(0x02000000, 256)).rejects.toThrow(/u8 out of range/);
@@ -294,21 +294,21 @@ describe('EmulatorMemory - write path', () => {
   });
 
   it('writeU16LE rejects values outside u16 range', async () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     await expect(m.writeU16LE(0x02000000, -1)).rejects.toThrow(/u16 out of range/);
     await expect(m.writeU16LE(0x02000000, 0x10000)).rejects.toThrow(/u16 out of range/);
   });
 
   it('writeU32LE rejects values outside u32 range', async () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     await expect(m.writeU32LE(0x02000000, -1)).rejects.toThrow(/u32 out of range/);
     await expect(m.writeU32LE(0x02000000, 0x1_00000000)).rejects.toThrow(/u32 out of range/);
   });
 
   it('rejects writes that span the EWRAM/IWRAM boundary', async () => {
-    const { host, state } = makeFakeMgbaHost();
+    const { host } = makeFakeMgbaHost();
     const m = new EmulatorMemory(host);
     await expect(
       m.writeBytes(0x0203FFFF, new Uint8Array([1, 2])),

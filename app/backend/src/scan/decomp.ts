@@ -402,7 +402,7 @@ export const decompScanner: ProjectScanner = {
       for (const rw of rws) {
         const destEntry = rw.destMapId ? entriesByMapId.get(rw.destMapId) : null;
         let toCoord: MapCoordinate = { x: 0, y: 0 };
-        let resolvedDestId: EntityId = rw.destMapId ?? 'MAP_UNKNOWN';
+        const resolvedDestId: EntityId = rw.destMapId ?? 'MAP_UNKNOWN';
         if (destEntry && rw.destWarpIndex >= 0) {
           const destRaws = rawWarpsByMap.get(destEntry.mapId) ?? [];
           const destRaw = destRaws[rw.destWarpIndex];

@@ -240,7 +240,7 @@ export async function intakeFile(
   let stat;
   try {
     stat = await fsp.stat(filePath);
-  } catch (e) {
+  } catch {
     throw new IntakeError('file_not_found', `Path does not exist: ${filePath}`);
   }
   if (!stat.isFile()) {

@@ -89,7 +89,8 @@ import type {
   Variable,
   Warp,
 } from '@rom-editor/shared';
-import { ingest, scripts as engineScripts, text as engineText } from '@rom-introspection/engine';
+import type { ingest} from '@rom-introspection/engine';
+import { scripts as engineScripts, text as engineText } from '@rom-introspection/engine';
 
 /** Accumulator passed to each lifter; mutated with the lifted entries.
  *  Iter 94 adds 5 new collections (speciesNames / moveNames / items /

@@ -97,10 +97,11 @@ describe('useAgentStore', () => {
     lastSocket!.fireOpen();
     lastSocket!.fireMessage({ kind: 'ready', sessionId: 's', turnCount: 0 });
     useAgentStore.getState().sendPrompt('  hello  ');
-    expect(lastSocket!.sent.map((s) => JSON.parse(s))).toContainEqual({
-      kind: 'turn_start',
-      prompt: 'hello',
-    });
+    // The payload also carries the devMode flag (so the backend can augment
+    // the system prompt for this turn); this assertion is about the trim.
+    expect(lastSocket!.sent.map((s) => JSON.parse(s))).toContainEqual(
+      expect.objectContaining({ kind: 'turn_start', prompt: 'hello' }),
+    );
     expect(useAgentStore.getState().messages.map((m) => m.text)).toContain('hello');
   });
 

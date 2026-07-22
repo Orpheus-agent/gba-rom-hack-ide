@@ -45,8 +45,11 @@ The `.gitignore` header states the rule in the repo's own words:
 - `.gitignore` blocks `*.gba`, `*.gbc`, `*.gb`, `*.nds`, `*.sav`, `*.srm`,
   `*.bps`, `*.ips`, `*.ups` and `*.xdelta` repo-wide, not only at the root.
 - `signatures/gen3-vanilla.json` is a small identifier and fingerprint table.
-  `symbols/` ships empty by design; regenerate it with
-  `node scripts/build-symbols.mjs`.
+  `symbols/` and the per-ROM-family databases under
+  `app/frontend/src/lib/symbols/data/` ship empty by design; regenerate them
+  with `node scripts/build-symbols.mjs` and
+  `node scripts/build-vanilla-frlg-truth.mjs` against your own decomp
+  checkout.
 
 Pokemon and related names are trademarks of Nintendo, Creatures Inc., and
 GAME FREAK Inc. This is an unaffiliated, non-commercial fan tool.
@@ -80,8 +83,9 @@ the tool to perform.
 ## The design constraints that shaped it
 
 **Never own the data.** The decomp project stays exactly where you cloned it.
-The tool writes a single `.editor/manifest.json` inside it and otherwise only
-edits files the project already had.
+The tool writes only inside an `.editor/` directory it creates in your project
+(the manifest, the op-log, annotations, save-states, cached scans and agent
+scratch) and otherwise only edits files the project already had.
 
 **Every write is surgical.** A field edit rewrites the value span of one named
 field. Macros, `#if` guards, comments, and fields the tool does not model
@@ -105,15 +109,18 @@ compiles and boots, not a passing unit test.
 **1. One generic C struct-block editor under eight data editors.**
 `app/backend/src/scan/data/struct-block.ts` (159 lines) parses decomp files
 shaped as `[ID] = { .field = value, ... }` arrays and rewrites only the value
-span of named fields. Species, moves, learnsets, abilities, items, the type
-chart, encounters, and trainers are thin schema files on top of it. Each write
-goes through a tmp-file-plus-rename, so a crash cannot leave the decomp
-half-written.
+span of named fields. Moves, abilities and items use that parser and rewriter
+directly. Learnsets and encounters reuse its bracket matcher over a
+`LEVEL_UP_MOVE(...)` macro list and over `wild_encounters.json`. Species, the
+type chart and trainers have their own format-specific in-place writers built
+to the same discipline. Every one of those writes goes through a
+tmp-file-plus-rename, so a crash cannot leave the decomp half-written.
 
 **2. An MCP server that turns a general coding agent into a game editor.**
 `app/backend/src/agent/mcp-server.ts` (1,217 lines) registers 71 tools against
-the open project. `agent/tools/` holds 92 tool modules, 77 of them named
-`propose-*`: trainer parties, species stats, encounter slots, script edits, map
+the open project. `agent/tools/` holds 71 tool modules (59 of them named
+`propose-*`) alongside 21 colocated test files, so all 71 modules are
+registered: trainer parties, species stats, encounter slots, script edits, map
 creation, sprite and music import, story specs. Readers include
 `get_workspace_summary`, `find_references_to`, `read_map` and
 `read_decoded_script`. `spawner.ts` launches the `claude` CLI as a child
@@ -151,7 +158,8 @@ NARC/NitroFS readers. Read the status section before assuming it is on the main
 path.
 
 **Pinned versions:** react 18.3.1, vite 5.4.7, typescript 5.4.5, vitest 1.6.1,
-zustand 4.5.5, pixi.js 8.4.1, reactflow 11.11.4, `@thenick775/mgba-wasm` 2.4.1,
+zustand 4.5.5, pixi.js 8.4.1, reactflow 11.11.4, `@thenick775/mgba-wasm` ^2.4.1
+(the one caret range in the list),
 fastify 4.28.1, `@fastify/websocket` 10.0.1, postgres:16-alpine,
 qdrant/qdrant:v1.11.3.
 
@@ -235,13 +243,17 @@ route handlers.
 git clone https://github.com/csnyder256/gba-rom-hack-ide
 cd gba-rom-hack-ide
 
-copy .env.example .env
 .\start.ps1                 # or: node scripts\start.mjs   (start.bat also works)
 ```
 
-`.env.example` documents every variable with its default.
-**`ROM_EDITOR_PROJECT_ROOT` is the one you actually have to set**: point it at
-your decomp checkout.
+That is the whole first run: the Node stack reads no `.env` file. You choose
+your decomp checkout in the app itself (step 1 below), and the backend derives
+`ROM_EDITOR_PROJECT_ROOT` from it when it spawns the MCP server.
+
+`.env` is consumed by exactly two things: `docker compose` (the optional
+tile-intel tier) and the Python sidecar in `tile-intel-svc/`. If you run
+either, `copy .env.example .env` first; `.env.example` documents every variable
+with its default.
 
 One gotcha if you run the Docker tier. `docker-compose.yml` reads
 `${TILE_INTEL_PG_PASSWORD:?set TILE_INTEL_PG_PASSWORD in .env}`, so compose
@@ -252,8 +264,11 @@ editor degrades gracefully without it.
 $env:SKIP_TILE_INTEL = "1"; .\start.ps1
 ```
 
-`scripts/start.mjs` verifies Node 22, runs `npm install` if `app/node_modules`
-is missing, builds `@rom-editor/shared`, brings up the Docker tile-intel tier,
+`scripts/start.mjs` verifies Node 22, runs `npm install` in `app/` if
+`app/node_modules` is missing and again in `engine/` if `engine/node_modules`
+is missing, builds `@rom-editor/shared` and then the engine package (the
+backend resolves `@rom-introspection/engine` from its `dist`), brings up the
+Docker tile-intel tier,
 starts the backend, polls `http://127.0.0.1:8717/api/health` for up to 30
 seconds, starts Vite on `http://localhost:5173`, opens your browser, and tears
 both children down on Ctrl+C.
@@ -301,13 +316,13 @@ app/
     build/             toolchain detection, runner, decomp-build.ts
     events/            op-log, undo, asset import, share package
     agent/             mcp-server.ts, spawner.ts, patch-store, patch-applier
-      tools/           92 tool modules (77 propose-*), 71 registered
+      tools/           71 tool modules (59 propose-*), all 71 registered
     routes/            projects.ts (58 handlers), agent.ts, tile-intel.ts, health.ts
     engine-client.ts   the ONLY bridge to engine/
   frontend/src/
     components/        215 files (55 of them tests): map editor, navigator,
                        agent panel, EmulatorHost
-    inspectorPanels/   20 entity kinds registered against 14 panel components,
+    inspectorPanels/   20 entity kinds registered against 13 panel components,
                        behind a registry
     lib/               pure logic: tile compositing, cross-refs, emulator memory readers
     state/             Zustand stores
@@ -317,7 +332,9 @@ tile-intel-svc/        FastAPI sidecar plus Alembic migrations
 scripts/               start.mjs plus a regenerator for every excluded asset
 symbols/, signatures/  identifier tables (symbols/ ships empty; regenerate)
 corpus/                intentionally empty and git-ignored; you supply ROMs here
-docs/                  MASTER_PLAN.md, COMPLETION_REPORT.md, BACKLOG.md
+docs/                  MASTER_PLAN.md, COMPLETION_REPORT.md, BACKLOG.md,
+                       DESIGN-PRINCIPLES.md (the `PD n` glossary the source
+                       comments cite)
 tests/smoke.mjs        631-line real-HTTP smoke script against the built backend
 ```
 
@@ -370,7 +387,8 @@ the headline line count is not the line count of the live product.
 
 **`docs/COMPLETION_REPORT.md` is history, not status.** It declares
 "v1-complete, 608/608 tests pass". That report predates the pivot and
-`MASTER_PLAN.md` explicitly repudiates it. It is kept because the contradiction
+`MASTER_PLAN.md` supersedes it: line 13 records that every prior "massive
+overhaul" was "declared complete and wasn't". It is kept because the contradiction
 is part of the record.
 
 **What ran against a real cloned project.** `MASTER_PLAN.md` records these
@@ -395,6 +413,19 @@ this repository:
 - All built and base `.gba` images, `.sav` files, and `.bps`/`.ips` patches,
   because they are derivative works of a commercial game.
 - The vendored pret decompilation checkout. Clone it yourself from upstream.
+- The per-ROM-family symbol databases under
+  `app/frontend/src/lib/symbols/data/` (`firered-vanilla.json`,
+  `emerald-vanilla.json`, `firered-cfru.json`, `firered-cfru-dpe.json`,
+  `emerald-expansion.json`). Those are bulk extractions of game content: map
+  lists, wild encounter tables, and species / move / item / ability rosters.
+  Regenerate them from your own decomp checkout with `build-symbols.mjs` and
+  `build-vanilla-frlg-truth.mjs`. The two files that do ship in that directory
+  are `gen3-universal.json` (the engine's own opcode / tile-behavior /
+  weather vocabulary, hand-written here) and `npc-graphics.json` (display
+  labels for sprite ids); see that directory's `README.md` for the reasoning.
+- The built CFRU / CFRU+DPE `.bps` patches. `cfru.json` and `dpe.json` ship as
+  placeholders with `"built": false`; build the real thing from your own CFRU
+  and DPE clones with `scripts/build-cfru-bundle.mjs`.
 - Bulk generated tile corpora derived from the decomp and from Pokemon
   Essentials.
 - The prebuilt third-party `midi2agb` binary.
@@ -412,6 +443,13 @@ rebuild them legally from their own sources: `build-symbols.mjs`,
 `build-vanilla-frlg-truth.mjs`, and the two CFRU bundle builders. Nothing
 needed to run the editor was removed, but you do have to bring your own decomp
 project and your own ROM.
+
+The editor degrades honestly without them. With no symbol database generated,
+every flag, var, song, species, move, ability and item shows a synthetic id
+instead of its pret constant name, and the project panel says so and points at
+the generator. With no CFRU bundle built, `cfru.json` and `dpe.json` carry
+`"built": false` and the Modernize feature refuses with a message naming the
+build script rather than failing halfway.
 
 ---
 

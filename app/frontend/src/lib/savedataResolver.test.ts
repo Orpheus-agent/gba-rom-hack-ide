@@ -12,7 +12,7 @@
  * other. Both sides are verified against pret's include/global.h.
  */
 
-import { describe, expect, it, beforeEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   EmulatorMemory,
   SAVESTATE_TOTAL_SIZE,
@@ -38,7 +38,6 @@ import {
   encodePlayerName,
   decodePlayerName,
 } from './savedataResolver';
-import { SAVEBLOCK_LAYOUT_FRLG, SAVEBLOCK_LAYOUT_EMERALD } from './savedataLayout';
 
 /** Build a fake host with a savestate buffer the resolver can
  *  read/write through. The returned `buffer` is a mutable holder

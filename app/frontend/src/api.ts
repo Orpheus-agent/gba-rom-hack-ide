@@ -11,7 +11,6 @@ import type {
   MechanicId,
   ModernizeAttribution,
   ModernizeResponse,
-  PatchFormat,
   PatchGenerationRequest,
   PatchGenerationResponse,
   PluginsResponse,

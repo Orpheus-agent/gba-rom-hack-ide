@@ -16,7 +16,9 @@ interface KnownBaseGame {
   readonly linkerScript: string;
 }
 
-// Gen-3 Pokémon decomp lineages this build targets (per MASTER_PROMPT §5).
+// Gen-3 Pokémon decomp lineages this build targets. Detection must stay
+// family-universal: adding a lineage means adding a row here, never a
+// game-specific branch further down.
 const KNOWN_BASE_GAMES: ReadonlyArray<KnownBaseGame> = [
   { id: 'pokeemerald', linkerScript: 'pokeemerald.ld' },
   { id: 'pokefirered', linkerScript: 'pokefirered.ld' },

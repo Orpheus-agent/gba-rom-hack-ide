@@ -437,7 +437,8 @@ export function EmulatorHost(): JSX.Element {
     }
     consumeBuildPlay();
     void buildAndPlay();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Deps are intentionally just the build-play request and the coarse
+    // state kind; buildAndPlay is re-created every render.
   }, [pendingBuildPlay, state.kind]);
 
   const pause = (): void => {
@@ -501,7 +502,7 @@ export function EmulatorHost(): JSX.Element {
         zeroStreak += 1;
         if (!loggedZero) {
           loggedZero = true;
-          // eslint-disable-next-line no-console
+           
           console.warn(
             `[emulator] 0 fps - core is not stepping (frozen). total frames=${String(total)}, ` +
               `crossOriginIsolated=${String(globalThis.crossOriginIsolated)}. ` +

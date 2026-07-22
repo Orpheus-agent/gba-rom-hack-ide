@@ -4,7 +4,7 @@
 // Fetches pret/pokefirered and pret/pokeemerald reference symbol headers
 // from GitHub raw and parses them into the editor's symbol database JSON
 // format (symbols/<rom-family>.json). The output is consumed by
-// `app/frontend/src/lib/symbols/loadSymbolDb.ts` at runtime so binary-ROM
+// `app/frontend/src/lib/symbols/index.ts` at runtime so binary-ROM
 // workspaces (where include/constants/*.h is not on disk) still get
 // human-readable flag/var/song/species names instead of `flag_0x223`.
 //

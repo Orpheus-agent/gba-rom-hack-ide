@@ -81,7 +81,7 @@ export function MechanicsView({ manifest }: MechanicsViewProps) {
       } catch (e) {
         // Surface the error via console; the UI keeps the local state so the
         // writer doesn't lose their edits.
-        // eslint-disable-next-line no-console
+         
         console.error('patchMechanicConfig failed:', e);
       }
     },

@@ -2,12 +2,14 @@
 //
 // Steps:
 //   1. Verify Node 22.x
-//   2. npm install (only if app/node_modules is missing)
-//   3. Build app/shared once (backend + frontend resolve @rom-editor/shared via its dist)
-//   4. Start backend in the background; wait until /api/health returns 200
-//   5. Start frontend dev server; open http://localhost:5173 in the default browser
-//   6. Stream both processes' stdout/stderr to this terminal, prefixed by source
-//   7. On Ctrl+C, gracefully terminate both children before exiting
+//   2. npm install in app/ (only if app/node_modules is missing)
+//   3. npm install in engine/ (only if engine/node_modules is missing)
+//   4. Build app/shared once (backend + frontend resolve @rom-editor/shared via its dist)
+//   5. Build engine/ (backend resolves @rom-introspection/engine via its dist)
+//   6. Start backend in the background; wait until /api/health returns 200
+//   7. Start frontend dev server; open http://localhost:5173 in the default browser
+//   8. Stream both processes' stdout/stderr to this terminal, prefixed by source
+//   9. On Ctrl+C, gracefully terminate both children before exiting
 //
 // Usage: `node scripts/start.mjs` from the project root.
 //        (start.ps1 / start.bat at the project root are thin wrappers.)
@@ -100,6 +102,22 @@ async function maybeInstall() {
   }
   step('app/node_modules missing - running `npm install` (this may take a minute or two)');
   await run('npm', ['install'], APP_DIR);
+}
+
+async function maybeInstallEngine() {
+  // `engine/` is a sibling package, NOT an app/ workspace, so
+  // `npm install` inside app/ never installs engine's devDependencies.
+  // Its build script shells out to `tsc`, and npm only puts the running
+  // package's own `node_modules/.bin` plus ANCESTOR bin dirs on PATH -
+  // app/node_modules/.bin is a sibling of engine/, so it is not visible.
+  // Without this step a fresh clone dies with "'tsc' is not recognized".
+  const engineDir = path.join(PROJECT_ROOT, 'engine');
+  if (existsSync(path.join(engineDir, 'node_modules'))) {
+    ok('engine/node_modules present - skipping npm install');
+    return;
+  }
+  step('engine/node_modules missing - running `npm install` in engine/');
+  await run('npm', ['install'], engineDir);
 }
 
 async function buildShared() {
@@ -277,6 +295,7 @@ async function main() {
   step(`Project root: ${PROJECT_ROOT}`);
   checkNodeVersion();
   await maybeInstall();
+  await maybeInstallEngine();
   await buildShared();
   await buildEngine();
   await maybeStartTileIntelStack();

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { promises as fsp } from 'node:fs';
 import path from 'node:path';
 import type {
   SpeciesLibrary,

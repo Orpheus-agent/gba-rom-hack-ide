@@ -1,8 +1,7 @@
 /**
  * Phase 0 Exit-Gate smoke test.
  *
- * Per MASTER_PROMPT_ROM_INTROSPECTION.md §15 Phase 0 acceptance, this test
- * proves end-to-end that:
+ * This test proves end-to-end that:
  *
  *   (a) a corpus ROM can be LOADED (loader → RomImage)
  *   (b) the ORCHESTRATOR runs all registered detectors and produces a

@@ -46,7 +46,6 @@ import {
   displayName,
   lookupMapGroup,
   prettifyMapGroup,
-  prettifyMapName,
 } from '../lib/displayName';
 import './NavigatorTree.css';
 

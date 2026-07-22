@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import type { ProjectManifest } from '@rom-editor/shared';
 import { NpcGraphicsPicker } from './NpcGraphicsPicker';
+import { isSymbolDatabaseAvailable } from '../lib/symbols';
 
 vi.mock('../api', async () => {
   return {
@@ -68,7 +69,11 @@ describe('NpcGraphicsPicker', () => {
     );
   });
 
-  it('shows a sensible name even for hack-added IDs beyond the hand-curated map (WP-D fallback)', () => {
+  // The scraped OBJ_EVENT_GFX_* fallback lives in the generated per-family
+  // symbol database, which is not distributed with this repository. Without
+  // it the picker correctly falls back to the "NPC sprite #N" placeholder,
+  // so this assertion only applies once the user has run build-symbols.mjs.
+  it.runIf(isSymbolDatabaseAvailable())('shows a sensible name even for hack-added IDs beyond the hand-curated map (WP-D fallback)', () => {
     const m = makeManifest();
     render(
       <NpcGraphicsPicker

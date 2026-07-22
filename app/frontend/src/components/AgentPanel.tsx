@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useAgentStore, type AgentDisplayMessage, type PatchActionState } from '../state/agent';
+import { useAgentStore, type PatchActionState } from '../state/agent';
 import { useProjectStore } from '../state';
 import type { AgentPatchEdit, AgentPatchProposal } from '@rom-editor/shared';
 import './AgentPanel.css';
@@ -237,8 +237,6 @@ export function AgentPanel() {
     }
   }, [projectId, connection, claudeAvailability]);
 
-  const claudeReady =
-    claudeAvailability.kind === 'available' || claudeAvailability.kind === 'unknown';
   // While we don't yet know whether claude is installed we still allow
   // typing - the user might be a first-time launcher and the probe is
   // in flight. We only HARD-disable Send when we KNOW it's missing.

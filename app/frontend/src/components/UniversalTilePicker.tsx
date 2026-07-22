@@ -20,7 +20,7 @@
  * `${tilesetOffset}:${metatileId}` key.
  */
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { ProjectManifest, TilesetEntry } from '@rom-editor/shared';
 import {
   fetchBinaryRomTileset,

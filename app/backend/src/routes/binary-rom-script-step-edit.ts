@@ -18,7 +18,7 @@
 import { computeScriptEdit, type ProposeScriptEditResult } from '../agent/tools/propose-script-edit.js';
 import { applyEdits, PatchApplyError } from '../agent/patch-applier.js';
 import { appendOpLogEntry } from '../events/op-log.js';
-import { scripts as scriptsApi } from '@rom-introspection/engine';
+import type { scripts as scriptsApi } from '@rom-introspection/engine';
 import type { FastifyInstance, FastifyReply } from 'fastify';
 
 type ScriptStepKind = scriptsApi.ScriptStepKind;

@@ -25,7 +25,6 @@
 
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { promises as fsp } from 'node:fs';
-import path from 'node:path';
 import { battle, species as speciesApi } from '@rom-introspection/engine';
 import { readManifest } from '../scan/manifest-io.js';
 import { buildSimStub } from '../agent/tools/propose-build-trainer-team.js';

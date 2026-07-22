@@ -82,7 +82,7 @@ describe('DialogueView', () => {
     fireEvent.click(screen.getByTestId('dialogue-view-item-LittlerootTown_Mom_Text_WelcomeHome'));
     const ta = screen.getByTestId('dialogue-editor-textarea');
     fireEvent.change(ta, { target: { value: 'Edited text' } });
-    const save = screen.getByTestId('dialogue-editor-save') as HTMLButtonElement;
+    screen.getByTestId('dialogue-editor-save');
     // sessionId is null in unit tests (no project store load), so save stays disabled.
     // But the dirty check itself works - assert via the textarea value.
     expect((ta as HTMLTextAreaElement).value).toBe('Edited text');

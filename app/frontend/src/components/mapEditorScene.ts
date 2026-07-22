@@ -440,7 +440,6 @@ export async function renderMapScene(
   };
 }
 
-type PixiGraphics = import('pixi.js').Graphics;
 type PixiContainer = import('pixi.js').Container;
 
 function drawGrid(

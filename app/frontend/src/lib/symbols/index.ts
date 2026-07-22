@@ -17,14 +17,24 @@
 // New ROM families (CFRU/Unbound/Radical Red/expansion) get added by
 // extending the `KNOWN_FAMILIES` map and running the build script.
 
-import fireredVanilla from './data/firered-vanilla.json';
-import emeraldVanilla from './data/emerald-vanilla.json';
-import fireredCfru from './data/firered-cfru.json';
-// Phase 5.4 - CFRU + DPE family. Inherits CFRU's flag/var/song/object
-// tables (DPE doesn't ship those) and overlays DPE's species/moves/
-// abilities/items where they exist.
-import fireredCfruDpe from './data/firered-cfru-dpe.json';
-import emeraldExpansion from './data/emerald-expansion.json';
+// Per-ROM-family symbol databases (firered-vanilla.json,
+// emerald-vanilla.json, firered-cfru.json, firered-cfru-dpe.json,
+// emerald-expansion.json) are NOT distributed with this repository:
+// they are bulk extractions of game content (map lists, wild encounter
+// tables, species/move/item/ability rosters) from the pret decomp
+// projects. You generate them yourself, from your own decomp checkout:
+//
+//   node scripts/build-symbols.mjs
+//   node scripts/build-vanilla-frlg-truth.mjs
+//
+// The glob below therefore resolves to {} on a fresh clone, and every
+// lookup in this module degrades to "no symbol DB" (null / empty list)
+// instead of throwing. See `isSymbolDatabaseAvailable()` and
+// app/frontend/src/lib/symbols/data/README.md.
+const GENERATED_FAMILY_FILES = import.meta.glob('./data/*.json', {
+  eager: true,
+  import: 'default',
+}) as Readonly<Record<string, unknown>>;
 import gen3Universal from './data/gen3-universal.json';
 import npcGraphicsBundle from './data/npc-graphics.json';
 import type { ProjectIdentity } from '@rom-editor/shared';
@@ -158,13 +168,20 @@ interface SymbolDatabaseFile {
   readonly musicTracks?: Readonly<Record<string, string>>;
 }
 
-const DBS: Record<RomFamily, SymbolDatabaseFile> = {
-  'firered-vanilla': fireredVanilla as SymbolDatabaseFile,
-  'emerald-vanilla': emeraldVanilla as SymbolDatabaseFile,
-  'firered-cfru': fireredCfru as SymbolDatabaseFile,
-  'firered-cfru-dpe': fireredCfruDpe as SymbolDatabaseFile,
-  'emerald-expansion': emeraldExpansion as SymbolDatabaseFile,
-};
+/** Human-readable instruction shown by any surface that needs the
+ *  symbol database and finds it absent. Kept in one place so the UI,
+ *  the console warning and the tests all say the same thing. */
+export const SYMBOL_DB_MISSING_MESSAGE =
+  'No symbol database found. This repository ships the generator, not the ' +
+  'extracted game data. Run `node scripts/build-symbols.mjs` (and ' +
+  '`node scripts/build-vanilla-frlg-truth.mjs` for vanilla map / encounter ' +
+  'truth) against your own pret decomp checkout to produce ' +
+  'app/frontend/src/lib/symbols/data/<family>.json, then restart the editor.';
+
+function loadFamilyDb(family: RomFamily): SymbolDatabaseFile | undefined {
+  const raw = GENERATED_FAMILY_FILES[`./data/${family}.json`];
+  return raw ? (raw as SymbolDatabaseFile) : undefined;
+}
 
 // Phase Y.1 / Y.2 / 5.4 - fork-specific families layer on top of their
 // vanilla base. Resolution checks the fork family first, falls through
@@ -183,6 +200,30 @@ const KNOWN_FAMILIES: ReadonlyArray<RomFamily> = [
   'firered-cfru-dpe',
   'emerald-expansion',
 ];
+
+/** Families whose generated JSON is actually present on disk. Empty on
+ *  a fresh clone until the user runs the generators. */
+const DBS: Partial<Record<RomFamily, SymbolDatabaseFile>> = Object.fromEntries(
+  KNOWN_FAMILIES.map((family) => [family, loadFamilyDb(family)]).filter(
+    ([, db]) => db !== undefined,
+  ),
+) as Partial<Record<RomFamily, SymbolDatabaseFile>>;
+
+/** Which ROM families have a generated symbol database available. */
+export function loadedSymbolFamilies(): ReadonlyArray<RomFamily> {
+  return KNOWN_FAMILIES.filter((family) => DBS[family] !== undefined);
+}
+
+/** True when at least one per-family symbol database was generated.
+ *  UI surfaces that show pret-derived names should render an empty
+ *  state pointing at `SYMBOL_DB_MISSING_MESSAGE` when this is false. */
+export function isSymbolDatabaseAvailable(): boolean {
+  return loadedSymbolFamilies().length > 0;
+}
+
+if (!isSymbolDatabaseAvailable() && typeof console !== 'undefined') {
+  console.warn(`[symbols] ${SYMBOL_DB_MISSING_MESSAGE}`);
+}
 
 /** Resolve a ProjectIdentity to the symbol family it should look up
  *  against, or null if we have no matching DB. Fork-aware: a CFRU-based
@@ -857,23 +898,39 @@ export function listUniversalSymbols(
 }
 
 /** Diagnostics - how many symbols loaded across all families. Lets
- *  the Project view surface "✓ 2,900 vanilla symbols loaded" so users
- *  see when the DB is in effect. */
+ *  the Project view surface "2,900 vanilla symbols loaded" so users
+ *  see when the DB is in effect.
+ *
+ *  Families whose generated JSON is absent are reported with zero
+ *  counts and an empty source rather than omitted, so a caller can
+ *  render "firered-vanilla: not generated" without special-casing. */
 export function symbolDbSummary(): ReadonlyArray<{
   readonly family: RomFamily;
   readonly flagCount: number;
   readonly varCount: number;
   readonly songCount: number;
   readonly source: string;
+  readonly generated: boolean;
 }> {
   return KNOWN_FAMILIES.map((family) => {
     const db = DBS[family];
+    if (!db) {
+      return {
+        family,
+        flagCount: 0,
+        varCount: 0,
+        songCount: 0,
+        source: '',
+        generated: false,
+      };
+    }
     return {
       family,
-      flagCount: Object.keys(db.flags).length,
-      varCount: Object.keys(db.vars).length,
-      songCount: Object.keys(db.songs).length,
-      source: db.source.flags ?? '',
+      flagCount: Object.keys(db.flags ?? {}).length,
+      varCount: Object.keys(db.vars ?? {}).length,
+      songCount: Object.keys(db.songs ?? {}).length,
+      source: db.source?.flags ?? '',
+      generated: true,
     };
   });
 }

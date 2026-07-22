@@ -1,4 +1,4 @@
-"""Phase 8A-5 â€” SQLAlchemy domain models for tile-intel-svc.
+"""Phase 8A-5 - SQLAlchemy domain models for tile-intel-svc.
 
 The shape mirrors the schema design from the Phase 8 plan (see
 `docs/MASTER_PLAN.md`).
@@ -50,7 +50,7 @@ class Base(DeclarativeBase):
     autogenerate; subclassed by every model below."""
 
 
-# SQLite doesn't autoincrement BIGINT â€” it needs INTEGER PRIMARY KEY.
+# SQLite doesn't autoincrement BIGINT - it needs INTEGER PRIMARY KEY.
 # Postgres handles BIGINT autoincrement natively via SERIAL/IDENTITY.
 # This variant keeps production at BIGINT while letting the SQLite-
 # backed test suite use INTEGER, which IS the rowid + autoincrements.
@@ -96,7 +96,7 @@ class Tileset(Base):
 
 
 class Tile(Base):
-    """An 8Ã - 8 tile in a tileset's tile-table."""
+    """An 8x8 tile in a tileset's tile-table."""
 
     __tablename__ = "tiles"
 
@@ -106,7 +106,7 @@ class Tile(Base):
     pixel_bytes: Mapped[bytes] = mapped_column(LargeBinary)
     content_hash: Mapped[bytes] = mapped_column(LargeBinary, index=True)
     palette_neutral_hash: Mapped[bytes] = mapped_column(LargeBinary, index=True)
-    phash: Mapped[bytes] = mapped_column(LargeBinary, index=True)  # u64 → 8 bytes
+    phash: Mapped[bytes] = mapped_column(LargeBinary, index=True)  # u64 -> 8 bytes
     is_blank: Mapped[bool] = mapped_column(Boolean)
     is_horizontal_symm: Mapped[bool] = mapped_column(Boolean)
     is_vertical_symm: Mapped[bool] = mapped_column(Boolean)
@@ -118,7 +118,7 @@ class Tile(Base):
 
 
 class Metatile(Base):
-    """One 16Ã - 16 metatile = 2Ã - 2 tile composition + attribute bytes."""
+    """One 16x16 metatile = 2x2 tile composition + attribute bytes."""
 
     __tablename__ = "metatiles"
 
@@ -130,10 +130,10 @@ class Metatile(Base):
     encounter_type: Mapped[int] = mapped_column(SmallInteger)
     layer_type: Mapped[int] = mapped_column(SmallInteger)
     attr_raw: Mapped[bytes] = mapped_column(LargeBinary)
-    # 8 slots Ã - {layer, quad, tileIndex, hflip, vflip, paletteIndex}
+    # 8 slots x {layer, quad, tileIndex, hflip, vflip, paletteIndex}
     composition: Mapped[list[dict[str, Any]]] = mapped_column(JSON)
     rendered_hash: Mapped[bytes] = mapped_column(LargeBinary, index=True)
-    phash: Mapped[bytes] = mapped_column(LargeBinary, index=True)  # u64 → 8 bytes
+    phash: Mapped[bytes] = mapped_column(LargeBinary, index=True)  # u64 -> 8 bytes
     is_walkable: Mapped[bool] = mapped_column(Boolean, index=True)
     is_surfable: Mapped[bool] = mapped_column(Boolean)
     is_encounter_grass: Mapped[bool] = mapped_column(Boolean)
@@ -230,7 +230,7 @@ class MetatileTag(Base):
 
 class TileTag(Base):
     """Sparse tile-level tags (typically used only for shared
-    structural components like a reused tree-canopy 8Ã - 8 tile)."""
+    structural components like a reused tree-canopy 8x8 tile)."""
 
     __tablename__ = "tile_tags"
 
@@ -286,7 +286,7 @@ class AdjacencyRule(Base):
     direction: Mapped[int] = mapped_column(SmallInteger)
     # [{metatile_b_id: int, probability: float, freq: int}, ...]
     legal_neighbors: Mapped[list[dict[str, Any]]] = mapped_column(JSON)
-    # IDs only â€” for fast hard-constraint checks
+    # IDs only - for fast hard-constraint checks
     hard_legal_set: Mapped[list[int]] = mapped_column(JSON)
     total_observations: Mapped[int] = mapped_column(Integer)
     entropy: Mapped[float] = mapped_column(Numeric(7, 4))
@@ -303,7 +303,7 @@ class AdjacencyRule(Base):
 
 
 class AdjacencyPattern(Base):
-    """Multi-cell legality rules (L-shapes, transitions, 3Ã - 3 corners)
+    """Multi-cell legality rules (L-shapes, transitions, 3x3 corners)
     that pairwise rules can't capture."""
 
     __tablename__ = "adjacency_patterns"

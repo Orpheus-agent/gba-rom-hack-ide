@@ -2,14 +2,14 @@
  * EngineClient - the editor backend's typed bridge to the introspection
  * engine.
  *
- * Per `MASTER_PROMPT_UNIVERSAL_WORKSPACE.md` PD 13 (Engine ↔ Editor
- * single source of truth): the editor backend MAY NOT re-implement
- * detection / classification / coverage. It consumes the engine's
+ * Engine/editor single source of truth: the editor backend MAY NOT
+ * re-implement detection / classification / coverage. It consumes the
+ * engine's
  * `WorkspaceModel` directly via this module. Any backend code that
  * needs detected ROM content (maps, species, events, etc.) goes
  * through `runEngineOnRom` here - never through a parallel scanner.
  *
- * Per `MASTER_PROMPT_UNIVERSAL_WORKSPACE.md` Phase UW-0 acceptance:
+ * Two properties this module is required to keep true:
  *   - Editor backend has zero ROM-bytes-parsing logic outside this
  *     module (the existing `app/backend/src/scan/*` modules are
  *     `legacy-pending-removal` and will be migrated to delegate
@@ -35,7 +35,6 @@ import { fileURLToPath } from 'node:url';
 
 import {
   classify,
-  coverage as coverageNs,
   detectors as detectorsNs,
   graph as graphNs,
   ingest,

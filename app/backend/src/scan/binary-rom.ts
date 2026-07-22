@@ -84,7 +84,6 @@ import type {
 } from '@rom-editor/shared';
 import { runEngineOnRom } from '../engine-client.js';
 import {
-  LIFTER_REGISTRY,
   crossReferenceLiftedEntries,
   decodeBinaryScriptsForLiftedEntities,
   getLifter,

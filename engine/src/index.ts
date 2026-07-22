@@ -2,7 +2,16 @@
  * @rom-introspection/engine - universal Pokémon-family GBA ROM workspace
  * reconstruction & full-engine introspection engine.
  *
- * Governed by MASTER_PROMPT_ROM_INTROSPECTION.md at the Project Root.
+ * Engine-wide invariants every export below upholds:
+ *   - No empty success: a detector reports `detected` only with real,
+ *     non-empty reconstructed data plus evidence; otherwise it returns a
+ *     typed `not_detected` with a reason.
+ *   - ROM-wide accounting: every byte of an ingested ROM ends up either
+ *     classified into a known system or explicitly recorded as a scored
+ *     UNKNOWN region. Silently ignored regions are a bug.
+ *   - Family-universal: no FireRed-only or Emerald-only code path; the
+ *     engine works across the Gen-3 family and its hacks.
+ *
  * Phase 0 surface: universal Detection result type, ROM-coverage metric
  * infrastructure, ROM loader + GBA cartridge-header parser, the
  * header-fingerprint detector, the ingest orchestrator that enforces PD 1

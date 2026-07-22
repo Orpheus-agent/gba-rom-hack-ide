@@ -311,7 +311,10 @@
           <code>scan/data/struct-block.ts</code> is 159 lines. It parses decomp files shaped as
           <code>[ID] = { .field = value }</code> arrays and rewrites only the value span of named
           fields, so macros, <code>#if</code> guards, comments and unmodelled fields survive
-          verbatim. Eight data editors are thin schemas on top of it. Every write is
+          verbatim. Moves, abilities and items sit directly on that parser; learnsets and
+          encounters reuse its bracket matcher over a macro list and over
+          <code>wild_encounters.json</code>; species, the type chart and trainers have their own
+          format-specific writers built to the same discipline. Every write is
           tmp-file-plus-rename.
         </p>
       </div>
@@ -319,8 +322,9 @@
         <span class="num">02</span>
         <h3>An MCP server as the agent layer</h3>
         <p>
-          <code>agent/mcp-server.ts</code> registers 71 tools against the open project, drawn from
-          92 modules under <code>agent/tools/</code>, 77 of them <code>propose-*</code> mutations.
+          <code>agent/mcp-server.ts</code> registers 71 tools against the open project, one per
+          module under <code>agent/tools/</code> (59 of them <code>propose-*</code> mutations,
+          plus 21 colocated test files).
           The <code>claude</code> CLI runs as a child process and streams turn events over a
           WebSocket. No tool writes to disk: proposals become a diff card you approve, then a
           patch applier writes them.
@@ -392,11 +396,10 @@ Build &amp; Play:    make modern job -&gt; .gba -&gt; mGBA-wasm in the browser</
 <pre>git clone https://github.com/csnyder256/gba-rom-hack-ide
 cd gba-rom-hack-ide
 
-copy .env.example .env
 .\start.ps1                 # or: node scripts\start.mjs</pre>
     <ul class="plain">
       <li><strong>Node.js 22 LTS</strong> is required, enforced through <code>engines</code>.</li>
-      <li><strong><code>ROM_EDITOR_PROJECT_ROOT</code></strong> is the one variable you actually have to set. Point it at your own decomp checkout, for example a pret/pokefirered clone.</li>
+      <li><strong>No <code>.env</code> is needed for the Node stack.</strong> You pick your decomp checkout in the app, and the backend derives <code>ROM_EDITOR_PROJECT_ROOT</code> from it for the MCP server. Copy <code>.env.example</code> to <code>.env</code> only if you run the optional Docker tier or the Python sidecar, which are the only things that read it.</li>
       <li><strong>Build &amp; Play</strong> needs devkitPro / devkitARM, plus its MSYS2 bash on Windows. The agent panel needs the <code>claude</code> CLI on <code>PATH</code>.</li>
       <li><strong>Docker tier gotcha:</strong> compose reads <code>${TILE_INTEL_PG_PASSWORD:?...}</code> and fails fast unless it is set. Set it, or run with <code>SKIP_TILE_INTEL=1</code>. The editor degrades gracefully without it.</li>
     </ul>

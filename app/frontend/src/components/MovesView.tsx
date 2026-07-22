@@ -278,7 +278,8 @@ function MoveEditor({
   useEffect(() => {
     setValues({ ...initial });
     setState({ kind: 'idle' });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Reset-on-selection: deps are intentionally just move.id, not the
+    // derived `initial` object, which is rebuilt on every render.
   }, [move.id]);
 
   function setField(k: string, v: number): void {

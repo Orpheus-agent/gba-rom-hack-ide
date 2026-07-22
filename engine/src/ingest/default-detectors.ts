@@ -2,9 +2,9 @@
  * Default detector set - the canonical detector list every consumer
  * (smoke harness, editor backend EngineClient, future CLI) runs.
  *
- * Per `MASTER_PROMPT_UNIVERSAL_WORKSPACE.md` PD 13: the editor MAY NOT
- * re-implement detection / classification. It consumes the engine's
- * output via the same detector pipeline the smoke harness uses. This
+ * Single source of truth for detection: the editor MAY NOT re-implement
+ * detection / classification. It consumes the engine's output via the
+ * same detector pipeline the smoke harness uses. This
  * module is the single source of truth for "the detectors a universal
  * ingest pass runs" - change it here and every consumer picks up the
  * new detector automatically.
@@ -13,12 +13,12 @@
  *   - `headerFingerprintDetector` first (provides RomHeader to later
  *     detectors).
  *   - `regionFinalizerDetector` MUST run last - it walks the gaps
- *     every earlier detector left and registers them so PD 8 ROM-wide
+ *     every earlier detector left and registers them so ROM-wide byte
  *     accounting closes with zero unaccounted bytes.
  *
  * Plugin detectors are included (currently `testMarkerPluginDetector`)
- * to prove the universal extensibility path (per introspection master
- * Phase 13 P13-T2). Future plugins drop into this list.
+ * to prove the extensibility path stays open. Future plugins drop into
+ * this list.
  *
  * The runtime validator detector is NOT in the default set - it's
  * costly (executes script bytecode) and is run as a separate

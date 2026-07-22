@@ -96,7 +96,7 @@ export function TrainerSimQuickTest({
       // Stream loop: pull chunks, split on the SSE event delimiter
       // (double-newline), parse each `data:` line as JSON, and
       // update state.
-      // eslint-disable-next-line no-constant-condition
+       
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;

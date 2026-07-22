@@ -1,6 +1,6 @@
 // HTTP / WebSocket message shapes shared between backend and frontend.
-// Per MASTER_PROMPT §5, the universal vocabulary stays in vocabulary.ts;
-// these are transport-layer envelopes.
+// The universal entity vocabulary lives in vocabulary.ts and nowhere else;
+// everything here is a transport-layer envelope around it.
 
 export interface HealthResponse {
   readonly status: 'ok';

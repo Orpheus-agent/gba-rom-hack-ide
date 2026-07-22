@@ -97,7 +97,6 @@ const TRAINERBATTLE_TYPE_NO_INTRO = 0x03;
 const RELEASE_OPCODE = 0x6c;
 const END_OPCODE = 0x02;
 const GBA_ROM_BASE = 0x08000000;
-const POST_BATTLE_SCRIPT_BYTES = 2; // release + end
 const TRAINER_BATTLE_SCRIPT_BYTES = 13; // trainerbattle (12) + end (1)
 const OBJ_EVENT_TRAINER_FIELDS_OFFSET = 0x0c;
 /** Length of the contiguous slice we rewrite on the ObjectEvent struct:

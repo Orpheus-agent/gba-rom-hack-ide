@@ -11,7 +11,6 @@ import type {
   HealLocationEntry,
   ItemEntry,
   ProjectManifest,
-  RegionMapSectionEntry,
   Trainer,
 } from '@rom-editor/shared';
 

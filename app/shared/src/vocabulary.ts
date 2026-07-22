@@ -1,7 +1,8 @@
-// Universal vocabulary for the canonical project manifest. Per MASTER_PROMPT §5,
-// every editor speaks this vocabulary; only project translators speak engine
-// dialects. Field surfaces here are minimal and real - expanded by Phase 1+
-// detection adapters without breaking shape.
+// Universal vocabulary for the canonical project manifest. This file is the
+// one place the vocabulary is defined: every editor surface speaks it, and
+// only project translators speak engine-specific dialects. Field surfaces
+// here stay minimal and real - detection adapters extend them without
+// breaking shape.
 
 export type EntityId = string;
 

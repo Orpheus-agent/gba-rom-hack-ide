@@ -4,7 +4,6 @@
   "cfruVersion": "CFRU @ unknown",
   "cfruCommitShortSha": "unknown",
   "buildOffset": 9437184,
-  "built": true,
-  "bundledAtUtc": "2026-05-26T20:20:40.717Z",
-  "bundledPatchSha1": "260d4b56af2da03de379dbc94054e014d0d07800"
+  "built": false,
+  "note": "No patch binary ships in this repository. Run scripts/build-cfru-bundle.mjs against your own CFRU clone and your own legally-obtained FireRed (USA v1.0) ROM to produce cfru.bps; the script rewrites this file with built: true and the resulting hashes."
 }
