@@ -1,0 +1,133 @@
+import { describe, expect, it } from 'vitest';
+import { STRING_TERMINATOR, decodeByte, decodeString, encodeString } from './codec.js';
+
+describe('Gen-3 text codec - decodeByte', () => {
+  it('decodes uppercase A-Z at 0xBB..0xD4', () => {
+    expect(decodeByte(0xbb)).toBe('A');
+    expect(decodeByte(0xbc)).toBe('B');
+    expect(decodeByte(0xd4)).toBe('Z');
+  });
+
+  it('decodes lowercase a-z at 0xD5..0xEE', () => {
+    expect(decodeByte(0xd5)).toBe('a');
+    expect(decodeByte(0xee)).toBe('z');
+  });
+
+  it('decodes digits 0-9 at 0xA1..0xAA', () => {
+    expect(decodeByte(0xa1)).toBe('0');
+    expect(decodeByte(0xaa)).toBe('9');
+  });
+
+  it('decodes space (0x00) and common punctuation', () => {
+    expect(decodeByte(0x00)).toBe(' ');
+    expect(decodeByte(0xab)).toBe('!');
+    expect(decodeByte(0xac)).toBe('?');
+    expect(decodeByte(0xad)).toBe('.');
+    expect(decodeByte(0xae)).toBe('-');
+  });
+
+  it('decodes male/female symbols', () => {
+    expect(decodeByte(0xb5)).toBe('♂');
+    expect(decodeByte(0xb6)).toBe('♀');
+  });
+
+  it('decodes accented letters expanded in G.3', () => {
+    expect(decodeByte(0x01)).toBe('À');
+    expect(decodeByte(0x1c)).toBe('é');
+    expect(decodeByte(0x14)).toBe('Ñ');
+    expect(decodeByte(0xf1)).toBe('Ä');
+    expect(decodeByte(0xf6)).toBe('ü');
+  });
+
+  it('decodes control codes as readable placeholders', () => {
+    expect(decodeByte(0xfe)).toBe('\n');
+    expect(decodeByte(0xfa)).toBe('\\p');
+    expect(decodeByte(0xfb)).toBe('\\l');
+    expect(decodeByte(0xfc)).toBe('{CC}');
+    expect(decodeByte(0xfd)).toBe('{VAR}');
+  });
+
+  it('decodes still-undocumented bytes as "?"', () => {
+    // 0x7F is in a sparse zone outside the documented mappings.
+    expect(decodeByte(0x7f)).toBe('?');
+    // 0x36..0x9F is the "in-game graphics" zone (sprite tiles, PK/MN
+    // ligatures, etc.) - most bytes here aren't documented one-to-one.
+    expect(decodeByte(0x80)).toBe('?');
+  });
+});
+
+describe('Gen-3 text codec - decodeString', () => {
+  it('stops at the 0xFF terminator', () => {
+    // "BULB" then terminator + garbage
+    const buf = new Uint8Array([0xbc, 0xcf, 0xc6, 0xbc, 0xff, 0x99, 0x88]);
+    expect(decodeString(buf, 0, 16)).toBe('BULB');
+  });
+
+  it('reads up to maxLen if no terminator', () => {
+    const buf = new Uint8Array([0xbc, 0xcf, 0xc6, 0xbc, 0xbb, 0xcd]);
+    expect(decodeString(buf, 0, 4)).toBe('BULB');
+  });
+
+  it('reads from a non-zero offset', () => {
+    const buf = new Uint8Array([0xff, 0xff, 0xbc, 0xcf, 0xc6, 0xbc, 0xff]);
+    expect(decodeString(buf, 2, 11)).toBe('BULB');
+  });
+
+  it('returns empty string when offset is past buffer end', () => {
+    const buf = new Uint8Array([0xbc, 0xcf]);
+    expect(decodeString(buf, 10, 5)).toBe('');
+  });
+
+  it('accepts Node Buffer (subclass of Uint8Array)', () => {
+    // This sanity-checks the engine API works for Node Buffer consumers too.
+    const buf = Buffer.from([0xbc, 0xcf, 0xc6, 0xbc, 0xff]);
+    expect(decodeString(buf, 0, 16)).toBe('BULB');
+  });
+});
+
+describe('Gen-3 text codec - encodeString', () => {
+  it('round-trips through decodeString for ASCII names', () => {
+    const enc = encodeString('BULBASAUR');
+    const decoded = decodeString(enc, 0, 11);
+    expect(decoded).toBe('BULBASAUR');
+    expect(enc.length).toBe(9);
+    expect(enc[0]).toBe(0xbc); // B
+    expect(enc[1]).toBe(0xcf); // U
+  });
+
+  it('handles digits + spaces', () => {
+    const enc = encodeString('AB 12');
+    const dec = decodeString(enc, 0, 10);
+    expect(dec).toBe('AB 12');
+  });
+
+  it('handles lowercase letters', () => {
+    const enc = encodeString('abc');
+    const dec = decodeString(enc, 0, 10);
+    expect(dec).toBe('abc');
+    expect(enc[0]).toBe(0xd5); // a
+  });
+
+  it('throws on a character with no mapping', () => {
+    // Phase I.3 - encoder now round-trips through the full TABLE so
+    // it accepts everything decodeString produces (accented vowels,
+    // common punctuation, etc.). Only characters that have no entry
+    // in the Gen-3 charmap (e.g. @, #, ASCII tab) still throw.
+    expect(() => encodeString('@')).toThrow(/Cannot encode/);
+    expect(() => encodeString('#')).toThrow(/Cannot encode/);
+    expect(() => encodeString('\t')).toThrow(/Cannot encode/);
+  });
+
+  it('round-trips dialogue text containing accented vowels + punctuation', () => {
+    const original = 'POKéMON!?,.';
+    const enc = encodeString(original);
+    const dec = decodeString(enc, 0, 32);
+    expect(dec).toBe(original);
+  });
+});
+
+describe('Gen-3 text codec - STRING_TERMINATOR constant', () => {
+  it('exports the canonical 0xFF terminator', () => {
+    expect(STRING_TERMINATOR).toBe(0xff);
+  });
+});

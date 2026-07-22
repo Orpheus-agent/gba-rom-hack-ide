@@ -1,0 +1,553 @@
+.agent-panel {
+  /* Lives inside the WorkspaceShell grid as the right rail. Width is
+     set by the grid template; the panel fills its cell vertically. */
+  width: 100%;
+  height: 100%;
+  background: #161819;
+  color: #e7e7e6;
+  border-left: 1px solid #2a2c2e;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.agent-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #2a2c2e;
+  background: #1c1e20;
+}
+
+.agent-panel__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.agent-panel__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agent-panel__status {
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #8b908d;
+  background: #14171a;
+  border-bottom: 1px solid #2a2c2e;
+}
+
+.agent-panel__banner {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  border-bottom: 1px solid #2a2c2e;
+}
+
+.agent-panel__banner--warn {
+  background: #2a2317;
+  color: #f0d896;
+  border-left: 3px solid #d3a23b;
+}
+
+.agent-panel__banner strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #f7e3a8;
+}
+
+.agent-panel__banner p {
+  margin: 0 0 8px 0;
+  font-size: 11.5px;
+}
+
+.agent-panel__banner code {
+  background: #1a1c1e;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.agent-panel__banner a {
+  color: #ffd97a;
+  text-decoration: underline;
+}
+
+.agent-panel__banner .agent-panel__btn {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.agent-panel__banner-details {
+  margin: 6px 0;
+  font-size: 11px;
+}
+
+.agent-panel__banner-details summary {
+  cursor: pointer;
+  color: #d6b974;
+  padding: 2px 0;
+}
+
+.agent-panel__banner-details summary:hover {
+  color: #f7e3a8;
+}
+
+.agent-panel__banner-trace {
+  list-style: none;
+  margin: 6px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.agent-panel__banner-trace-step {
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 10.5px;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.agent-panel__banner-trace-step--exists {
+  background: rgba(109, 181, 113, 0.18);
+  color: #b6d6b8;
+}
+
+.agent-panel__banner-trace-source {
+  display: inline-block;
+  width: 64px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8b908d;
+}
+
+.agent-panel__banner-trace-step--exists .agent-panel__banner-trace-source {
+  color: #8fd193;
+}
+
+.agent-panel__banner-trace-path {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 10.5px;
+  background: transparent;
+  padding: 0;
+}
+
+.agent-panel__banner-trace-note {
+  color: #c4b878;
+  font-size: 10.5px;
+  font-style: italic;
+}
+
+.agent-panel__banner-hint {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #d6c79d;
+  margin: 6px 0;
+}
+
+.agent-panel__banner-hint code {
+  background: #14171a;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10.5px;
+}
+
+.agent-panel__messages {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agent-panel__empty {
+  color: #8b908d;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 16px 4px;
+}
+
+.agent-panel__empty ul {
+  margin: 6px 0 0 0;
+  padding-left: 16px;
+}
+
+.agent-panel__empty li {
+  margin: 3px 0;
+  color: #aab0ad;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+}
+
+.agent-panel__msg {
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-left: 2px solid transparent;
+}
+
+.agent-panel__msg-body {
+  margin: 0;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-panel__msg--user {
+  background: #1f2b35;
+  border-left-color: #4a8db8;
+  color: #d9e7f2;
+}
+
+.agent-panel__msg--agent_text {
+  background: #1c2820;
+  border-left-color: #6db571;
+  color: #d8e7d4;
+}
+
+.agent-panel__msg--tool_call {
+  background: #211f1a;
+  border-left-color: #c4a25b;
+  color: #d6c79d;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+}
+
+.agent-panel__msg--tool_result {
+  background: #181d20;
+  border-left-color: #6b8b9e;
+  color: #b9c5cd;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+}
+
+.agent-panel__msg--system,
+.agent-panel__msg--status {
+  background: transparent;
+  color: #6e7370;
+  font-size: 10.5px;
+  font-style: italic;
+  padding: 2px 8px;
+}
+
+.agent-panel__msg--error {
+  background: #2c1818;
+  border-left-color: #c25b5b;
+  color: #e4b6b6;
+}
+
+.agent-panel__msg-meta {
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+.agent-panel__msg-meta summary {
+  cursor: pointer;
+  color: #8b908d;
+}
+
+.agent-panel__msg-meta pre {
+  margin: 4px 0 0 0;
+  padding: 6px 8px;
+  background: #0e1012;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-panel__composer {
+  padding: 8px 10px;
+  border-top: 1px solid #2a2c2e;
+  background: #1c1e20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agent-panel__input {
+  width: 100%;
+  resize: vertical;
+  min-height: 38px;
+  max-height: 240px;
+  background: #0f1112;
+  color: #e7e7e6;
+  border: 1px solid #2a2c2e;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.agent-panel__input:focus {
+  outline: none;
+  border-color: #4a8db8;
+  box-shadow: 0 0 0 2px rgba(74, 141, 184, 0.18);
+}
+
+.agent-panel__input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.agent-panel__composer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.agent-panel__btn {
+  appearance: none;
+  border: 1px solid #2a2c2e;
+  background: #1c1e20;
+  color: #d9d9d8;
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.agent-panel__btn:hover:not(:disabled) {
+  background: #25282a;
+}
+
+.agent-panel__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.agent-panel__btn--primary {
+  background: #2c5a82;
+  border-color: #3a72a6;
+  color: #fafcff;
+}
+
+.agent-panel__btn--primary:hover:not(:disabled) {
+  background: #366ea0;
+}
+
+.agent-panel__btn--danger {
+  background: #6b2a2a;
+  border-color: #8a3a3a;
+  color: #fafafa;
+}
+
+.agent-panel__btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: #8b908d;
+}
+
+.agent-panel__btn--ghost:hover:not(:disabled) {
+  background: #25282a;
+  color: #d9d9d8;
+}
+
+.agent-panel__btn--dev-active {
+  background: #5a3a82;
+  border-color: #7a52a8;
+  color: #fafcff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.agent-panel__btn--dev-active:hover:not(:disabled) {
+  background: #6a4b95;
+}
+
+/* Patch proposal cards - AI-1.3 */
+
+.agent-panel__patch {
+  padding: 0;
+  background: transparent;
+  border-left: none;
+}
+
+.agent-panel__patch-card {
+  background: #1a2127;
+  border: 1px solid #2a3540;
+  border-left: 3px solid #4a8db8;
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agent-panel__patch--applied .agent-panel__patch-card {
+  border-left-color: #6db571;
+  background: #1a2620;
+}
+
+.agent-panel__patch--rejected .agent-panel__patch-card {
+  border-left-color: #8b908d;
+  background: #181a1c;
+  opacity: 0.65;
+}
+
+.agent-panel__patch-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agent-panel__patch-icon {
+  font-size: 12px;
+}
+
+.agent-panel__patch-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #e7e7e6;
+  line-height: 1.35;
+}
+
+.agent-panel__patch-status {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.agent-panel__patch-status--pending {
+  background: rgba(196, 162, 91, 0.18);
+  color: #d6b974;
+  border: 1px solid rgba(196, 162, 91, 0.35);
+}
+
+.agent-panel__patch-status--applied {
+  background: rgba(109, 181, 113, 0.18);
+  color: #8fd193;
+  border: 1px solid rgba(109, 181, 113, 0.35);
+}
+
+.agent-panel__patch-status--rejected {
+  background: rgba(139, 144, 141, 0.12);
+  color: #aab0ad;
+  border: 1px solid rgba(139, 144, 141, 0.25);
+}
+
+.agent-panel__patch-meta {
+  font-size: 11px;
+  color: #8b908d;
+}
+
+.agent-panel__patch-edits {
+  font-size: 11px;
+}
+
+.agent-panel__patch-edits summary {
+  color: #8b908d;
+  cursor: pointer;
+  outline: none;
+  padding: 2px 0;
+}
+
+.agent-panel__patch-edits summary:hover {
+  color: #c4cbc8;
+}
+
+.agent-panel__patch-edit-list {
+  list-style: none;
+  margin: 6px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agent-panel__patch-edit {
+  background: #0f1316;
+  border: 1px solid #1f262c;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.agent-panel__patch-edit-path {
+  color: #d6c79d;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.agent-panel__patch-edit-note {
+  color: #6e7370;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.agent-panel__patch-edit-diff {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.agent-panel__patch-edit-before,
+.agent-panel__patch-edit-after {
+  margin: 0;
+  padding: 2px 6px;
+  font-size: 10.5px;
+  line-height: 1.4;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-panel__patch-edit-before {
+  background: rgba(194, 91, 91, 0.12);
+  color: #d99898;
+  border-left: 2px solid #8a4040;
+}
+
+.agent-panel__patch-edit-after {
+  background: rgba(109, 181, 113, 0.12);
+  color: #b6d6b8;
+  border-left: 2px solid #3f6b41;
+}
+
+.agent-panel__patch-error {
+  font-size: 11px;
+  color: #e4b6b6;
+  background: #2c1818;
+  border: 1px solid #4a2828;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.agent-panel__patch-error-file {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 10.5px;
+  color: #d99898;
+}
+
+.agent-panel__patch-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}

@@ -1,0 +1,86 @@
+.advanced-drawer {
+  background: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.advanced-drawer--open {
+  width: 240px;
+}
+
+.advanced-drawer--closed {
+  width: 0;
+  border-right-color: transparent;
+}
+
+/* The Real Game Editor Push - overlay mode: drawer floats above the
+   workspace via fixed positioning instead of taking grid space. */
+.advanced-drawer--overlay {
+  position: fixed;
+  top: 32px; /* below titlebar */
+  bottom: 24px; /* above statusbar */
+  left: 0;
+  z-index: 50;
+  width: 280px;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.55);
+}
+
+.advanced-drawer__backdrop {
+  position: fixed;
+  top: 32px;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.advanced-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px 8px 14px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-dim);
+  flex: 0 0 auto;
+}
+
+.advanced-drawer__title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.advanced-drawer__close {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-dim);
+  width: 22px;
+  height: 22px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advanced-drawer__close:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.advanced-drawer .sidebar {
+  flex: 1 1 auto;
+  border-right: none;
+}

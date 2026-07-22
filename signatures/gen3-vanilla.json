@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "name": "gen3-vanilla",
+  "license": "CC0-1.0",
+  "entries": [
+    {
+      "id": "pokemon-firered-family",
+      "displayName": "Pokémon FireRed (BPRE) family",
+      "family": "firered",
+      "kind": "vanilla",
+      "gameCodes": ["BPRE"],
+      "sources": [
+        "https://problemkaputt.de/gbatek.htm#gbacartridgeheader",
+        "Nintendo published GBA game-code registry",
+        "https://github.com/pret/pokefirered/blob/master/src/scrcmd.c (gScriptCmdTable opcode names - CC0 public source code, not copyrighted ROM bytes)"
+      ],
+      "confidenceWhenMatched": 0.85,
+      "notes": "BPRE is shared by all FireRed-derived hacks (Unbound, Radical Red, etc.). Phase 1 reports family=firered with kind heuristics determining if the binary is vanilla/decomp/cfru/fork. opcodeNames are the FireRed gScriptCmdTable indices 0..13 from pret/pokefirered/src/scrcmd.c (CC0-licensed source) - used by P6-T5 decompile renderer when this signature matches.",
+      "opcodeNames": [
+        "nop",
+        "nop1",
+        "end",
+        "return",
+        "call",
+        "goto",
+        "goto_if",
+        "call_if",
+        "gotostd",
+        "callstd",
+        "gotostd_if",
+        "callstd_if",
+        "returnram",
+        "killscript",
+        "setmysteryeventstatus",
+        "loadword",
+        "loadbyte",
+        "writebytetoaddr",
+        "loadbytefromaddr",
+        "setptrbyte",
+        "copylocal",
+        "copybyte",
+        "setvar",
+        "addvar",
+        "subvar",
+        "copyvar",
+        "setorcopyvar",
+        "compare_local_to_local",
+        "compare_local_to_value",
+        "compare_local_to_addr",
+        "compare_addr_to_local",
+        "compare_addr_to_value",
+        "compare_addr_to_addr",
+        "compare_var_to_value",
+        "compare_var_to_var",
+        "callnative",
+        "gotonative",
+        "special",
+        "specialvar",
+        "waitstate",
+        "delay",
+        "setflag",
+        "clearflag",
+        "checkflag"
+      ]
+    },
+    {
+      "id": "pokemon-leafgreen-family",
+      "displayName": "Pokémon LeafGreen (BPGE) family",
+      "family": "leafgreen",
+      "kind": "vanilla",
+      "gameCodes": ["BPGE"],
+      "sources": [
+        "https://problemkaputt.de/gbatek.htm#gbacartridgeheader"
+      ],
+      "confidenceWhenMatched": 0.85
+    },
+    {
+      "id": "pokemon-emerald-family",
+      "displayName": "Pokémon Emerald (BPEE) family",
+      "family": "emerald",
+      "kind": "vanilla",
+      "gameCodes": ["BPEE"],
+      "sources": [
+        "https://problemkaputt.de/gbatek.htm#gbacartridgeheader"
+      ],
+      "confidenceWhenMatched": 0.85
+    },
+    {
+      "id": "pokemon-ruby-family",
+      "displayName": "Pokémon Ruby (AXVE) family",
+      "family": "ruby",
+      "kind": "vanilla",
+      "gameCodes": ["AXVE"],
+      "sources": [
+        "https://problemkaputt.de/gbatek.htm#gbacartridgeheader"
+      ],
+      "confidenceWhenMatched": 0.85
+    },
+    {
+      "id": "pokemon-sapphire-family",
+      "displayName": "Pokémon Sapphire (AXPE) family",
+      "family": "sapphire",
+      "kind": "vanilla",
+      "gameCodes": ["AXPE"],
+      "sources": [
+        "https://problemkaputt.de/gbatek.htm#gbacartridgeheader"
+      ],
+      "confidenceWhenMatched": 0.85
+    }
+  ]
+}

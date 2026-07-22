@@ -1,0 +1,230 @@
+.paint-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: var(--color-bg-elevated, #1a1c20);
+  border-top: 1px solid var(--color-border, #2a2c33);
+}
+
+.paint-toolbar__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.paint-toolbar__tools {
+  display: flex;
+  gap: 4px;
+}
+
+.paint-toolbar__tool {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid var(--color-border, #2a2c33);
+  border-radius: 4px;
+  color: var(--color-text-primary, #d4d4d4);
+  font-size: 11px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.paint-toolbar__tool:hover:not(:disabled) {
+  border-color: var(--color-accent, #4a9eff);
+}
+
+.paint-toolbar__tool--active {
+  background: var(--color-accent-dim, #2a4a70);
+  border-color: var(--color-accent, #4a9eff);
+  color: var(--color-text-primary-inverse, #fff);
+}
+
+.paint-toolbar__tool:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paint-toolbar__tool-hotkey {
+  font-size: 9px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.paint-toolbar__status {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--color-text-secondary, #8b8d97);
+}
+
+.paint-toolbar__status strong {
+  color: var(--color-text-primary, #d4d4d4);
+  font-weight: 500;
+}
+
+.paint-toolbar__status-disabled {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.paint-toolbar__palette {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border, #2a2c33);
+}
+
+.paint-toolbar__palette-heading {
+  font-size: 11px;
+  color: var(--color-text-secondary, #8b8d97);
+}
+
+.paint-toolbar__palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 36px);
+  gap: 2px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.paint-toolbar__swatch {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: #0e0f12;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paint-toolbar__swatch:hover {
+  border-color: var(--color-accent, #4a9eff);
+}
+
+.paint-toolbar__swatch--selected {
+  border-color: var(--color-accent, #4a9eff);
+  outline: 1px solid var(--color-accent, #4a9eff);
+}
+
+/* Phase H-RC6 - universal tile picker tabs inside the paint palette. */
+.paint-toolbar__palette-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 6px 0;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.paint-toolbar__palette-tab {
+  padding: 5px 10px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.paint-toolbar__palette-tab:hover {
+  color: var(--color-text);
+}
+
+.paint-toolbar__palette-tab--active {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.paint-toolbar__palette-empty {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.paint-toolbar__palette-empty--error {
+  color: var(--color-error);
+}
+
+.paint-toolbar__swatch-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.paint-toolbar__swatch-wrap--selected .paint-toolbar__swatch {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.paint-toolbar__swatch-star {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  font-size: 10px;
+  line-height: 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.paint-toolbar__swatch-wrap:hover .paint-toolbar__swatch-star,
+.paint-toolbar__swatch-star--on {
+  opacity: 1;
+}
+
+.paint-toolbar__swatch-star--on {
+  color: #f0b429;
+  border-color: #f0b429;
+}
+
+.universal-tile-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+}
+
+.universal-tile-picker__header {
+  display: flex;
+  align-items: center;
+}
+
+.universal-tile-picker__select-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  width: 100%;
+}
+
+.universal-tile-picker__select-label select {
+  height: 26px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}

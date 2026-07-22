@@ -1,0 +1,96 @@
+/* Modernize-and-Ship UX hoist - titlebar "Modernize" button + modal. */
+
+.modernize-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--accent, #3b82f6);
+  border-radius: 0.35rem;
+  background: var(--accent, #3b82f6);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.modernize-button:hover {
+  filter: brightness(1.1);
+}
+
+.modernize-button__label {
+  /* Hide the label text on narrow titlebars; the ✨ + tooltip carry intent. */
+  display: inline-block;
+}
+
+@media (max-width: 720px) {
+  .modernize-button__label {
+    display: none;
+  }
+}
+
+/* Modal overlay - full-screen backdrop with a centered card on top. */
+.modernize-button__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 1000;
+  padding: 4rem 1.5rem;
+  overflow-y: auto;
+}
+
+.modernize-button__modal {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  background: var(--background, white);
+  color: var(--foreground, #111);
+  border-radius: 0.6rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.modernize-button__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--foreground, #111);
+  opacity: 0.65;
+  border-radius: 0.3rem;
+}
+
+.modernize-button__close:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modernize-button__modal-heading {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.75;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* The inner ModernizeCard already styles itself - neutralize its outer
+ * border + margin so it nests cleanly inside the modal. */
+.modernize-button__modal .modernize-card {
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+}

@@ -1,0 +1,226 @@
+.build-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.build-view__header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.build-view__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.build-view__subtitle {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  margin: 6px 0 0 0;
+  line-height: 1.5;
+}
+
+.build-view__section-heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin: 0 0 8px 0;
+}
+
+.build-view__profile {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.build-view__no-profile {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  line-height: 1.5;
+}
+
+.build-view__no-profile code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.build-view__profile-fields {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 14px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.build-view__profile-fields dt {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+}
+
+.build-view__profile-fields dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.build-view__profile-fields code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.build-view__output-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.build-view__run {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.build-view__artifacts {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.build-view__artifacts-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.build-view__refresh {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.build-view__refresh:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.build-view__refresh:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.build-view__artifacts-empty {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  padding: 8px;
+}
+
+.build-view__artifacts-error {
+  font-size: 12px;
+  color: var(--color-error, #e25555);
+  padding: 8px;
+  background: rgba(226, 85, 85, 0.08);
+  border-radius: 3px;
+}
+
+.build-view__artifacts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.build-view__artifacts-table th {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.build-view__artifacts-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.build-view__artifacts-table code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text);
+}
+
+.build-view__artifact-ok {
+  display: inline-block;
+  padding: 1px 6px;
+  background: rgba(80, 200, 120, 0.15);
+  color: var(--color-success, #50c878);
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.build-view__artifact-missing {
+  display: inline-block;
+  padding: 1px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-dim);
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.build-view__artifact-size,
+.build-view__artifact-mtime {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-dim);
+  white-space: nowrap;
+}
+
+.build-view__patch-chip {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 5px;
+  background: rgba(74, 158, 255, 0.12);
+  color: var(--color-accent);
+  border-radius: 2px;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

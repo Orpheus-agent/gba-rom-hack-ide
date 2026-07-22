@@ -1,0 +1,1448 @@
+[
+  {
+    "id": 0,
+    "family": "rse",
+    "name": "MB_NORMAL",
+    "category": "terrain"
+  },
+  {
+    "id": 1,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_WALL",
+    "category": "unknown"
+  },
+  {
+    "id": 2,
+    "family": "rse",
+    "name": "MB_TALL_GRASS",
+    "category": "encounter"
+  },
+  {
+    "id": 3,
+    "family": "rse",
+    "name": "MB_LONG_GRASS",
+    "category": "encounter"
+  },
+  {
+    "id": 4,
+    "family": "rse",
+    "name": "MB_UNUSED_04",
+    "category": "unused"
+  },
+  {
+    "id": 5,
+    "family": "rse",
+    "name": "MB_UNUSED_05",
+    "category": "unused"
+  },
+  {
+    "id": 6,
+    "family": "rse",
+    "name": "MB_DEEP_SAND",
+    "category": "terrain"
+  },
+  {
+    "id": 7,
+    "family": "rse",
+    "name": "MB_SHORT_GRASS",
+    "category": "encounter"
+  },
+  {
+    "id": 8,
+    "family": "rse",
+    "name": "MB_CAVE",
+    "category": "terrain"
+  },
+  {
+    "id": 9,
+    "family": "rse",
+    "name": "MB_LONG_GRASS_SOUTH_EDGE",
+    "category": "encounter"
+  },
+  {
+    "id": 10,
+    "family": "rse",
+    "name": "MB_NO_RUNNING",
+    "category": "effect"
+  },
+  {
+    "id": 11,
+    "family": "rse",
+    "name": "MB_INDOOR_ENCOUNTER",
+    "category": "terrain"
+  },
+  {
+    "id": 12,
+    "family": "rse",
+    "name": "MB_MOUNTAIN_TOP",
+    "category": "terrain"
+  },
+  {
+    "id": 13,
+    "family": "rse",
+    "name": "MB_BATTLE_PYRAMID_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 14,
+    "family": "rse",
+    "name": "MB_MOSSDEEP_GYM_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 15,
+    "family": "rse",
+    "name": "MB_MT_PYRE_HOLE",
+    "category": "unknown"
+  },
+  {
+    "id": 16,
+    "family": "rse",
+    "name": "MB_POND_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 17,
+    "family": "rse",
+    "name": "MB_INTERIOR_DEEP_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 18,
+    "family": "rse",
+    "name": "MB_DEEP_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 19,
+    "family": "rse",
+    "name": "MB_WATERFALL",
+    "category": "terrain"
+  },
+  {
+    "id": 20,
+    "family": "rse",
+    "name": "MB_SOOTOPOLIS_DEEP_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 21,
+    "family": "rse",
+    "name": "MB_OCEAN_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 22,
+    "family": "rse",
+    "name": "MB_PUDDLE",
+    "category": "terrain"
+  },
+  {
+    "id": 23,
+    "family": "rse",
+    "name": "MB_SHALLOW_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 24,
+    "family": "rse",
+    "name": "MB_UNUSED_SOOTOPOLIS_DEEP_WATER",
+    "category": "terrain"
+  },
+  {
+    "id": 25,
+    "family": "rse",
+    "name": "MB_NO_SURFACING",
+    "category": "unknown"
+  },
+  {
+    "id": 26,
+    "family": "rse",
+    "name": "MB_UNUSED_SOOTOPOLIS_DEEP_WATER_2",
+    "category": "unused"
+  },
+  {
+    "id": 27,
+    "family": "rse",
+    "name": "MB_STAIRS_OUTSIDE_ABANDONED_SHIP",
+    "category": "warp"
+  },
+  {
+    "id": 28,
+    "family": "rse",
+    "name": "MB_SHOAL_CAVE_ENTRANCE",
+    "category": "unknown"
+  },
+  {
+    "id": 29,
+    "family": "rse",
+    "name": "MB_UNUSED_1D",
+    "category": "unused"
+  },
+  {
+    "id": 30,
+    "family": "rse",
+    "name": "MB_UNUSED_1E",
+    "category": "unused"
+  },
+  {
+    "id": 31,
+    "family": "rse",
+    "name": "MB_UNUSED_1F",
+    "category": "unused"
+  },
+  {
+    "id": 32,
+    "family": "rse",
+    "name": "MB_ICE",
+    "category": "terrain"
+  },
+  {
+    "id": 33,
+    "family": "rse",
+    "name": "MB_SAND",
+    "category": "terrain"
+  },
+  {
+    "id": 34,
+    "family": "rse",
+    "name": "MB_SEAWEED",
+    "category": "unknown"
+  },
+  {
+    "id": 35,
+    "family": "rse",
+    "name": "MB_UNUSED_23",
+    "category": "unused"
+  },
+  {
+    "id": 36,
+    "family": "rse",
+    "name": "MB_ASHGRASS",
+    "category": "encounter"
+  },
+  {
+    "id": 37,
+    "family": "rse",
+    "name": "MB_FOOTPRINTS",
+    "category": "terrain"
+  },
+  {
+    "id": 38,
+    "family": "rse",
+    "name": "MB_THIN_ICE",
+    "category": "terrain"
+  },
+  {
+    "id": 39,
+    "family": "rse",
+    "name": "MB_CRACKED_ICE",
+    "category": "terrain"
+  },
+  {
+    "id": 40,
+    "family": "rse",
+    "name": "MB_HOT_SPRINGS",
+    "category": "unknown"
+  },
+  {
+    "id": 41,
+    "family": "rse",
+    "name": "MB_LAVARIDGE_GYM_B1F_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 42,
+    "family": "rse",
+    "name": "MB_SEAWEED_NO_SURFACING",
+    "category": "unknown"
+  },
+  {
+    "id": 43,
+    "family": "rse",
+    "name": "MB_REFLECTION_UNDER_BRIDGE",
+    "category": "unknown"
+  },
+  {
+    "id": 44,
+    "family": "rse",
+    "name": "MB_UNUSED_2C",
+    "category": "unused"
+  },
+  {
+    "id": 45,
+    "family": "rse",
+    "name": "MB_UNUSED_2D",
+    "category": "unused"
+  },
+  {
+    "id": 46,
+    "family": "rse",
+    "name": "MB_UNUSED_2E",
+    "category": "unused"
+  },
+  {
+    "id": 47,
+    "family": "rse",
+    "name": "MB_UNUSED_2F",
+    "category": "unused"
+  },
+  {
+    "id": 48,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_EAST",
+    "category": "unknown"
+  },
+  {
+    "id": 49,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_WEST",
+    "category": "unknown"
+  },
+  {
+    "id": 50,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_NORTH",
+    "category": "unknown"
+  },
+  {
+    "id": 51,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_SOUTH",
+    "category": "unknown"
+  },
+  {
+    "id": 52,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_NORTHEAST",
+    "category": "unknown"
+  },
+  {
+    "id": 53,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_NORTHWEST",
+    "category": "unknown"
+  },
+  {
+    "id": 54,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_SOUTHEAST",
+    "category": "unknown"
+  },
+  {
+    "id": 55,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_SOUTHWEST",
+    "category": "unknown"
+  },
+  {
+    "id": 56,
+    "family": "rse",
+    "name": "MB_JUMP_EAST",
+    "category": "unknown"
+  },
+  {
+    "id": 57,
+    "family": "rse",
+    "name": "MB_JUMP_WEST",
+    "category": "unknown"
+  },
+  {
+    "id": 58,
+    "family": "rse",
+    "name": "MB_JUMP_NORTH",
+    "category": "unknown"
+  },
+  {
+    "id": 59,
+    "family": "rse",
+    "name": "MB_JUMP_SOUTH",
+    "category": "unknown"
+  },
+  {
+    "id": 60,
+    "family": "rse",
+    "name": "MB_JUMP_NORTHEAST",
+    "category": "unknown"
+  },
+  {
+    "id": 61,
+    "family": "rse",
+    "name": "MB_JUMP_NORTHWEST",
+    "category": "unknown"
+  },
+  {
+    "id": 62,
+    "family": "rse",
+    "name": "MB_JUMP_SOUTHEAST",
+    "category": "unknown"
+  },
+  {
+    "id": 63,
+    "family": "rse",
+    "name": "MB_JUMP_SOUTHWEST",
+    "category": "unknown"
+  },
+  {
+    "id": 64,
+    "family": "rse",
+    "name": "MB_WALK_EAST",
+    "category": "unknown"
+  },
+  {
+    "id": 65,
+    "family": "rse",
+    "name": "MB_WALK_WEST",
+    "category": "unknown"
+  },
+  {
+    "id": 66,
+    "family": "rse",
+    "name": "MB_WALK_NORTH",
+    "category": "unknown"
+  },
+  {
+    "id": 67,
+    "family": "rse",
+    "name": "MB_WALK_SOUTH",
+    "category": "unknown"
+  },
+  {
+    "id": 68,
+    "family": "rse",
+    "name": "MB_SLIDE_EAST",
+    "category": "unknown"
+  },
+  {
+    "id": 69,
+    "family": "rse",
+    "name": "MB_SLIDE_WEST",
+    "category": "unknown"
+  },
+  {
+    "id": 70,
+    "family": "rse",
+    "name": "MB_SLIDE_NORTH",
+    "category": "unknown"
+  },
+  {
+    "id": 71,
+    "family": "rse",
+    "name": "MB_SLIDE_SOUTH",
+    "category": "unknown"
+  },
+  {
+    "id": 72,
+    "family": "rse",
+    "name": "MB_TRICK_HOUSE_PUZZLE_8_FLOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 73,
+    "family": "rse",
+    "name": "MB_UNUSED_49",
+    "category": "unused"
+  },
+  {
+    "id": 74,
+    "family": "rse",
+    "name": "MB_UNUSED_4A",
+    "category": "unused"
+  },
+  {
+    "id": 75,
+    "family": "rse",
+    "name": "MB_UNUSED_4B",
+    "category": "unused"
+  },
+  {
+    "id": 76,
+    "family": "rse",
+    "name": "MB_UNUSED_4C",
+    "category": "unused"
+  },
+  {
+    "id": 77,
+    "family": "rse",
+    "name": "MB_UNUSED_4D",
+    "category": "unused"
+  },
+  {
+    "id": 78,
+    "family": "rse",
+    "name": "MB_UNUSED_4E",
+    "category": "unused"
+  },
+  {
+    "id": 79,
+    "family": "rse",
+    "name": "MB_UNUSED_4F",
+    "category": "unused"
+  },
+  {
+    "id": 80,
+    "family": "rse",
+    "name": "MB_EASTWARD_CURRENT",
+    "category": "unknown"
+  },
+  {
+    "id": 81,
+    "family": "rse",
+    "name": "MB_WESTWARD_CURRENT",
+    "category": "unknown"
+  },
+  {
+    "id": 82,
+    "family": "rse",
+    "name": "MB_NORTHWARD_CURRENT",
+    "category": "unknown"
+  },
+  {
+    "id": 83,
+    "family": "rse",
+    "name": "MB_SOUTHWARD_CURRENT",
+    "category": "unknown"
+  },
+  {
+    "id": 84,
+    "family": "rse",
+    "name": "MB_UNUSED_54",
+    "category": "unused"
+  },
+  {
+    "id": 85,
+    "family": "rse",
+    "name": "MB_UNUSED_55",
+    "category": "unused"
+  },
+  {
+    "id": 86,
+    "family": "rse",
+    "name": "MB_UNUSED_56",
+    "category": "unused"
+  },
+  {
+    "id": 87,
+    "family": "rse",
+    "name": "MB_UNUSED_57",
+    "category": "unused"
+  },
+  {
+    "id": 88,
+    "family": "rse",
+    "name": "MB_UNUSED_58",
+    "category": "unused"
+  },
+  {
+    "id": 89,
+    "family": "rse",
+    "name": "MB_UNUSED_59",
+    "category": "unused"
+  },
+  {
+    "id": 90,
+    "family": "rse",
+    "name": "MB_UNUSED_5A",
+    "category": "unused"
+  },
+  {
+    "id": 91,
+    "family": "rse",
+    "name": "MB_UNUSED_5B",
+    "category": "unused"
+  },
+  {
+    "id": 92,
+    "family": "rse",
+    "name": "MB_UNUSED_5C",
+    "category": "unused"
+  },
+  {
+    "id": 93,
+    "family": "rse",
+    "name": "MB_UNUSED_5D",
+    "category": "unused"
+  },
+  {
+    "id": 94,
+    "family": "rse",
+    "name": "MB_UNUSED_5E",
+    "category": "unused"
+  },
+  {
+    "id": 95,
+    "family": "rse",
+    "name": "MB_UNUSED_5F",
+    "category": "unused"
+  },
+  {
+    "id": 96,
+    "family": "rse",
+    "name": "MB_NON_ANIMATED_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 97,
+    "family": "rse",
+    "name": "MB_LADDER",
+    "category": "warp"
+  },
+  {
+    "id": 98,
+    "family": "rse",
+    "name": "MB_EAST_ARROW_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 99,
+    "family": "rse",
+    "name": "MB_WEST_ARROW_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 100,
+    "family": "rse",
+    "name": "MB_NORTH_ARROW_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 101,
+    "family": "rse",
+    "name": "MB_SOUTH_ARROW_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 102,
+    "family": "rse",
+    "name": "MB_CRACKED_FLOOR_HOLE",
+    "category": "terrain"
+  },
+  {
+    "id": 103,
+    "family": "rse",
+    "name": "MB_AQUA_HIDEOUT_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 104,
+    "family": "rse",
+    "name": "MB_LAVARIDGE_GYM_1F_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 105,
+    "family": "rse",
+    "name": "MB_ANIMATED_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 106,
+    "family": "rse",
+    "name": "MB_UP_ESCALATOR",
+    "category": "unknown"
+  },
+  {
+    "id": 107,
+    "family": "rse",
+    "name": "MB_DOWN_ESCALATOR",
+    "category": "unknown"
+  },
+  {
+    "id": 108,
+    "family": "rse",
+    "name": "MB_WATER_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 109,
+    "family": "rse",
+    "name": "MB_WATER_SOUTH_ARROW_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 110,
+    "family": "rse",
+    "name": "MB_DEEP_SOUTH_WARP",
+    "category": "warp"
+  },
+  {
+    "id": 111,
+    "family": "rse",
+    "name": "MB_UNUSED_6F",
+    "category": "unused"
+  },
+  {
+    "id": 112,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_OCEAN",
+    "category": "unknown"
+  },
+  {
+    "id": 113,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_LOW",
+    "category": "unknown"
+  },
+  {
+    "id": 114,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_MED",
+    "category": "unknown"
+  },
+  {
+    "id": 115,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_HIGH",
+    "category": "unknown"
+  },
+  {
+    "id": 116,
+    "family": "rse",
+    "name": "MB_PACIFIDLOG_VERTICAL_LOG_TOP",
+    "category": "unknown"
+  },
+  {
+    "id": 117,
+    "family": "rse",
+    "name": "MB_PACIFIDLOG_VERTICAL_LOG_BOTTOM",
+    "category": "unknown"
+  },
+  {
+    "id": 118,
+    "family": "rse",
+    "name": "MB_PACIFIDLOG_HORIZONTAL_LOG_LEFT",
+    "category": "unknown"
+  },
+  {
+    "id": 119,
+    "family": "rse",
+    "name": "MB_PACIFIDLOG_HORIZONTAL_LOG_RIGHT",
+    "category": "unknown"
+  },
+  {
+    "id": 120,
+    "family": "rse",
+    "name": "MB_FORTREE_BRIDGE",
+    "category": "unknown"
+  },
+  {
+    "id": 121,
+    "family": "rse",
+    "name": "MB_UNUSED_79",
+    "category": "unused"
+  },
+  {
+    "id": 122,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_MED_EDGE_1",
+    "category": "unknown"
+  },
+  {
+    "id": 123,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_MED_EDGE_2",
+    "category": "unknown"
+  },
+  {
+    "id": 124,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_HIGH_EDGE_1",
+    "category": "unknown"
+  },
+  {
+    "id": 125,
+    "family": "rse",
+    "name": "MB_BRIDGE_OVER_POND_HIGH_EDGE_2",
+    "category": "unknown"
+  },
+  {
+    "id": 126,
+    "family": "rse",
+    "name": "MB_UNUSED_BRIDGE",
+    "category": "unused"
+  },
+  {
+    "id": 127,
+    "family": "rse",
+    "name": "MB_BIKE_BRIDGE_OVER_BARRIER",
+    "category": "unknown"
+  },
+  {
+    "id": 128,
+    "family": "rse",
+    "name": "MB_COUNTER",
+    "category": "unknown"
+  },
+  {
+    "id": 129,
+    "family": "rse",
+    "name": "MB_UNUSED_81",
+    "category": "unused"
+  },
+  {
+    "id": 130,
+    "family": "rse",
+    "name": "MB_UNUSED_82",
+    "category": "unused"
+  },
+  {
+    "id": 131,
+    "family": "rse",
+    "name": "MB_PC",
+    "category": "unknown"
+  },
+  {
+    "id": 132,
+    "family": "rse",
+    "name": "MB_CABLE_BOX_RESULTS_1",
+    "category": "unknown"
+  },
+  {
+    "id": 133,
+    "family": "rse",
+    "name": "MB_REGION_MAP",
+    "category": "unknown"
+  },
+  {
+    "id": 134,
+    "family": "rse",
+    "name": "MB_TELEVISION",
+    "category": "unknown"
+  },
+  {
+    "id": 135,
+    "family": "rse",
+    "name": "MB_POKEBLOCK_FEEDER",
+    "category": "unknown"
+  },
+  {
+    "id": 136,
+    "family": "rse",
+    "name": "MB_UNUSED_88",
+    "category": "unused"
+  },
+  {
+    "id": 137,
+    "family": "rse",
+    "name": "MB_SLOT_MACHINE",
+    "category": "unknown"
+  },
+  {
+    "id": 138,
+    "family": "rse",
+    "name": "MB_ROULETTE",
+    "category": "unknown"
+  },
+  {
+    "id": 139,
+    "family": "rse",
+    "name": "MB_CLOSED_SOOTOPOLIS_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 140,
+    "family": "rse",
+    "name": "MB_TRICK_HOUSE_PUZZLE_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 141,
+    "family": "rse",
+    "name": "MB_PETALBURG_GYM_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 142,
+    "family": "rse",
+    "name": "MB_RUNNING_SHOES_INSTRUCTION",
+    "category": "unknown"
+  },
+  {
+    "id": 143,
+    "family": "rse",
+    "name": "MB_QUESTIONNAIRE",
+    "category": "unknown"
+  },
+  {
+    "id": 144,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_RED_CAVE",
+    "category": "unknown"
+  },
+  {
+    "id": 145,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_RED_CAVE_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 146,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_BROWN_CAVE",
+    "category": "unknown"
+  },
+  {
+    "id": 147,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_BROWN_CAVE_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 148,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_YELLOW_CAVE",
+    "category": "unknown"
+  },
+  {
+    "id": 149,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_YELLOW_CAVE_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 150,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_TREE_LEFT",
+    "category": "unknown"
+  },
+  {
+    "id": 151,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_TREE_LEFT_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 152,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_SHRUB",
+    "category": "unknown"
+  },
+  {
+    "id": 153,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_SHRUB_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 154,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_BLUE_CAVE",
+    "category": "unknown"
+  },
+  {
+    "id": 155,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_BLUE_CAVE_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 156,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_TREE_RIGHT",
+    "category": "unknown"
+  },
+  {
+    "id": 157,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPOT_TREE_RIGHT_OPEN",
+    "category": "unknown"
+  },
+  {
+    "id": 158,
+    "family": "rse",
+    "name": "MB_UNUSED_9E",
+    "category": "unused"
+  },
+  {
+    "id": 159,
+    "family": "rse",
+    "name": "MB_UNUSED_9F",
+    "category": "unused"
+  },
+  {
+    "id": 160,
+    "family": "rse",
+    "name": "MB_BERRY_TREE_SOIL",
+    "category": "unknown"
+  },
+  {
+    "id": 161,
+    "family": "rse",
+    "name": "MB_UNUSED_A1",
+    "category": "unused"
+  },
+  {
+    "id": 162,
+    "family": "rse",
+    "name": "MB_UNUSED_A2",
+    "category": "unused"
+  },
+  {
+    "id": 163,
+    "family": "rse",
+    "name": "MB_UNUSED_A3",
+    "category": "unused"
+  },
+  {
+    "id": 164,
+    "family": "rse",
+    "name": "MB_UNUSED_A4",
+    "category": "unused"
+  },
+  {
+    "id": 165,
+    "family": "rse",
+    "name": "MB_UNUSED_A5",
+    "category": "unused"
+  },
+  {
+    "id": 166,
+    "family": "rse",
+    "name": "MB_UNUSED_A6",
+    "category": "unused"
+  },
+  {
+    "id": 167,
+    "family": "rse",
+    "name": "MB_UNUSED_A7",
+    "category": "unused"
+  },
+  {
+    "id": 168,
+    "family": "rse",
+    "name": "MB_UNUSED_A8",
+    "category": "unused"
+  },
+  {
+    "id": 169,
+    "family": "rse",
+    "name": "MB_UNUSED_A9",
+    "category": "unused"
+  },
+  {
+    "id": 170,
+    "family": "rse",
+    "name": "MB_UNUSED_AA",
+    "category": "unused"
+  },
+  {
+    "id": 171,
+    "family": "rse",
+    "name": "MB_UNUSED_AB",
+    "category": "unused"
+  },
+  {
+    "id": 172,
+    "family": "rse",
+    "name": "MB_UNUSED_AC",
+    "category": "unused"
+  },
+  {
+    "id": 173,
+    "family": "rse",
+    "name": "MB_UNUSED_AD",
+    "category": "unused"
+  },
+  {
+    "id": 174,
+    "family": "rse",
+    "name": "MB_UNUSED_AE",
+    "category": "unused"
+  },
+  {
+    "id": 175,
+    "family": "rse",
+    "name": "MB_UNUSED_AF",
+    "category": "unused"
+  },
+  {
+    "id": 176,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_PC",
+    "category": "unknown"
+  },
+  {
+    "id": 177,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_REGISTER_PC",
+    "category": "unknown"
+  },
+  {
+    "id": 178,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SCENERY",
+    "category": "unknown"
+  },
+  {
+    "id": 179,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_TRAINER_SPOT",
+    "category": "unknown"
+  },
+  {
+    "id": 180,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_DECORATION",
+    "category": "unknown"
+  },
+  {
+    "id": 181,
+    "family": "rse",
+    "name": "MB_HOLDS_SMALL_DECORATION",
+    "category": "effect"
+  },
+  {
+    "id": 182,
+    "family": "rse",
+    "name": "MB_UNUSED_B6",
+    "category": "unused"
+  },
+  {
+    "id": 183,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_NORTH_WALL",
+    "category": "unknown"
+  },
+  {
+    "id": 184,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_BALLOON",
+    "category": "unknown"
+  },
+  {
+    "id": 185,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_IMPASSABLE",
+    "category": "unknown"
+  },
+  {
+    "id": 186,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_GLITTER_MAT",
+    "category": "unknown"
+  },
+  {
+    "id": 187,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_JUMP_MAT",
+    "category": "unknown"
+  },
+  {
+    "id": 188,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SPIN_MAT",
+    "category": "unknown"
+  },
+  {
+    "id": 189,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SOUND_MAT",
+    "category": "unknown"
+  },
+  {
+    "id": 190,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_BREAKABLE_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 191,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_SAND_ORNAMENT",
+    "category": "unknown"
+  },
+  {
+    "id": 192,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_SOUTH_AND_NORTH",
+    "category": "unknown"
+  },
+  {
+    "id": 193,
+    "family": "rse",
+    "name": "MB_IMPASSABLE_WEST_AND_EAST",
+    "category": "unknown"
+  },
+  {
+    "id": 194,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_HOLE",
+    "category": "unknown"
+  },
+  {
+    "id": 195,
+    "family": "rse",
+    "name": "MB_HOLDS_LARGE_DECORATION",
+    "category": "effect"
+  },
+  {
+    "id": 196,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_TV_SHIELD",
+    "category": "unknown"
+  },
+  {
+    "id": 197,
+    "family": "rse",
+    "name": "MB_PLAYER_ROOM_PC_ON",
+    "category": "unknown"
+  },
+  {
+    "id": 198,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_DECORATION_BASE",
+    "category": "unknown"
+  },
+  {
+    "id": 199,
+    "family": "rse",
+    "name": "MB_SECRET_BASE_POSTER",
+    "category": "unknown"
+  },
+  {
+    "id": 200,
+    "family": "rse",
+    "name": "MB_UNUSED_C8",
+    "category": "unused"
+  },
+  {
+    "id": 201,
+    "family": "rse",
+    "name": "MB_UNUSED_C9",
+    "category": "unused"
+  },
+  {
+    "id": 202,
+    "family": "rse",
+    "name": "MB_UNUSED_CA",
+    "category": "unused"
+  },
+  {
+    "id": 203,
+    "family": "rse",
+    "name": "MB_UNUSED_CB",
+    "category": "unused"
+  },
+  {
+    "id": 204,
+    "family": "rse",
+    "name": "MB_UNUSED_CC",
+    "category": "unused"
+  },
+  {
+    "id": 205,
+    "family": "rse",
+    "name": "MB_UNUSED_CD",
+    "category": "unused"
+  },
+  {
+    "id": 206,
+    "family": "rse",
+    "name": "MB_UNUSED_CE",
+    "category": "unused"
+  },
+  {
+    "id": 207,
+    "family": "rse",
+    "name": "MB_UNUSED_CF",
+    "category": "unused"
+  },
+  {
+    "id": 208,
+    "family": "rse",
+    "name": "MB_MUDDY_SLOPE",
+    "category": "unknown"
+  },
+  {
+    "id": 209,
+    "family": "rse",
+    "name": "MB_BUMPY_SLOPE",
+    "category": "unknown"
+  },
+  {
+    "id": 210,
+    "family": "rse",
+    "name": "MB_CRACKED_FLOOR",
+    "category": "terrain"
+  },
+  {
+    "id": 211,
+    "family": "rse",
+    "name": "MB_ISOLATED_VERTICAL_RAIL",
+    "category": "unknown"
+  },
+  {
+    "id": 212,
+    "family": "rse",
+    "name": "MB_ISOLATED_HORIZONTAL_RAIL",
+    "category": "unknown"
+  },
+  {
+    "id": 213,
+    "family": "rse",
+    "name": "MB_VERTICAL_RAIL",
+    "category": "unknown"
+  },
+  {
+    "id": 214,
+    "family": "rse",
+    "name": "MB_HORIZONTAL_RAIL",
+    "category": "unknown"
+  },
+  {
+    "id": 215,
+    "family": "rse",
+    "name": "MB_UNUSED_D7",
+    "category": "unused"
+  },
+  {
+    "id": 216,
+    "family": "rse",
+    "name": "MB_UNUSED_D8",
+    "category": "unused"
+  },
+  {
+    "id": 217,
+    "family": "rse",
+    "name": "MB_UNUSED_D9",
+    "category": "unused"
+  },
+  {
+    "id": 218,
+    "family": "rse",
+    "name": "MB_UNUSED_DA",
+    "category": "unused"
+  },
+  {
+    "id": 219,
+    "family": "rse",
+    "name": "MB_UNUSED_DB",
+    "category": "unused"
+  },
+  {
+    "id": 220,
+    "family": "rse",
+    "name": "MB_UNUSED_DC",
+    "category": "unused"
+  },
+  {
+    "id": 221,
+    "family": "rse",
+    "name": "MB_UNUSED_DD",
+    "category": "unused"
+  },
+  {
+    "id": 222,
+    "family": "rse",
+    "name": "MB_UNUSED_DE",
+    "category": "unused"
+  },
+  {
+    "id": 223,
+    "family": "rse",
+    "name": "MB_UNUSED_DF",
+    "category": "unused"
+  },
+  {
+    "id": 224,
+    "family": "rse",
+    "name": "MB_PICTURE_BOOK_SHELF",
+    "category": "unknown"
+  },
+  {
+    "id": 225,
+    "family": "rse",
+    "name": "MB_BOOKSHELF",
+    "category": "unknown"
+  },
+  {
+    "id": 226,
+    "family": "rse",
+    "name": "MB_POKEMON_CENTER_BOOKSHELF",
+    "category": "unknown"
+  },
+  {
+    "id": 227,
+    "family": "rse",
+    "name": "MB_VASE",
+    "category": "unknown"
+  },
+  {
+    "id": 228,
+    "family": "rse",
+    "name": "MB_TRASH_CAN",
+    "category": "unknown"
+  },
+  {
+    "id": 229,
+    "family": "rse",
+    "name": "MB_SHOP_SHELF",
+    "category": "unknown"
+  },
+  {
+    "id": 230,
+    "family": "rse",
+    "name": "MB_BLUEPRINT",
+    "category": "unknown"
+  },
+  {
+    "id": 231,
+    "family": "rse",
+    "name": "MB_CABLE_BOX_RESULTS_2",
+    "category": "unknown"
+  },
+  {
+    "id": 232,
+    "family": "rse",
+    "name": "MB_WIRELESS_BOX_RESULTS",
+    "category": "unknown"
+  },
+  {
+    "id": 233,
+    "family": "rse",
+    "name": "MB_TRAINER_HILL_TIMER",
+    "category": "unknown"
+  },
+  {
+    "id": 234,
+    "family": "rse",
+    "name": "MB_SKY_PILLAR_CLOSED_DOOR",
+    "category": "unknown"
+  },
+  {
+    "id": 235,
+    "family": "rse",
+    "name": "MB_UNUSED_EB",
+    "category": "unused"
+  },
+  {
+    "id": 236,
+    "family": "rse",
+    "name": "MB_UNUSED_EC",
+    "category": "unused"
+  },
+  {
+    "id": 237,
+    "family": "rse",
+    "name": "MB_UNUSED_ED",
+    "category": "unused"
+  },
+  {
+    "id": 238,
+    "family": "rse",
+    "name": "MB_UNUSED_EE",
+    "category": "unused"
+  },
+  {
+    "id": 239,
+    "family": "rse",
+    "name": "MB_UNUSED_EF",
+    "category": "unused"
+  },
+  {
+    "id": 255,
+    "family": "rse",
+    "name": "MB_INVALID",
+    "category": "unused"
+  }
+]

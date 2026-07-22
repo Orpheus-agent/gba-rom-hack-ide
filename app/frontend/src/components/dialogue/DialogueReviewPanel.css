@@ -1,0 +1,189 @@
+/* WP8 - Dialogue Review Panel. Global searchable table of every
+ * dialogue line in the project. */
+
+.dialogue-review {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dialogue-review--empty {
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+.dialogue-review__header {
+  margin-bottom: 12px;
+}
+
+.dialogue-review__title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dialogue-review__subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.dialogue-review__controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.dialogue-review__filter {
+  flex: 1;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.dialogue-review__filter:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.dialogue-review__speaker-filter {
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  max-width: 260px;
+}
+
+.dialogue-review__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  flex: 1;
+  overflow-y: auto;
+  display: block;
+}
+
+.dialogue-review__table thead,
+.dialogue-review__table tbody,
+.dialogue-review__table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.dialogue-review__table thead {
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 1;
+}
+
+.dialogue-review__table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(100% - 32px);
+}
+
+.dialogue-review__table th,
+.dialogue-review__table td {
+  padding: 6px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.dialogue-review__table th {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.dialogue-review__sort-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dialogue-review__sort-btn:hover {
+  color: var(--color-accent);
+}
+
+.dialogue-review__sort-btn--active {
+  color: var(--color-accent);
+}
+
+.dialogue-review__sort-arrow {
+  font-size: 10px;
+}
+
+.dialogue-review__row {
+  cursor: pointer;
+  transition: background-color 80ms ease;
+}
+
+.dialogue-review__row:hover {
+  background: rgba(74, 158, 255, 0.05);
+}
+
+.dialogue-review__row--selected {
+  background: rgba(74, 158, 255, 0.1);
+}
+
+.dialogue-review__speaker {
+  width: 140px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.dialogue-review__text {
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.dialogue-review__unspecified {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.dialogue-review__col-length {
+  width: 70px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--color-text-muted);
+}
+
+.dialogue-review__col-id {
+  width: 180px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+.dialogue-review__no-match {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,10 @@
+{
+  "vanillaSha1": "41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc",
+  "producesSha1": "2198839d94a80f013fe8b59ca4b0b6d9a9e3b48d",
+  "cfruVersion": "CFRU @ unknown",
+  "cfruCommitShortSha": "unknown",
+  "buildOffset": 9437184,
+  "built": true,
+  "bundledAtUtc": "2026-05-26T20:20:40.717Z",
+  "bundledPatchSha1": "260d4b56af2da03de379dbc94054e014d0d07800"
+}

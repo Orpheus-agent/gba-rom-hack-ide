@@ -1,0 +1,188 @@
+/* Phase 4.1B - Scene-boot picker popover.
+ *
+ * Sibling popover next to the SaveStateLibrary. Lets the user compose
+ * + manage recipes for warping the game to a story point.
+ */
+
+.scene-boot-picker {
+  position: relative;
+  display: inline-flex;
+}
+
+.scene-boot-picker__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 380px;
+  max-width: 480px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--color-bg, #1a1a1a);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  padding: 8px;
+  z-index: 20;
+  font-size: 12px;
+}
+
+.scene-boot-picker__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.scene-boot-picker__row--header {
+  padding: 4px 4px 8px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 6px;
+}
+
+.scene-boot-picker__title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  font-size: 11px;
+}
+
+.scene-boot-picker__error {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  background: rgba(220, 60, 60, 0.12);
+  border: 1px solid rgba(220, 60, 60, 0.4);
+  border-radius: 3px;
+  color: #ff9a9a;
+  font-size: 11px;
+}
+
+.scene-boot-picker__applied {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  background: rgba(60, 180, 80, 0.12);
+  border: 1px solid rgba(60, 180, 80, 0.4);
+  border-radius: 3px;
+  color: #b6f0ba;
+  font-size: 11px;
+}
+
+.scene-boot-picker__empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+.scene-boot-picker__composer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+
+.scene-boot-picker__composer label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.scene-boot-picker__composer input,
+.scene-boot-picker__composer select,
+.scene-boot-picker__composer textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 4px 6px;
+  border-radius: 2px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.scene-boot-picker__composer textarea {
+  resize: vertical;
+  min-height: 32px;
+  font-family: ui-monospace, monospace;
+}
+
+.scene-boot-picker__inline {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px;
+}
+
+.scene-boot-picker__pos-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 6px;
+}
+
+.scene-boot-picker__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.scene-boot-picker__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scene-boot-picker__item {
+  display: flex;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+
+.scene-boot-picker__item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.scene-boot-picker__item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.scene-boot-picker__item-name {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.scene-boot-picker__item-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.scene-boot-picker__item-notes {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  white-space: pre-wrap;
+}
+
+.scene-boot-picker__item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}

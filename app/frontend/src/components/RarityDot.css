@@ -1,0 +1,28 @@
+/* Phase 4.2E - Rarity dot color scale. */
+
+.rarity-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.rarity-dot--very-common {
+  background: #6bd068;  /* green */
+}
+.rarity-dot--common {
+  background: #c8d055;  /* yellow-green */
+}
+.rarity-dot--uncommon {
+  background: #d09455;  /* orange */
+}
+.rarity-dot--rare {
+  background: #d05555;  /* red */
+}
+.rarity-dot--very-rare {
+  background: #aa55d0;  /* purple */
+}

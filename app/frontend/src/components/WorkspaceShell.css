@@ -1,0 +1,40 @@
+.workspace-shell {
+  display: grid;
+  /* AgentPanel is the always-on right rail (380px). MainPanel handles
+     its own selection-bound UI inline - the old slide-over InspectorDock
+     mounted off useSelection was removed per user request (it shadowed
+     the MainPanel's own editing surfaces and added click-to-close
+     friction). The full inspector still ships behind Ctrl+\ via the
+     AdvancedDrawer for power users. */
+  grid-template-columns: auto minmax(0, 1fr) 380px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.workspace-shell__surface {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+@media (max-width: 1280px) {
+  .workspace-shell {
+    grid-template-columns: auto minmax(0, 1fr) 340px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .workspace-shell {
+    grid-template-columns: auto minmax(0, 1fr) 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .workspace-shell {
+    grid-template-columns: auto minmax(0, 1fr) 300px;
+  }
+}

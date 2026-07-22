@@ -1,0 +1,60 @@
+.type-inspector__axis {
+  margin-top: 10px;
+}
+
+.type-inspector__axis-heading {
+  margin: 0 0 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+}
+
+.type-inspector__group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.type-inspector__group--strong {
+  background: rgba(80, 200, 120, 0.07);
+  border-left: 3px solid #50c878;
+}
+
+.type-inspector__group--resisted {
+  background: rgba(201, 138, 61, 0.07);
+  border-left: 3px solid #c98a3d;
+}
+
+.type-inspector__group--immune {
+  background: rgba(168, 61, 61, 0.07);
+  border-left: 3px solid #a83d3d;
+}
+
+.type-inspector__group-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+}
+
+.type-inspector__group-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.type-inspector__group-chip {
+  font-size: 11px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-text);
+}

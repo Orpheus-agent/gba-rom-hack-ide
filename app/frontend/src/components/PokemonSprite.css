@@ -1,0 +1,19 @@
+/* Phase 4.2C - Pokémon sprite thumbnail. */
+
+.pokemon-sprite {
+  width: 32px;
+  height: 32px;
+  /* Pixel-perfect upscale - sprite is native 32×32 (placeholder) or
+   * 64×64 (real ROM-decoded), CSS image-rendering keeps edges crisp. */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.pokemon-sprite--compact {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,147 @@
+/* WP-A4 - Add Event popover for the visual scripter.
+ *
+ * Absolute positioning relative to the host's containing block. The
+ * VisualScriptEditor renders this inside its list when the user clicks
+ * a "+ Add step" affordance. */
+
+.add-event-popover {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  max-width: 460px;
+  max-height: 420px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.add-event-popover__header {
+  padding: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.add-event-popover__filter {
+  width: 100%;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.add-event-popover__filter:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.add-event-popover__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-event-popover__empty {
+  margin: 16px 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.add-event-popover__group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.add-event-popover__group-heading {
+  margin: 0 0 2px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.add-event-popover__group-count {
+  margin-left: 6px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.add-event-popover__group-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.add-event-popover__item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-event-popover__item-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-left-width: 3px;
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 80ms ease;
+}
+
+.add-event-popover__item-btn:hover {
+  background: rgba(74, 158, 255, 0.06);
+  border-color: var(--color-accent);
+}
+
+.add-event-popover__item-icon {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.add-event-popover__item-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.add-event-popover__fav {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.add-event-popover__fav:hover {
+  color: #f0b429;
+}
+
+.add-event-popover__fav--on {
+  color: #f0b429;
+}

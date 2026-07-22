@@ -1,0 +1,122 @@
+.navigator-tree {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-elevated);
+  border-right: 1px solid var(--color-border);
+  width: 260px;
+  min-width: 260px;
+  overflow-y: auto;
+  font-size: 12px;
+  color: var(--color-text);
+  user-select: none;
+}
+
+.navigator-tree__empty {
+  padding: 16px;
+  color: var(--color-text-dim);
+  text-align: center;
+}
+
+.navigator-tree__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.navigator-tree__tab {
+  flex: 1;
+  padding: 5px 8px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.navigator-tree__tab:hover {
+  border-color: var(--color-accent);
+}
+
+.navigator-tree__tab--active {
+  background: var(--color-accent, #4a9eff);
+  color: #fff;
+  border-color: var(--color-accent, #4a9eff);
+}
+
+.navigator-tree__section {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navigator-tree__section-header {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.navigator-tree__section-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navigator-tree__section-body {
+  padding: 2px 6px 4px 6px;
+}
+
+.navigator-tree__branch {
+  margin: 2px 0;
+}
+
+.navigator-tree__branch-header {
+  padding: 3px 6px;
+  cursor: pointer;
+  color: var(--color-text-dim);
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.navigator-tree__branch-header:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navigator-tree__branch-body {
+  margin-left: 8px;
+  border-left: 1px solid var(--color-border);
+  padding-left: 4px;
+}
+
+.navigator-tree__entry {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 2px 6px;
+  font: inherit;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navigator-tree__entry:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+}
+
+.navigator-tree__entry--selected {
+  background: var(--color-accent, #4a9eff);
+  color: #fff;
+}
+
+.navigator-tree__list {
+  margin-left: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}

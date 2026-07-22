@@ -1,0 +1,109 @@
+/* Phase 4.3F - Inline damage-sim quick test. */
+
+.trainer-sim-quick-test {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  margin-top: 6px;
+}
+
+.trainer-sim-quick-test__btn {
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.trainer-sim-quick-test__btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.trainer-sim-quick-test__btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.trainer-sim-quick-test__error {
+  padding: 4px 8px;
+  background: rgba(220, 60, 60, 0.12);
+  border: 1px solid rgba(220, 60, 60, 0.4);
+  border-radius: 2px;
+  color: #ff9a9a;
+  font-size: 11px;
+}
+
+.trainer-sim-quick-test__result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.trainer-sim-quick-test__bar-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.trainer-sim-quick-test__pct {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.trainer-sim-quick-test__bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.trainer-sim-quick-test__fill {
+  height: 100%;
+  transition: width 0.25s ease-out;
+}
+
+.trainer-sim-quick-test__fill--easy {
+  background: linear-gradient(to right, #6bd068, #c8d055);
+}
+.trainer-sim-quick-test__fill--balanced {
+  background: linear-gradient(to right, #c8d055, #d09455);
+}
+.trainer-sim-quick-test__fill--hard {
+  background: linear-gradient(to right, #d09455, #d05555);
+}
+.trainer-sim-quick-test__fill--brutal {
+  background: linear-gradient(to right, #d05555, #aa55d0);
+}
+
+.trainer-sim-quick-test__verdict {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.trainer-sim-quick-test__details {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.trainer-sim-quick-test__list {
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-family: ui-monospace, monospace;
+}

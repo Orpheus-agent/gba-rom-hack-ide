@@ -1,0 +1,186 @@
+/* Phase H-RC2 - decoded script steps inside the NPC inspector. */
+
+.script-steps {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+}
+
+.script-steps__heading {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.script-steps__note {
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.script-steps__list {
+  list-style: decimal;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.script-steps__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  align-items: baseline;
+  padding: 6px 8px;
+  background: var(--color-bg-elevated);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.script-steps__kind-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.script-steps__label {
+  font-family: var(--font-mono);
+  color: var(--color-text);
+}
+
+.script-steps__offset {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.script-steps__dialogue {
+  grid-column: 1 / -1;
+  padding: 6px 8px;
+  margin-top: 4px;
+  background: color-mix(in srgb, #4a9eff 12%, var(--color-bg));
+  border-left: 2px solid #4a9eff;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.script-steps--empty {
+  background: transparent;
+}
+
+/* Phase I.3 - inline msgbox editor inside a dialogue script step. */
+.script-steps__msgbox-editor {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.script-steps__msgbox-textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 6px 8px;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.4;
+  background: color-mix(in srgb, #4a9eff 8%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, #4a9eff 35%, var(--color-border));
+  border-left-width: 2px;
+  border-radius: 4px;
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.script-steps__msgbox-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.script-steps__msgbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.script-steps__msgbox-actions .btn {
+  height: 24px;
+  font-size: 11px;
+  padding: 0 10px;
+}
+
+.script-steps__msgbox-ok {
+  font-size: 11px;
+  color: var(--color-success);
+}
+
+.script-steps__msgbox-err {
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+/* Phase I.4 - per-opcode args editor for set_flag / setvar / give_item etc. */
+.script-steps__arg-editor {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.script-steps__arg-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.script-steps__arg-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.script-steps__arg-field input {
+  width: 80px;
+  height: 24px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}
+
+.script-steps__arg-field input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.script-steps__arg-hex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}

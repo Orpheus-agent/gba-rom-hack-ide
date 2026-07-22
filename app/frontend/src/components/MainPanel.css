@@ -1,0 +1,531 @@
+.main-panel {
+  background: var(--color-bg);
+  overflow: auto;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Phase I.3 - the MapEditor manages its own internal layout (toolbar
+   pinned, canvas + inspector flex). The 24px panel padding around it
+   reads as unused background "outside" the workspace and the user
+   asked to close that gap. When the MapEditor is mounted, drop the
+   padding entirely and let the editor fill edge-to-edge. */
+.main-panel:has(.map-editor) {
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.main-panel:has(.map-editor) .maps-view,
+.main-panel:has(.map-editor) .maps-view__body {
+  height: 100%;
+  min-height: 0;
+}
+
+.maps-view {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+  min-height: 700px;
+}
+
+.maps-view__body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* Phase P.4 - World Atlas banner. Quiet at the top of the loaded maps
+   view; surfaces aggregate context (region count, map count, group
+   distribution) so the workspace feels like a world atlas instead of
+   a file listing. */
+.world-atlas-banner {
+  padding: 14px 16px 12px 16px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(74, 158, 255, 0.05) 0%,
+      rgba(180, 106, 255, 0.04) 100%
+    );
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.world-atlas-banner__title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.world-atlas-banner__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+.world-atlas-banner__sub {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.world-atlas-banner__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.world-atlas-banner__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.world-atlas-banner__chip-count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.world-atlas-banner__chip-label {
+  text-transform: capitalize;
+  color: var(--color-text-dim);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+.world-atlas-banner__chip--town {
+  border-left: 3px solid #50c878;
+}
+
+.world-atlas-banner__chip--route {
+  border-left: 3px solid #4a9eff;
+}
+
+.world-atlas-banner__chip--cave {
+  border-left: 3px solid #c98a3d;
+}
+
+.world-atlas-banner__chip--interior {
+  border-left: 3px solid #b46aff;
+}
+
+.world-atlas-banner__chip--dungeon {
+  border-left: 3px solid #a83d3d;
+}
+
+.world-atlas-banner__chip--special {
+  border-left: 3px solid #f0b429;
+}
+
+.world-atlas-banner__structures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--color-border);
+  margin-top: 2px;
+}
+
+.world-atlas-banner__structure-chip {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: rgba(180, 106, 255, 0.06);
+  border: 1px solid #b46aff;
+  color: var(--color-text);
+  border-radius: 10px;
+}
+
+.world-atlas-banner__structure-chip--more {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--color-border);
+  color: var(--color-text-dim);
+  font-style: italic;
+}
+
+.view {
+  width: 100%;
+  max-width: 880px;
+}
+
+.view__hero {
+  margin-top: 40px;
+}
+
+.view__title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: var(--color-text);
+}
+
+.view__subtitle {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  margin: 0 0 20px 0;
+  max-width: 60ch;
+}
+
+.view__empty {
+  display: inline-block;
+  padding: 14px 22px;
+  border: 1px dashed var(--color-border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.view__panel {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.view__panel-heading {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin: 0 0 8px 0;
+}
+
+.view__panel-meta {
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.view__file-list {
+  margin: 8px 0 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.view__file {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  gap: 8px;
+  padding: 3px 0;
+  color: var(--color-text);
+}
+
+.view__file--directory .view__file-name {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.view__file--more {
+  color: var(--color-text-dim);
+  grid-template-columns: 1fr;
+  padding-top: 6px;
+  font-style: italic;
+}
+
+.view__file-kind {
+  color: var(--color-text-dim);
+  text-align: center;
+}
+
+.view__file-size {
+  color: var(--color-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.view__actions {
+  margin-top: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 90ms ease,
+    border-color 90ms ease;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #5fa8ff;
+}
+
+.btn--secondary {
+  background: transparent;
+}
+
+.open-form__pickers {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.open-form {
+  margin-top: 18px;
+}
+
+.open-form__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin-bottom: 6px;
+}
+
+.open-form__row {
+  display: flex;
+  gap: 8px;
+}
+
+.open-form__input {
+  flex: 1;
+  height: 30px;
+  padding: 0 10px;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+}
+
+.open-form__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.alert {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  border: 1px solid;
+}
+
+.alert--error {
+  background: rgba(226, 85, 85, 0.08);
+  border-color: rgba(226, 85, 85, 0.4);
+  color: var(--color-text);
+}
+
+.alert__code {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.identity-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 18px;
+  margin-bottom: 16px;
+  border-left-width: 3px;
+}
+
+.identity-card--decomp {
+  border-left-color: var(--color-success);
+}
+
+.identity-card--patch {
+  border-left-color: var(--color-accent);
+}
+
+.identity-card--hybrid {
+  border-left-color: #b46aff;
+}
+
+.identity-card--unknown {
+  border-left-color: var(--color-warning);
+}
+
+.identity-card__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin-bottom: 4px;
+}
+
+.identity-card__name {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: var(--color-text);
+}
+
+.identity-card__path {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+/* Phase 6.6 - overlay status pill (vanilla labels active / unknown ROM). */
+.identity-card__overlay-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin: 2px 0 6px 0;
+  cursor: help;
+  letter-spacing: 0.01em;
+}
+.identity-card__overlay-pill--safe {
+  background: rgba(56, 198, 102, 0.12);
+  color: #6acc8d;
+  border: 1px solid rgba(56, 198, 102, 0.32);
+}
+.identity-card__overlay-pill--unknown {
+  background: rgba(255, 184, 64, 0.10);
+  color: #d8a753;
+  border: 1px solid rgba(255, 184, 64, 0.28);
+}
+
+.identity-card__bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.identity-card__bar-fill {
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.identity-card__meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.identity-card__meta-label {
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  align-self: center;
+}
+
+.identity-card__details {
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.identity-card__details summary {
+  cursor: pointer;
+  color: var(--color-text-dim);
+}
+
+.identity-card__details summary:hover {
+  color: var(--color-text);
+}
+
+.identity-card__evidence-list {
+  margin: 8px 0 0 16px;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text);
+}
+
+.identity-card__warnings {
+  margin: 12px 0 0 0;
+  padding: 8px 12px;
+  list-style: none;
+  background: rgba(240, 180, 41, 0.08);
+  border-left: 2px solid var(--color-warning);
+  font-size: 12px;
+  border-radius: 0 4px 4px 0;
+}
+
+.identity-card__rom-binary-body {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(74, 158, 255, 0.06);
+  border-left: 2px solid var(--color-accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.identity-card__rom-species {
+  list-style: none;
+  margin: 6px 0 8px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text);
+}
+
+.identity-card__rom-species li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.identity-card__rom-binary-hint {
+  margin: 6px 0 0 0;
+  font-size: 11px;
+  color: var(--color-text-dim);
+  line-height: 1.5;
+}

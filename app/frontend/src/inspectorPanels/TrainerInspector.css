@@ -1,0 +1,203 @@
+.trainer-inspector__class-row {
+  margin-bottom: 4px;
+}
+
+.trainer-inspector__class-chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  background: rgba(255, 200, 100, 0.08);
+  border: 1px solid #f0b429;
+  color: #f0b429;
+  border-radius: 10px;
+}
+
+.trainer-inspector__map-link {
+  display: inline;
+  padding: 0;
+  margin-left: 4px;
+  background: transparent;
+  border: none;
+  color: var(--color-accent);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.trainer-inspector__section-heading {
+  margin: 12px 0 6px 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+}
+
+.trainer-inspector__party {
+  margin-bottom: 12px;
+}
+
+.trainer-inspector__party-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trainer-inspector__party-row {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.trainer-inspector__party-header {
+  display: block;
+}
+
+.trainer-inspector__species-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.trainer-inspector__species-btn:hover .trainer-inspector__species-name {
+  color: var(--color-accent);
+}
+
+.trainer-inspector__species-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.trainer-inspector__species-level {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.trainer-inspector__party-detail {
+  margin: 6px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trainer-inspector__party-detail-row {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.trainer-inspector__party-detail-row dt {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+}
+
+.trainer-inspector__party-detail-row dd {
+  margin: 0;
+}
+
+.trainer-inspector__item-btn,
+.trainer-inspector__move-chip {
+  display: inline-block;
+  padding: 2px 6px;
+  background: rgba(74, 158, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-bottom: 3px;
+}
+
+.trainer-inspector__item-btn:hover,
+.trainer-inspector__move-chip:hover {
+  border-color: var(--color-accent);
+  background: rgba(74, 158, 255, 0.12);
+}
+
+.trainer-inspector__move-chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.trainer-inspector__ai-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.trainer-inspector__ai-chip {
+  font-size: 10px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.trainer-inspector__advanced-toggle {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 6px 10px;
+  color: var(--color-text-dim);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.trainer-inspector__advanced-toggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.trainer-inspector__advanced {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trainer-inspector__meta-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.trainer-inspector__meta-row dt {
+  font-weight: 600;
+}
+
+.trainer-inspector__meta-row dd {
+  margin: 0;
+  word-break: break-all;
+}

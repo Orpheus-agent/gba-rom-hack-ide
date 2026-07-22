@@ -1,0 +1,102 @@
+.region-atlas {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+.region-atlas__bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  font-size: 12px;
+}
+
+.region-atlas__title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.region-atlas__hint {
+  color: var(--color-text-dim);
+  font-size: 11px;
+}
+
+.region-atlas__story-toggle {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+
+.region-atlas__story-toggle:hover:not(:disabled) {
+  color: var(--color-text);
+  border-color: var(--color-accent);
+}
+
+.region-atlas__story-toggle[aria-pressed='true'] {
+  background: rgba(255, 140, 0, 0.12);
+  border-color: #ff8c00;
+  color: #ff8c00;
+}
+
+.region-atlas__story-toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.region-atlas__canvas-host {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #1a1d24;
+}
+
+.region-atlas__fallback {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-dim);
+}
+
+.region-atlas__footer {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  font-size: 13px;
+}
+
+.region-atlas__group-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 11px;
+  text-transform: capitalize;
+  color: var(--color-text-dim);
+}
+
+.region-atlas__open-btn {
+  margin-left: auto;
+  padding: 4px 12px;
+  font-size: 12px;
+}

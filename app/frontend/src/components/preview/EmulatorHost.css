@@ -1,0 +1,176 @@
+/* WP-B - Embedded mGBA-WASM emulator host.
+ *
+ * Layout: header (title + actions) | status line | centered canvas
+ * scaled to fit. Canvas keeps its native 240×160 aspect.
+ */
+
+.emulator-host {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  height: 100%;
+  background: var(--color-bg);
+}
+
+.emulator-host__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.emulator-host__title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.emulator-host__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.emulator-host__btn {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.emulator-host__btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.emulator-host__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emulator-host__btn--primary {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+.emulator-host__btn--primary:hover {
+  filter: brightness(1.1);
+}
+
+.emulator-host__status {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-family: ui-monospace, monospace;
+}
+
+.emulator-host__canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 320px;
+  /* Phase 9C - HUD overlay anchors itself absolutely inside this
+     wrap, so the wrap must be a containing block. */
+  position: relative;
+}
+
+.emulator-host__canvas {
+  /* Pixel-perfect upscaling - 4× the native 240×160 = 960×640. */
+  width: 480px;
+  height: 320px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #000;
+  outline: none;
+}
+
+/* Watchdog recovery overlay - shown when the core sits at 0 fps for several
+   seconds (a wedged WASM runtime). Sits over the frozen canvas. */
+.emulator-host__stall {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 5;
+}
+
+.emulator-host__stall-card {
+  max-width: 320px;
+  padding: 18px 20px;
+  background: var(--color-surface, #1b1d22);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.emulator-host__stall-card p {
+  margin: 8px 0 14px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+@media (min-width: 1400px) {
+  .emulator-host__canvas {
+    width: 720px;
+    height: 480px;
+  }
+}
+
+/* WP-B v2 - Debug toolbar with save state slots. */
+
+.emulator-host__debug {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.emulator-host__debug-label {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.emulator-host__debug-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.emulator-host__debug-slot-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-right: 2px;
+}
+
+.emulator-host__debug-btn {
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.emulator-host__debug-btn:hover {
+  border-color: var(--color-accent);
+}

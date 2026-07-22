@@ -1,0 +1,40 @@
+{
+  "_comment": "Phase 8C-1 - curated behavior → tag mapping. Each MB_* name maps to a list of tag slugs that the ontology seeder asserts at confidence 1.0 with source='behavior_inference'. About 35 named behaviors map cleanly to one or two tags; the rest get a default 'terrain.* + traversal.walkable' from the family-wide fallback in `ontology.py`.",
+  "rules": {
+    "MB_NORMAL":                    ["terrain.dirt", "traversal.walkable"],
+    "MB_TALL_GRASS":                ["terrain.grass.tall", "traversal.walkable"],
+    "MB_LONG_GRASS":                ["terrain.grass.long", "traversal.walkable"],
+    "MB_SHORT_GRASS":               ["terrain.grass.short", "traversal.walkable"],
+    "MB_LONG_GRASS_SOUTH_EDGE":     ["terrain.grass.long", "traversal.walkable", "structure.edge"],
+
+    "MB_SAND":                      ["terrain.sand", "traversal.walkable"],
+    "MB_DEEP_SAND":                 ["terrain.sand", "traversal.walkable"],
+
+    "MB_CAVE":                      ["terrain.cave.floor", "biome.cave", "traversal.walkable"],
+    "MB_MOUNTAIN_TOP":              ["terrain.rock", "elevation.raised", "traversal.walkable"],
+
+    "MB_POND_WATER":                ["terrain.water.pond", "traversal.surf_only"],
+    "MB_DEEP_WATER":                ["terrain.water.deep", "traversal.surf_only"],
+    "MB_INTERIOR_DEEP_WATER":       ["terrain.water.deep", "traversal.surf_only"],
+    "MB_SOOTOPOLIS_DEEP_WATER":     ["terrain.water.deep", "traversal.surf_only"],
+    "MB_OCEAN_WATER":               ["terrain.water.ocean", "traversal.surf_only"],
+    "MB_FAST_WATER":                ["terrain.water.fast", "traversal.surf_only"],
+    "MB_PUDDLE":                    ["terrain.water.puddle", "traversal.walkable"],
+    "MB_SHALLOW_WATER":             ["terrain.water.shallow", "traversal.walkable"],
+    "MB_NO_SURFACING":              ["terrain.water.deep", "traversal.blocked"],
+
+    "MB_WATERFALL":                 ["terrain.water.fast", "traversal.waterfall"],
+
+    "MB_ICE":                       ["terrain.ice.solid", "traversal.walkable"],
+    "MB_THIN_ICE":                  ["terrain.ice.thin", "traversal.walkable"],
+    "MB_CRACKED_FLOOR":             ["traversal.walkable"],
+
+    "MB_SEAWEED":                   ["terrain.water.shallow", "traversal.surf_only"],
+
+    "MB_RUNNING_DISALLOWED":        ["traversal.walkable"],
+    "MB_NO_RUNNING":                ["traversal.walkable"],
+
+    "MB_INDOOR_ENCOUNTER":          ["biome.indoor", "traversal.walkable"],
+    "MB_INVALID":                   []
+  }
+}

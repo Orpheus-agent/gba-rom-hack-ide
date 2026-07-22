@@ -1,0 +1,184 @@
+.lint-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.lint-view--clean {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.lint-view__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.lint-view__clean-msg {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.lint-view__clean-emoji {
+  font-size: 48px;
+  color: var(--color-success, #50c878);
+}
+
+.lint-view__clean-msg p {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.lint-view__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
+.lint-view__counts {
+  display: flex;
+  gap: 8px;
+}
+
+.lint-view__count {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.lint-view__count--warn {
+  background: rgba(226, 85, 85, 0.15);
+  color: var(--color-error, #e25555);
+}
+
+.lint-view__count--info {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--color-accent);
+}
+
+.lint-view__count-total {
+  font-size: 10px;
+  color: var(--color-text-dim);
+}
+
+.lint-view__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lint-view__rule {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lint-view__rule--warn {
+  border-left: 3px solid var(--color-error, #e25555);
+}
+
+.lint-view__rule--info {
+  border-left: 3px solid var(--color-accent);
+}
+
+.lint-view__rule-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.lint-view__rule-badge {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.lint-view__rule-badge--warn {
+  background: rgba(226, 85, 85, 0.15);
+  color: var(--color-error, #e25555);
+}
+
+.lint-view__rule-badge--info {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--color-accent);
+}
+
+.lint-view__rule-count {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-dim);
+}
+
+.lint-view__findings {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lint-view__finding {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.lint-view__finding-entity {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text);
+}
+
+.lint-view__finding-kind {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  padding: 1px 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.lint-view__finding-msg {
+  color: var(--color-text-dim);
+  font-size: 10px;
+  line-height: 1.45;
+  flex: 1 0 100%;
+}

@@ -1,0 +1,107 @@
+/* Phase 9C - HUD overlay styling. */
+
+.hud-overlay {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-overlay--empty,
+.hud-overlay--error {
+  background: rgba(20, 20, 20, 0.7);
+  color: var(--color-text-muted, #aaa);
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: max-content;
+  align-self: flex-start;
+}
+
+.hud-overlay--error {
+  color: #f08a8a;
+}
+
+.hud-overlay__card {
+  pointer-events: auto;
+  background: rgba(15, 15, 15, 0.78);
+  color: #f0f0f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  text-align: left;
+  cursor: pointer;
+  width: max-content;
+  min-width: 140px;
+  transition: background 120ms ease;
+}
+
+.hud-overlay__card:hover {
+  background: rgba(30, 30, 30, 0.85);
+}
+
+.hud-overlay__card--opponent {
+  align-self: flex-start;
+}
+
+.hud-overlay__card--player {
+  align-self: flex-end;
+  margin-top: 4px;
+}
+
+.hud-overlay__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.78rem;
+  margin-bottom: 3px;
+}
+
+.hud-overlay__side-label {
+  font-weight: 600;
+  color: var(--color-accent, #6dcfff);
+}
+
+.hud-overlay__level {
+  color: var(--color-text-muted, #aaa);
+  font-size: 0.72rem;
+}
+
+.hud-overlay__bar {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hud-overlay__bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  transition: width 180ms ease;
+}
+
+.hud-bar--green {
+  background: linear-gradient(180deg, #7bdc8f 0%, #4caa61 100%);
+}
+
+.hud-bar--yellow {
+  background: linear-gradient(180deg, #ecd98d 0%, #cba93f 100%);
+}
+
+.hud-bar--red {
+  background: linear-gradient(180deg, #f08a8a 0%, #c54848 100%);
+}
+
+.hud-overlay__hp-text {
+  font-size: 0.72rem;
+  color: var(--color-text-muted, #c8c8c8);
+  margin-top: 2px;
+  text-align: right;
+}

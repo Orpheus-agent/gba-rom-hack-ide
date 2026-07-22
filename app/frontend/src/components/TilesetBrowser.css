@@ -1,0 +1,166 @@
+/* Phase F (semantic-world plan §3.2) - Universal tileset browser. */
+
+.tileset-browser {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
+}
+
+.tileset-browser__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+}
+
+.tileset-browser__list-heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  padding: 4px 4px 8px;
+}
+
+.tileset-browser__empty,
+.tileset-browser__detail-empty {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.tileset-browser__detail-error {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--color-error);
+}
+
+.tileset-browser__detail-note {
+  margin: 6px 0 0;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+}
+
+.tileset-browser__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  text-align: left;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text);
+}
+
+.tileset-browser__item:hover {
+  border-color: var(--color-accent);
+}
+
+.tileset-browser__item--selected {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg-elevated));
+}
+
+.tileset-browser__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.tileset-browser__item-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tileset-browser__item-tag--primary {
+  background: rgba(70, 158, 255, 0.15);
+  color: #4a9eff;
+}
+
+.tileset-browser__item-tag--secondary {
+  background: rgba(255, 158, 70, 0.15);
+  color: #ff9e46;
+}
+
+.tileset-browser__item-offset {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.tileset-browser__item-meta {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.tileset-browser__detail {
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  padding: 10px;
+}
+
+.tileset-browser__detail-loaded {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tileset-browser__detail-header strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.tileset-browser__detail-meta {
+  display: block;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.tileset-browser__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 4px;
+}
+
+.tileset-browser__swatch {
+  display: inline-block;
+  padding: 1px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tileset-browser__swatch:hover {
+  border-color: var(--color-accent);
+}
+
+.tileset-browser__swatch--selected {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}

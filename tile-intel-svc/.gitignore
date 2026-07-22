@@ -1,0 +1,20 @@
+# Phase 8A-3 - uv venv lives here; never committed.
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Phase 8D - CLIP / ViT models cached locally on first sidecar start.
+models/
+!models/.gitkeep
+
+# Local env overrides.
+.env
+.env.local
+
+# Build artifacts.
+dist/
+build/
+*.egg-info/

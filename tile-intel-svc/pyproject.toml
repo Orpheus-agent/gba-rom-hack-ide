@@ -1,0 +1,80 @@
+[project]
+name = "tile-intel-svc"
+version = "0.1.0"
+description = "Tile-intelligence sidecar for the ROM editor - Phase 8."
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+
+# Dependencies are scoped tightly: only what we need to land 8A-5
+# (Alembic + SQLAlchemy + Pydantic + FastAPI + Qdrant client) plus
+# pytest. Phase 8D adds open-clip / torch; Phase 8E adds Pillow /
+# OpenCV. Holding those back until the sub-phase that needs them
+# keeps the first `uv sync` cheap.
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "psycopg[binary]>=3.2",
+    "qdrant-client>=1.11",
+    "httpx>=0.27",
+    "pillow>=12.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.7",
+    "mypy>=1.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tile_intel"]
+
+[tool.ruff]
+# 120 keeps the SQLAlchemy `Mapped[X] = mapped_column(ForeignBigInt,
+# ForeignKey("foo.id", ondelete="CASCADE"), index=True)` idiom on
+# one line; declarative models have more visual weight per line
+# than typical Python code, and the on-one-line form is easier to
+# eyeball than wrapped multi-line column declarations.
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # bugbear
+    "UP",  # pyupgrade
+]
+# B008 fires on FastAPI's standard `Depends(...)` argument default
+# pattern; the linter wants module-level constants instead, but
+# every FastAPI tutorial and 100% of the docs use the inline form.
+# Leaving B008 on creates noise for no win.
+#
+# B017 (blind Exception in pytest.raises) is overcautious for
+# integrity-constraint smoke tests where ANY DB error suffices - 
+# the test runs SQLite, Postgres, and (eventually) MySQL via
+# different SQLAlchemy dialects, all of which raise different
+# specific exception subclasses. Catching the base is the right
+# choice here.
+ignore = ["B008", "B017"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true

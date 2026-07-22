@@ -1,0 +1,44 @@
+{
+  "name": "@rom-introspection/engine",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Universal Pokémon-family GBA ROM workspace reconstruction & full-engine introspection engine.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0 <23"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./detection": {
+      "types": "./dist/detection/index.d.ts",
+      "default": "./dist/detection/index.js"
+    },
+    "./coverage": {
+      "types": "./dist/coverage/index.d.ts",
+      "default": "./dist/coverage/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node -e \"require('node:fs').mkdirSync('dist/emulator',{recursive:true});require('node:fs').copyFileSync('src/emulator/worker-bridge.mjs','dist/emulator/worker-bridge.mjs')\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "22.5.5",
+    "@vitest/coverage-v8": "1.6.0",
+    "typescript": "5.4.5",
+    "vitest": "1.6.0"
+  },
+  "dependencies": {
+    "@thenick775/mgba-wasm": "^2.4.1",
+    "ajv": "^8.16.0"
+  }
+}

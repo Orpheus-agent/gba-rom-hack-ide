@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gba-rom-hack-ide</title>
+<meta name="description" content="A locally hosted web IDE for Pokemon GBA decomp projects: visual editors, a plain-English agent layer, devkitARM builds, and an in-browser emulator.">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --bg-panel: #ffffff;
+    --ink: #16151a;
+    --ink-soft: #56535f;
+    --ink-faint: #86828f;
+    --rule: #e4e1dc;
+    --accent: #4f3fd6;
+    --accent-soft: #ede9ff;
+    --code-bg: #f4f2ef;
+    --warn-bg: #fff8ec;
+    --warn-rule: #e8c98a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101015;
+      --bg-panel: #17171e;
+      --ink: #eeecf2;
+      --ink-soft: #a8a4b4;
+      --ink-faint: #74707f;
+      --rule: #26262f;
+      --accent: #9d92ff;
+      --accent-soft: #1e1b32;
+      --code-bg: #1b1b23;
+      --warn-bg: #201a12;
+      --warn-rule: #4d3d22;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  @media (max-width: 30rem) { .wrap { padding: 0 1.1rem; } }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    border-bottom: 1px solid var(--rule);
+    padding: 4.5rem 0 3.25rem;
+  }
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+  h1 {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: clamp(2rem, 7vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+    font-weight: 600;
+    word-break: break-word;
+  }
+  .tagline {
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 34em;
+    margin: 0 0 1.6rem;
+    font-weight: 500;
+  }
+  .lede {
+    color: var(--ink-soft);
+    max-width: 40em;
+    margin: 0 0 2rem;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+  }
+  .badges li {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding: 0.28rem 0.6rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .badges li.hl {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.3rem;
+    border-radius: 7px;
+  }
+  @media (prefers-color-scheme: dark) { .cta { color: #14121f; } }
+  .cta:hover { filter: brightness(1.08); }
+  .cta .arrow { font-family: ui-monospace, Menlo, monospace; }
+
+  /* ---------- sections ---------- */
+  section { padding: 3.25rem 0; border-bottom: 1px solid var(--rule); }
+  h2 {
+    font-size: 0.78rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 1.6rem;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  p { margin: 0 0 1rem; max-width: 42em; }
+  section p:last-child { margin-bottom: 0; }
+  a { color: var(--accent); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem 2rem;
+  }
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.35rem 1.4rem;
+  }
+  .card p { color: var(--ink-soft); font-size: 0.94rem; margin: 0; }
+  .card .num {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.55rem;
+  }
+
+  .notice {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-rule);
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+  }
+  .notice p { font-size: 0.94rem; color: var(--ink-soft); }
+  .notice strong { color: var(--ink); }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin: 0 0 1.1rem;
+    max-width: 100%;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; }
+  p code, li code { background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
+
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 32rem; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.6rem 0.9rem 0.6rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--ink-faint); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  td.n { font-family: ui-monospace, Menlo, Consolas, monospace; white-space: nowrap; color: var(--ink-soft); }
+
+  ul.plain { list-style: none; padding: 0; margin: 0; }
+  ul.plain li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); font-size: 0.94rem; color: var(--ink-soft); }
+  ul.plain li:last-child { border-bottom: 0; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .links a {
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--bg-panel);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links a span { display: block; font-size: 0.75rem; color: var(--ink-faint); }
+
+  footer { padding: 2.5rem 0 4rem; color: var(--ink-faint); font-size: 0.86rem; }
+  footer a { color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Local web IDE / Pokemon GBA decomp</p>
+    <h1>gba-rom-hack-ide</h1>
+    <p class="tagline">Edit a Pokemon GBA decomp project visually or in plain English, then build and play the ROM in your browser.</p>
+    <ul class="badges">
+      <li>Node 22 LTS</li>
+      <li>TypeScript 5.4 strict</li>
+      <li>React 18 + Vite 5</li>
+      <li>Fastify 4</li>
+      <li>71 MCP tools</li>
+      <li class="hl">Work in progress</li>
+    </ul>
+    <p class="lede">
+      Point it at a decompilation project on disk. It classifies the project, scans it into one
+      typed manifest, and renders that manifest as a navigable game: maps, warps, triggers,
+      object events, dialogue, flags and variables, encounter tables, trainers and their parties,
+      species, moves, learnsets, abilities, items, and the type chart. Everything runs on
+      <code>127.0.0.1</code>. Nothing is uploaded anywhere.
+    </p>
+    <a class="cta" href="https://github.com/csnyder256/gba-rom-hack-ide">View on GitHub <span class="arrow">-&gt;</span></a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Tooling only</h2>
+    <div class="notice">
+      <p>
+        <strong>This repository contains no ROMs, no ROM images, no decompilation dumps, no
+        extracted graphics, audio, text or save data, and no binary patches derived from a
+        commercial game.</strong> The tool operates on a decompilation project and ROM files that
+        you supply yourself, and you are responsible for supplying a legally obtained copy.
+      </p>
+      <p>
+        <code>corpus/</code> is the drop-zone for your own files. It is git-ignored, and the
+        <code>.gitignore</code> blocks <code>*.gba</code>, <code>*.gbc</code>, <code>*.gb</code>,
+        <code>*.nds</code>, <code>*.sav</code>, <code>*.srm</code>, <code>*.bps</code>,
+        <code>*.ips</code>, <code>*.ups</code> and <code>*.xdelta</code> repo-wide.
+      </p>
+      <p style="margin-bottom:0">
+        Pokemon and related names are trademarks of Nintendo, Creatures Inc., and GAME FREAK Inc.
+        This is an unaffiliated, non-commercial fan tool.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The problem</h2>
+    <p>
+      There are two ways to change a Pokemon GBA game, and neither of them gives you an editor.
+    </p>
+    <p>
+      Binary patching means finding a table in a <code>.gba</code> image and writing bytes. It
+      works until you want to add something the original ROM has no room for. Free space hunting,
+      repointing and one-off patches accumulate until nobody can say what the ROM now contains.
+    </p>
+    <p>
+      A decompilation project removes those limits: real C source that compiles back to a
+      byte-matching ROM. What it costs you is the editor. The game becomes thousands of files of
+      C, headers, <code>.inc</code> scripts, <code>.json</code> map data and PNG tilesets. Editing
+      a trainer's party means finding the right block in the right file and not breaking the build.
+    </p>
+    <p>
+      This project is the missing middle. It treats the decomp tree as the source of truth, reads
+      it into one typed manifest, renders that manifest as something you can click through, and
+      writes changes back into the real C source. Compiling and playing are part of the inner loop
+      rather than a separate step you leave the tool to perform.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Parts worth opening</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>A generic C struct-block editor</h3>
+        <p>
+          <code>scan/data/struct-block.ts</code> is 159 lines. It parses decomp files shaped as
+          <code>[ID] = { .field = value }</code> arrays and rewrites only the value span of named
+          fields, so macros, <code>#if</code> guards, comments and unmodelled fields survive
+          verbatim. Eight data editors are thin schemas on top of it. Every write is
+          tmp-file-plus-rename.
+        </p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>An MCP server as the agent layer</h3>
+        <p>
+          <code>agent/mcp-server.ts</code> registers 71 tools against the open project, drawn from
+          92 modules under <code>agent/tools/</code>, 77 of them <code>propose-*</code> mutations.
+          The <code>claude</code> CLI runs as a child process and streams turn events over a
+          WebSocket. No tool writes to disk: proposals become a diff card you approve, then a
+          patch applier writes them.
+        </p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>The devkitARM build recipe, encoded once</h3>
+        <p>
+          <code>build/decomp-build.ts</code> shells into devkitPro's MSYS2 login bash, prepends
+          <code>$DEVKITARM/bin</code> to <code>PATH</code>, runs <code>make modern</code>, and
+          overrides <code>CPP</code> with a CR-stripping wrapper because devkitARM's CRLF output
+          chokes pret's <code>preproc</code>. Async polled jobs, a 200,000-character log cap, a
+          30 minute ceiling.
+        </p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>Story order, not alphabetical order</h3>
+        <p>
+          <code>parseMapSectionOrder</code> in <code>scan/decomp.ts</code> reads
+          <code>region_map_sections.h</code> into the game's own <code>MAPSEC_*</code> ordering,
+          so the navigator lists Pallet, Viridian, Pewter and onward rather than Route1, Route10,
+          Route2.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it works</h2>
+<pre>open project
+  -&gt; detect/          classify decomp | patch | hybrid
+  -&gt; scan/            parse into &lt;projectRoot&gt;/.editor/manifest.json
+  -&gt; frontend         render manifest as a navigable world
+
+edit visually:   PATCH route -&gt; domain writer -&gt; tmp+rename into decomp source -&gt; op-log
+edit in English: WebSocket -&gt; spawner -&gt; claude CLI -&gt; MCP propose_* -&gt; patch store
+                 -&gt; diff card -&gt; you approve -&gt; patch-applier -&gt; op-log
+
+Build &amp; Play:    make modern job -&gt; .gba -&gt; mGBA-wasm in the browser</pre>
+    <p style="color:var(--ink-soft);font-size:0.94rem">
+      Both edit paths land in the same op-log, so undo, redo and the project timeline behave
+      identically whether a change came from a visual editor or from an approved AI patch.
+    </p>
+
+    <div class="table-scroll" style="margin-top:1.5rem">
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>Size</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">app/shared/src</td><td class="n">19 files, 2,924 lines</td><td>Every type that crosses the wire, defined once</td></tr>
+          <tr><td class="n">app/backend/src</td><td class="n">254 files, 70,721 lines</td><td>Fastify server, detection, scanners, atomic writers, op-log, MCP host, build runner</td></tr>
+          <tr><td class="n">app/frontend/src</td><td class="n">254 files, 77,414 lines</td><td>Map editor, navigator, data editors, inspector registry, PixiJS compositor, Zustand stores</td></tr>
+          <tr><td class="n">engine/src</td><td class="n">355 files, 62,412 lines</td><td>Standalone binary-ROM introspection engine (legacy path, about 29 percent of the TypeScript here)</td></tr>
+          <tr><td class="n">tile-intel-svc/src</td><td class="n">45 Python files, 9,382 lines</td><td>Optional FastAPI sidecar for tileset understanding</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Quickstart</h2>
+<pre>git clone https://github.com/csnyder256/gba-rom-hack-ide
+cd gba-rom-hack-ide
+
+copy .env.example .env
+.\start.ps1                 # or: node scripts\start.mjs</pre>
+    <ul class="plain">
+      <li><strong>Node.js 22 LTS</strong> is required, enforced through <code>engines</code>.</li>
+      <li><strong><code>ROM_EDITOR_PROJECT_ROOT</code></strong> is the one variable you actually have to set. Point it at your own decomp checkout, for example a pret/pokefirered clone.</li>
+      <li><strong>Build &amp; Play</strong> needs devkitPro / devkitARM, plus its MSYS2 bash on Windows. The agent panel needs the <code>claude</code> CLI on <code>PATH</code>.</li>
+      <li><strong>Docker tier gotcha:</strong> compose reads <code>${TILE_INTEL_PG_PASSWORD:?...}</code> and fails fast unless it is set. Set it, or run with <code>SKIP_TILE_INTEL=1</code>. The editor degrades gracefully without it.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Status</h2>
+    <p>
+      A working single-operator tool, not a released product. It pivoted: it began as a binary ROM
+      patcher, that path failed its own audit, and the project re-founded itself on editing decomp
+      source and compiling with <code>make</code>. The binary engine is still in the tree, still
+      imported in places, and clearly labelled legacy.
+    </p>
+    <p>
+      Recorded against a real cloned project, not fixtures: 1,104 learnsets, 469 wild encounter
+      tables, 664 trainers with editable parties, 33,585 decoded script steps across 8,821 labels,
+      882 flags and 167 variables. The full write-up, including the audit that triggered the
+      pivot, is in the planning docs.
+    </p>
+    <div class="links" style="margin-top:1.5rem">
+      <a href="https://github.com/csnyder256/gba-rom-hack-ide/blob/main/docs/MASTER_PLAN.md">MASTER_PLAN.md <span>Direction, audit, verification discipline</span></a>
+      <a href="https://github.com/csnyder256/gba-rom-hack-ide/blob/main/docs/BACKLOG.md">BACKLOG.md <span>What is next</span></a>
+      <a href="https://github.com/csnyder256/gba-rom-hack-ide/blob/main/docs/COMPLETION_REPORT.md">COMPLETION_REPORT.md <span>Kept as history, not status</span></a>
+      <a href="https://github.com/csnyder256/gba-rom-hack-ide#readme">README <span>Full detail</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0">
+      MIT licensed. Built by Cade
+      (<a href="https://github.com/csnyder256">github.com/csnyder256</a>).
+      The "Modernize" integration path targets Complete Fire Red Upgrade, whose upstream terms are
+      non-commercial and are not overridden by this repository's license.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

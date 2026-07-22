@@ -1,0 +1,294 @@
+/* Visual Script Editor - GB Studio-style card list.
+ * Phase R / WP3. Replaces the old <details><ol><li> rendering of
+ * script steps in ScriptStepsList with a card-per-step layout where
+ * each step has a category-coloured left border + plain-English
+ * summary + click-to-edit-in-inspector affordance. */
+
+.visual-script {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.visual-script--empty {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.visual-script__empty-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.visual-script__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  flex-wrap: wrap;
+}
+
+.visual-script__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  flex: 1;
+  min-width: 120px;
+}
+
+.visual-script__stats {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.visual-script__internal-count {
+  margin-left: 4px;
+  cursor: help;
+}
+
+.visual-script__filter {
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.visual-script__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.visual-script__card {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: background-color 80ms ease;
+}
+
+.visual-script__card:hover {
+  background: rgba(74, 158, 255, 0.05);
+}
+
+.visual-script__card--selected {
+  background: rgba(74, 158, 255, 0.1);
+  outline: 1px solid var(--color-accent);
+  outline-offset: -1px;
+}
+
+.visual-script__card-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.visual-script__card-index {
+  flex: 0 0 auto;
+  min-width: 24px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.visual-script__card-icon {
+  flex: 0 0 auto;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.visual-script__card-summary {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.visual-script__card-category {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+/* Per-category background tint for the card when selected. Provides
+ * a stronger affordance that the card type matches the inspector
+ * panel that opens. Subtle so the category chip stays readable. */
+.visual-script__card--text {
+  --visual-script-tint: 74, 158, 255;
+}
+.visual-script__card--flow {
+  --visual-script-tint: 180, 106, 255;
+}
+.visual-script__card--flags_vars {
+  --visual-script-tint: 80, 200, 120;
+}
+.visual-script__card--party {
+  --visual-script-tint: 93, 173, 226;
+}
+.visual-script__card--inventory {
+  --visual-script-tint: 240, 180, 41;
+}
+.visual-script__card--battle {
+  --visual-script-tint: 168, 61, 61;
+}
+.visual-script__card--movement {
+  --visual-script-tint: 93, 173, 226;
+}
+.visual-script__card--npc {
+  --visual-script-tint: 148, 196, 93;
+}
+.visual-script__card--advanced {
+  --visual-script-tint: 124, 128, 136;
+}
+
+.visual-script__card--selected.visual-script__card--text,
+.visual-script__card--selected.visual-script__card--flow,
+.visual-script__card--selected.visual-script__card--flags_vars,
+.visual-script__card--selected.visual-script__card--party,
+.visual-script__card--selected.visual-script__card--inventory,
+.visual-script__card--selected.visual-script__card--battle,
+.visual-script__card--selected.visual-script__card--movement,
+.visual-script__card--selected.visual-script__card--npc,
+.visual-script__card--selected.visual-script__card--advanced {
+  background: rgba(var(--visual-script-tint), 0.12);
+}
+
+/* WP-A4 - Add Step gap + per-card delete affordance. */
+
+.visual-script__add-gap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.visual-script__add-btn {
+  padding: 2px 12px;
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    color 80ms ease,
+    border-color 80ms ease;
+}
+
+.visual-script__add-btn:hover:not(:disabled) {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.visual-script__add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.visual-script__add-popover-wrap {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.visual-script__card {
+  position: relative;
+}
+
+.visual-script__card-delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: rgba(168, 61, 61, 0.15);
+  border: 1px solid rgba(168, 61, 61, 0.3);
+  border-radius: 50%;
+  color: #c0392b;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 80ms ease;
+}
+
+.visual-script__card:hover .visual-script__card-delete,
+.visual-script__card--selected .visual-script__card-delete {
+  opacity: 1;
+}
+
+.visual-script__card-delete:hover {
+  background: rgba(168, 61, 61, 0.3);
+}
+
+/* Phase 9G - Boot-to-this-step button. Sits left of the delete chip
+   when both are present (delete at right:4px, boot at right:30px).
+   Same hover/selected fade-in pattern as the delete chip. */
+.visual-script__card-boot {
+  position: absolute;
+  top: 4px;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: rgba(109, 207, 255, 0.15);
+  border: 1px solid rgba(109, 207, 255, 0.3);
+  border-radius: 50%;
+  color: var(--color-accent, #6dcfff);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 80ms ease;
+}
+
+.visual-script__card:hover .visual-script__card-boot,
+.visual-script__card--selected .visual-script__card-boot {
+  opacity: 1;
+}
+
+.visual-script__card-boot:hover {
+  background: rgba(109, 207, 255, 0.3);
+}

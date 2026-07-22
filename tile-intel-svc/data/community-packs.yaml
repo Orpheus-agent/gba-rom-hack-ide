@@ -1,0 +1,137 @@
+# Phase 8E-3 - Hand-picked community-pack registry.
+#
+# The sidecar reads this file at startup and surfaces the listed
+# packs in the tile-intelligence panel. Users still have to
+# download the artifact themselves (we do NOT fetch over the
+# network from the sidecar), but the registry tells the editor
+# what to expect when the user runs:
+#
+#   uv run tile-intel ingest-pack <slug> <path-to-archive-or-png>
+#
+# Format notes:
+#   - `slug` is filesystem-safe + becomes the tileset slug prefix.
+#   - `cell_size` is the inferred tile dimension; when omitted, the
+#     8E-2 grid-inference module runs at ingest time.
+#   - `palette_strategy` is `"per-sheet"` (one 16-color quantize
+#     per PNG, default), `"per-pack"` (single palette for the whole
+#     archive), or `"native-indexed"` (use the PNG's PLTE chunk
+#     directly - only valid for indexed-mode PNGs).
+#   - `license_spdx` is best-effort. When the source's license is
+#     unclear we record `"unknown"` so the library browser shows
+#     the right caveat.
+#
+# This file is hand-edited. The 10 entries below cover the
+# canonical "well-known" community packs from major tilesetting
+# threads on PokéCommunity / Relic Castle / DeviantArt era.
+
+packs:
+  - slug: kyledove-hgss-style
+    display_name: "Kyledove - HGSS-Style Outdoor Tiles"
+    source_url: "https://www.deviantart.com/kyledove/"
+    attribution: "Kyledove (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Iconic HG/SS-styled outdoor tileset; commonly used in
+      ROM hacks that want a Gen-4 visual. Cell size 16 px is the
+      RPG-Maker XP standard the artist authored against."
+
+  - slug: pokemonruby-rip-rgss
+    display_name: "Pokémon Ruby - Ripped RGSS Tilesets"
+    source_url: "https://reliccastle.com/resources/"
+    attribution: "Spherical Ice + community rippers"
+    license_spdx: "CC-BY-NC"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "native-indexed"
+    notes: "Direct RSE-style assets converted from GBA bytes;
+      good for projects that want stock RSE look-and-feel."
+
+  - slug: alistair-mt-style
+    display_name: "Alistair - Mt. Style"
+    source_url: "https://reliccastle.com/resources/"
+    attribution: "Alistair (Relic Castle)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Mountain-themed tileset; often paired with the
+      Kyledove outdoor pack for cave + mountain biomes."
+
+  - slug: thurpok-gen3-style
+    display_name: "Thurpok - Gen-3 Faithful Tiles"
+    source_url: "https://www.deviantart.com/thurpok/"
+    attribution: "Thurpok (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Strict gen-3 palette faithful; designed to drop into
+      RSE-style hacks without re-palette work."
+
+  - slug: zeo-tilesets-collection
+    display_name: "Zeo - Pokémon Tilesets Collection"
+    source_url: "https://www.deviantart.com/zeo254/"
+    attribution: "Zeo254 (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Wide variety of biomes: arctic, tropical, urban. Mixed
+      authoring style - visual quality varies sheet-to-sheet."
+
+  - slug: dman-1-vintage
+    display_name: "Dman-1 - Vintage Hack Tilesets"
+    source_url: "https://www.deviantart.com/dman-1/"
+    attribution: "Dman-1 (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Older but high-quality; predates many of the modern
+      packs and is referenced by them as inspiration."
+
+  - slug: bati-fields
+    display_name: "Bati - Open Fields + Farmland"
+    source_url: "https://www.deviantart.com/bati-1/"
+    attribution: "Bati-1 (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Specialist farmland + crop tiles; great for filling
+      the gap where vanilla pret + Essentials are thin."
+
+  - slug: magiscarf-gen5
+    display_name: "Magiscarf - BW2-Style Tiles"
+    source_url: "https://reliccastle.com/resources/"
+    attribution: "Magiscarf (Relic Castle)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "BW2-styled assets. Lighter sprites + brighter palette
+      than RSE; good for modern-looking ROM hacks."
+
+  - slug: chimcharsfireworkk-extended-rse
+    display_name: "ChimcharsFireworkk - Extended RSE"
+    source_url: "https://www.deviantart.com/chimcharsfireworkk/"
+    attribution: "ChimcharsFireworkk (DeviantArt)"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Adds RSE-style assets pret/pokeemerald doesn't ship - 
+      desert, deep cave, ruins."
+
+  - slug: pomeg-pokesoul
+    display_name: "Pomeg's PokéSoul Tilesets"
+    source_url: "https://reliccastle.com/resources/"
+    attribution: "Pomeg + collaborators"
+    license_spdx: "unknown"
+    cell_size: 16
+    padding: 0
+    palette_strategy: "per-sheet"
+    notes: "Tilesets used by the PokéSoul community project; mix
+      of original + repalette of pret assets."

@@ -1,0 +1,14 @@
+# Phase 8B-1 - populated corpus files are heavy (tens of MB per
+# source - 75 MB+ for pret-firered alone) and trivially reproducible
+# from the on-disk source clones via `scripts/build-tile-intel-corpus.mjs`.
+# Keep them out of git; the sidecar reads whichever files happen to
+# be present.
+#
+# Re-generate from the repo root after cloning:
+#   node scripts/build-tile-intel-corpus.mjs
+#
+# Defaults match the user's existing local clones; see --help for
+# how to override paths.
+*.json
+!.gitignore
+!README.md

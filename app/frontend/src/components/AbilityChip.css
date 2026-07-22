@@ -1,0 +1,28 @@
+/* Phase 4.3E - Ability chip. */
+
+.ability-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  background: rgba(80, 180, 200, 0.18);
+  color: #98e4f0;
+  border: 1px solid rgba(80, 180, 200, 0.4);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.ability-chip--hidden {
+  background: rgba(220, 100, 180, 0.18);
+  color: #ffb0e0;
+  border-color: rgba(220, 100, 180, 0.4);
+  font-weight: 600;
+}
+
+.ability-chip--compact {
+  padding: 1px 5px;
+  font-size: 9px;
+}

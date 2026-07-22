@@ -1,0 +1,126 @@
+# ============================================================
+# gba-rom-hack-ide
+#
+# HARD RULE: no commercial or derivative ROM images, no built
+# patches, no decompilation dumps, no extracted game assets.
+# You supply your own legally-obtained ROM / decomp project.
+# ============================================================
+
+# --- ROM / patch / save payloads (NEVER commit) ---
+*.gba
+*.gbc
+*.gb
+*.nds
+*.sav
+*.srm
+*.st[0-9]
+*.bps
+*.ips
+*.ups
+*.xdelta
+
+# Operator-supplied ROM corpus
+/corpus/*
+!/corpus/README.md
+!/corpus/.gitkeep
+
+# Generated symbol tables (rebuild: node scripts/build-symbols.mjs)
+/symbols/*
+!/symbols/.gitkeep
+
+# Built ROMs, extracted audio, and exploratory renders
+/overnight-build/
+/artifacts/
+/.dpe-build-staging/
+/pokefirered-master/
+/.bw-extract/
+/.bw-demake/
+
+# Third-party engine payloads (CFRU / DPE binary patches)
+/app/backend/src/assets/modernize/*.bps
+
+# Bulk generated corpora
+# (rebuild: node scripts/build-tile-intel-corpus.mjs)
+/app/backend/src/assets/tile-intel-corpus/*.json
+!/app/backend/src/assets/tile-intel-corpus/package.json
+
+# Third-party prebuilt binaries (build via scripts/build-midi2agb.mjs)
+/tools/
+*.exe
+*.dll
+*.so
+*.dylib
+*.p12
+*.pfx
+
+# --- Dependencies ---
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.python-eggs/
+
+# --- Build outputs ---
+dist/
+out/
+.next/
+.cache/
+*.tsbuildinfo
+# ...but `build/` un-anchored would swallow the backend's build *source*
+# at app/backend/src/build/, so anchor it instead:
+/build/
+/app/frontend/build/
+/app/backend/build/
+
+# --- Caches / test output ---
+.preview-cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+# NOTE: `coverage/` un-anchored would swallow engine/src/coverage/, which is
+# ROM-coverage *source*. Anchor the test-output dirs instead.
+/coverage/
+/app/coverage/
+/app/*/coverage/
+/engine/coverage/
+/tile-intel-svc/coverage/
+.vitest-cache/
+playwright-report/
+test-results/
+
+# --- Agent / harness session state ---
+.claude/
+.loop/
+.loop-editor/
+
+# --- Scratch ---
+/.scratch-*.mjs
+/.scratch-*.js
+*.tmp
+*.bak
+
+# --- Secrets / environment ---
+.env
+.env.local
+.env.*.local
+*.local.yaml
+*.local.json
+*.pem
+*.key
+id_rsa*
+
+# --- Logs / local DBs ---
+*.log
+npm-debug.log*
+*.sqlite
+*.sqlite3
+*.db
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

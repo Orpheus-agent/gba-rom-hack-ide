@@ -1,0 +1,95 @@
+/* Phase 4.3B - AI flag chip editor. */
+
+.ai-flag-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.ai-flag-chips__presets {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.ai-flag-chips__presets-label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 4px;
+}
+
+.ai-flag-chips__preset {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.ai-flag-chips__preset:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.ai-flag-chips__preset--danger {
+  color: #ff9a9a;
+  border-color: rgba(220, 60, 60, 0.4);
+}
+
+.ai-flag-chips__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.ai-flag-chips__chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ai-flag-chips__chip:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.ai-flag-chips__chip--on {
+  background: rgba(74, 158, 255, 0.18);
+  border-color: rgba(74, 158, 255, 0.5);
+  color: #cfe2ff;
+  font-weight: 500;
+}
+
+.ai-flag-chips__unknown {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-family: ui-monospace, monospace;
+  padding: 2px 6px;
+  background: rgba(220, 200, 60, 0.08);
+  border: 1px solid rgba(220, 200, 60, 0.3);
+  border-radius: 2px;
+}
+
+.ai-flag-chips__raw {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.ai-flag-chips__raw code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-family: ui-monospace, monospace;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "rom-editor",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Locally hosted, web-tech-based editor for Pokemon GBA decomp projects and patch-based ROM workflows.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0 <23"
+  },
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @rom-editor/shared && npm run build --workspace @rom-editor/backend && npm run build --workspace @rom-editor/frontend",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "dev:backend": "npm --workspace @rom-editor/backend run dev",
+    "dev:frontend": "npm --workspace @rom-editor/frontend run dev",
+    "start": "node ../scripts/start.mjs",
+    "smoke": "node ../tests/smoke.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "@types/node": "22.5.5",
+    "eslint": "9.10.0",
+    "typescript-eslint": "8.6.0",
+    "prettier": "3.3.3"
+  }
+}

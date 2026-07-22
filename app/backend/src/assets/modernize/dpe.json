@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "pipeline": "vanilla → DPE → CFRU",
+  "sourceFingerprint": {
+    "cfruRepo": "C:\\path\\to\\Complete-Fire-Red-Upgrade-master\\Complete-Fire-Red-Upgrade-master",
+    "dpeRepo": "C:\\path\\to\\Dynamic-Pokemon-Expansion-master\\Dynamic-Pokemon-Expansion-master",
+    "builtAtUtc": "2026-05-27T19:14:13.191Z"
+  },
+  "producesSha1": "281f297929d5d07901fcd41dd24ad71cc761c779",
+  "vanillaSha1": "41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc",
+  "bytesProduced": 33389466,
+  "bpsBytes": 17969543,
+  "notes": "CFRU + Dynamic Pokémon Expansion bundle. Apply via the modernize service after the fingerprint at engine/src/identity/hack-fingerprints.ts is updated with the SHA-1 reported above. Both CFRU and DPE are non-commercial; honor Skeli789's license terms (no monetization).",
+  "built": true,
+  "bundledAtUtc": "2026-05-27T19:14:13.191Z",
+  "cfruVersion": "CFRU+DPE (local build)",
+  "cfruCommitShortSha": "local",
+  "bundledPatchSha1": "e71c9dbcc991600ee1c17426585c1a18e9afe956"
+}

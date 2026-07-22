@@ -1,0 +1,27 @@
+/* Phase 4.2D - Pokémon type chip styling. */
+
+.type-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.type-chip--compact {
+  padding: 1px 5px;
+  font-size: 9px;
+  letter-spacing: 0.03em;
+}
+
+.type-chip-pair {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}

@@ -1,0 +1,126 @@
+/* Modernize-and-Ship slice 8 - "Save patch to disk" card styling. */
+
+.export-patch-card {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0.5rem;
+  background: var(--surface, rgba(0, 0, 0, 0.03));
+}
+
+.export-patch-card--success {
+  border-color: var(--success, #16a34a);
+  background: var(--success-bg, rgba(22, 163, 74, 0.08));
+  padding: 1rem 1.25rem;
+}
+
+.export-patch-card__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.export-patch-card__body {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.export-patch-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.export-patch-card__field label {
+  font-size: 0.82rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.export-patch-card__field input,
+.export-patch-card__field textarea {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--input-bg, white);
+}
+
+.export-patch-card__field textarea {
+  resize: vertical;
+  min-height: 3rem;
+}
+
+.export-patch-card__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.export-patch-card__primary {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: var(--accent, #3b82f6);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.export-patch-card__primary:hover {
+  filter: brightness(1.1);
+}
+
+.export-patch-card__primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.export-patch-card__secondary {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0.35rem;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.export-patch-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.export-patch-card__spinner {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: export-spin 1s linear infinite;
+}
+
+@keyframes export-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.export-patch-card__error {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--danger, #dc2626);
+  border-radius: 0.35rem;
+  background: var(--danger-bg, rgba(220, 38, 38, 0.08));
+  font-size: 0.88rem;
+}

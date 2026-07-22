@@ -1,0 +1,317 @@
+/* WP-B v2.3 - Debug menu overlay. */
+
+.debug-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.debug-menu__toggle {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.debug-menu__toggle:hover {
+  border-color: var(--color-accent);
+}
+
+.debug-menu__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 1000;
+  width: 360px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-elevated, #1a1a1a);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.debug-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.debug-menu__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.debug-menu__close {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.debug-menu__close:hover {
+  color: var(--color-text);
+}
+
+.debug-menu__hint {
+  padding: 16px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.debug-menu__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.debug-menu__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.debug-menu__tab {
+  flex: 1;
+  padding: 8px 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.debug-menu__tab:hover {
+  color: var(--color-text);
+}
+
+.debug-menu__tab--active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.debug-menu__tab-body {
+  flex: 1;
+  overflow: auto;
+}
+
+.debug-menu__form {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.debug-menu__section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.debug-menu__section-heading {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.debug-menu__row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.debug-menu__row input,
+.debug-menu__row select {
+  flex: 1;
+  padding: 4px 6px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+}
+
+.debug-menu__row button {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.debug-menu__row button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.debug-menu__row button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.debug-menu__hint-small {
+  margin: 0;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.debug-menu__badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+}
+
+.debug-menu__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.debug-menu__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.debug-menu__save-btn,
+.debug-menu__load-btn {
+  padding: 6px 14px;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  color: white;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.debug-menu__save-btn:disabled,
+.debug-menu__load-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.debug-menu__help-text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.debug-menu__help-text kbd {
+  padding: 1px 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font: inherit;
+  font-size: 10px;
+}
+
+.debug-menu__help-list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Phase 4.1D - Live state tab. */
+
+.debug-menu__live-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.debug-menu__live-item {
+  display: grid;
+  grid-template-columns: 1fr 80px 100px 24px;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.debug-menu__live-name {
+  font-weight: 500;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.debug-menu__live-id {
+  font-family: ui-monospace, monospace;
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.debug-menu__live-value {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  text-align: right;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.debug-menu__live-value--set {
+  background: rgba(60, 180, 80, 0.18);
+  color: #a6e8b0;
+}
+
+.debug-menu__live-value--clear {
+  background: rgba(120, 120, 120, 0.18);
+  color: var(--color-text-muted);
+}
+
+.debug-menu__live-value--num {
+  background: rgba(74, 158, 255, 0.18);
+  color: #b6d4ff;
+}
+
+.debug-menu__live-remove {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 1px 4px;
+  font-size: 11px;
+}
+
+.debug-menu__live-remove:hover {
+  color: #ff9a9a;
+  border-color: rgba(220, 60, 60, 0.4);
+  border-radius: 2px;
+}

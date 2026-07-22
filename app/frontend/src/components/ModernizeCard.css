@@ -1,0 +1,144 @@
+/* Modernize-and-Ship slice 6 - visual treatment for the one-click
+ * "Modernize" call-to-action card. Matches the IdentityCard family so
+ * the card slots in naturally under the existing project info. */
+
+.modernize-card {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--accent, #3b82f6);
+  border-radius: 0.5rem;
+  background: var(--accent-bg, rgba(59, 130, 246, 0.08));
+}
+
+.modernize-card--success {
+  border-color: var(--success, #16a34a);
+  background: var(--success-bg, rgba(22, 163, 74, 0.08));
+}
+
+.modernize-card__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.modernize-card__body {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.modernize-card__details {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.modernize-card__details summary {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+.modernize-card__feature-list {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+  list-style: disc;
+}
+
+.modernize-card__feature-list li {
+  margin: 0.2rem 0;
+  line-height: 1.4;
+}
+
+.modernize-card__actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.modernize-card__primary {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: var(--accent, #3b82f6);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modernize-card__primary:hover {
+  filter: brightness(1.1);
+}
+
+.modernize-card__primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modernize-card__secondary {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0.35rem;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.modernize-card__confirm {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0.35rem;
+  background: var(--surface, rgba(0, 0, 0, 0.03));
+}
+
+.modernize-card__confirm h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.modernize-card__confirm p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.modernize-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.modernize-card__spinner {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: modernize-spin 1s linear infinite;
+}
+
+@keyframes modernize-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modernize-card__error {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--danger, #dc2626);
+  border-radius: 0.35rem;
+  background: var(--danger-bg, rgba(220, 38, 38, 0.08));
+}
+
+.modernize-card__error p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}

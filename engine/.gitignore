@@ -1,0 +1,7 @@
+node_modules/
+dist/
+# Vitest v8 coverage reporter output (anchored to engine workspace root - 
+# without the leading slash this would also swallow src/coverage/ which is
+# the actual coverage-metric source module).
+/coverage/
+*.tsbuildinfo

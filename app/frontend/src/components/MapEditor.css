@@ -1,0 +1,599 @@
+.map-editor {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Phase I.0.2 - toolbar pinned to a fixed height so the canvas viewport
+   doesn't shrink when status badges appear/disappear. Anything that
+   would have grown the header now lives in a floating overlay over
+   the canvas (.map-editor__overlays). */
+.map-editor__toolbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  overflow: hidden;
+}
+
+.map-editor__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.map-editor__title > * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.map-editor__title-kind {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.map-editor__title-name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.map-editor__title-dim {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.map-editor__title-dim--button {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.map-editor__title-dim--button:hover {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.map-editor__title-dim-edit {
+  opacity: 0;
+  color: var(--color-accent);
+  margin-left: 4px;
+  transition: opacity 0.15s;
+}
+
+.map-editor__title-dim--button:hover .map-editor__title-dim-edit {
+  opacity: 1;
+}
+
+.map-editor__layout-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.map-editor__layout-status--loaded {
+  color: var(--color-success);
+}
+
+.map-editor__layout-status--error {
+  color: var(--color-error);
+}
+
+.map-editor__layout-status--loading {
+  color: var(--color-warning);
+}
+
+.map-editor__layers {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.map-editor__layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.map-editor__layer-toggle input {
+  cursor: pointer;
+}
+
+.map-editor__body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 12px;
+  min-height: 0;
+}
+
+.map-editor__canvas-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.map-editor__canvas {
+  background: var(--color-bg);
+  border: none;
+  border-radius: 0;
+  /* Phase I.3.3 - canvas now fills its container; the scene renderer
+     sizes the Pixi canvas to match via ResizeObserver. No scroll
+     needed - the user pans/zooms within the canvas instead. */
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+.map-editor__canvas canvas {
+  display: block;
+}
+
+.map-editor__canvas-fallback {
+  padding: 16px;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.map-editor__inspector {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: auto;
+  padding: 14px;
+}
+
+.map-editor__inspector-heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin: 0 0 10px 0;
+}
+
+/* Phase L.2 - keyboard-shortcut hint at top of inspector. */
+.map-editor__inspector-shortcuts {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.map-editor__inspector-shortcuts kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  margin: 0 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}
+
+.map-editor__inspector-empty {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  margin: 0;
+}
+
+.map-editor__selected h4 {
+  margin: 6px 0 8px 0;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+.map-editor__selected dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.map-editor__selected dt {
+  color: var(--color-text-dim);
+}
+
+.map-editor__selected dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+.map-editor__kind-badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Phase O.5 - Sprite preview thumbnail in the NPC inspector. */
+.map-editor__sprite-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+  padding: 8px;
+  background: var(--color-bg-elevated, #1f2227);
+  border: 1px solid var(--color-border, #2a2e35);
+  border-radius: 4px;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.map-editor__sprite-preview--missing {
+  color: var(--color-text-muted, #6e7681);
+  font-family: var(--font-mono, monospace);
+  padding: 12px 16px;
+}
+
+.coord-editor {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.coord-editor__heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-dim);
+  margin: 0 0 8px 0;
+}
+
+.coord-editor__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coord-editor__row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--color-text-dim);
+}
+
+.coord-editor__row input {
+  width: 56px;
+  height: 24px;
+  padding: 0 6px;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}
+
+.coord-editor__row input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.coord-editor__row button {
+  height: 24px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.coord-editor__error {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.coord-editor__ok {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--color-success);
+}
+
+/* Phase 2 (semantic-world plan §2.2) - Editable fields panel inside the
+   right-side inspector. Sits below the read-only `dl` + `CoordEditor`. */
+.fields-editor {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+}
+
+.fields-editor__heading {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.fields-editor__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.fields-editor__row--inline {
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fields-editor__row label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  flex: 1 1 auto;
+  min-width: 80px;
+}
+
+.fields-editor__row input,
+.fields-editor__row select {
+  height: 26px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}
+
+.fields-editor__row input:focus,
+.fields-editor__row select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.fields-editor__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.fields-editor__status {
+  font-size: 11px;
+}
+
+.fields-editor__status--saving { color: var(--color-text-muted); }
+.fields-editor__status--saved  { color: var(--color-success); }
+.fields-editor__status--error  { color: var(--color-error); }
+
+.fields-editor__note {
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.fields-editor__hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Phase O.34 - warning-tinted hint for cross-category kind conversions. */
+.fields-editor__hint--warn {
+  color: var(--color-warning, #e6a23c);
+}
+
+/* Phase J.6 - trainer party preview list. */
+.trainer-party-list {
+  margin: 8px 0 0;
+  padding-left: 22px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trainer-party-row {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.trainer-party-row__detail {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Phase J.5 - encounter table preview. */
+.encounter-table {
+  margin: 8px 0;
+  padding: 6px 8px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.encounter-table__header {
+  font-size: 12px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.encounter-table__rate {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-left: 6px;
+}
+
+.encounter-slot-list {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.encounter-slot-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+}
+
+.encounter-slot-row__species {
+  color: var(--color-text);
+}
+
+.encounter-slot-row__levels {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.encounter-slot-row__weight {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-family: var(--font-mono);
+}
+
+.encounter-slot-row--editing {
+  grid-template-columns: 80px 60px 60px auto auto;
+  align-items: center;
+}
+
+.encounter-slot-row--editing input {
+  height: 22px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+}
+
+.encounter-slot-row--editing input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.fields-editor--readonly {
+  background: transparent;
+}
+
+/* Phase G-RC2 - sprite decode stats badge in map editor toolbar. */
+.map-editor__sprite-stats {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  cursor: help;
+}
+
+/* Phase H-RC7 - live cell readout. Now positioned in the floating
+   overlay layer (.map-editor__overlays) so it doesn't push the
+   toolbar taller. */
+.map-editor__cell-readout {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-text-muted) 12%, var(--color-bg-elevated));
+  cursor: help;
+}
+
+/* Phase H-RC4 - banner when OBJ palette table detector returned
+   not_detected. Lives in the floating overlay layer now, not the
+   toolbar (Phase I.0.2). */
+.map-editor__obj-palette-warn {
+  font-size: 11px;
+  color: var(--color-warning, #f0b429);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-warning, #f0b429) 12%, var(--color-bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--color-warning, #f0b429) 40%, transparent);
+  cursor: help;
+}
+
+/* Phase I.0.2 - floating overlays positioned over the top-right of
+   the canvas. Houses sprite-stats badge, OBJ palette warning, and
+   the hover readout. Pointer-events: none on the container so the
+   overlay never blocks canvas clicks; individual children can opt
+   back in if they need a tooltip on hover. */
+.map-editor__canvas-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-editor__canvas-wrap > .map-editor__canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.map-editor__overlays {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.map-editor__overlays > * {
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+}
