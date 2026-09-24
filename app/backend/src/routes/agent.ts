@@ -334,7 +334,7 @@ export async function registerAgentRoute(
           if (typeof edit.filePath !== 'string' || edit.filePath.length === 0) {
             return reply.status(400).send({ error: 'bad_edit_path' });
           }
-          if (path.isAbsolute(edit.filePath) || edit.filePath.includes('..')) {
+          if (path.posix.isAbsolute(edit.filePath) || path.win32.isAbsolute(edit.filePath) || edit.filePath.includes('..')) {
             return reply.status(400).send({
               error: 'unsafe_edit_path',
               message: `Edit path '${edit.filePath}' must be relative to projectRoot and may not contain '..'.`,
