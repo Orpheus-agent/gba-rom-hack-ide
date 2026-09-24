@@ -207,6 +207,18 @@ async function applyReplaceInFile(
   editIndex: number,
   rollback: Array<FileRollbackEntry | RomRollbackEntry>,
 ): Promise<ReplaceInFileEdit> {
+  // Agent edits name files relative to the project root, full stop. Check
+  // both path flavours: on Linux and macOS 'C:\Windows\...' is otherwise a
+  // legal relative filename, and an absolute path that happens to land
+  // inside the root would otherwise pass the containment check below.
+  if (path.posix.isAbsolute(edit.filePath) || path.win32.isAbsolute(edit.filePath)) {
+    throw new PatchApplyError(
+      'unsafe_path',
+      editIndex,
+      edit.filePath,
+      `Edit path '${edit.filePath}' is absolute; edits must be relative to the project root.`,
+    );
+  }
   const absPath = path.resolve(projectRoot, edit.filePath);
   const rel = path.relative(projectRoot, absPath);
   if (rel.startsWith('..') || path.isAbsolute(rel)) {

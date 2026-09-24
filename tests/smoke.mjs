@@ -469,10 +469,10 @@ async function runDecompDetection() {
     if (!signTrigger || signTrigger.scriptStepIds.length === 0) {
       fail(`sign trigger script steps not resolved: ${JSON.stringify(signTrigger)}`);
     }
-    if (signTrigger.scriptStepIds[0] !== 'LittlerootTown_Sign#0') {
+    if (signTrigger.scriptStepIds[0] !== 'LittlerootTown_Sign__0') {
       fail(`first script step id wrong: ${signTrigger.scriptStepIds[0]}`);
     }
-    const signMsgbox = scan.manifest.scriptSteps.find((s) => s.id === 'LittlerootTown_Sign#1');
+    const signMsgbox = scan.manifest.scriptSteps.find((s) => s.id === 'LittlerootTown_Sign__1');
     if (signMsgbox?.kind !== 'dialogue' || signMsgbox?.params?.text !== 'LittlerootTown_Sign_Text_RouteSign') {
       fail(`msgbox step wrong: ${JSON.stringify(signMsgbox)}`);
     }

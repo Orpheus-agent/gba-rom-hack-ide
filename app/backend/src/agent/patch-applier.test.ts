@@ -147,6 +147,20 @@ describe('applyEdits', () => {
     expect(caught?.code).toBe('unsafe_path');
   });
 
+  it('rejects an absolute path that points inside the root, and leaves the file alone', async () => {
+    await seed('inside.h', 'Route 1\n');
+    let caught: PatchApplyError | undefined;
+    try {
+      await applyEdits(root, [
+        { kind: 'replace_in_file', filePath: path.join(root, 'inside.h'), before: 'Route 1', after: 'Route 2' },
+      ]);
+    } catch (e) {
+      caught = e as PatchApplyError;
+    }
+    expect(caught?.code).toBe('unsafe_path');
+    expect(await read('inside.h')).toBe('Route 1\n');
+  });
+
   it('reverse edits round-trip - applying then undoing leaves the file untouched', async () => {
     const original = 'gFlyText[FLY_ROUTE1] = _("Route 1");\nbattle("Route 1 trainer");\n';
     // Make it unique so the test isolates the single-replace logic; we'll do

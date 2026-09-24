@@ -1,0 +1,91 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  node:
+    name: engine + app (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        # The IDE runs on the user's own machine, and start.bat / start.ps1
+        # make Windows a first-class host, so test there as well as Linux.
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # engines pins ">=22.0.0 <23" in both app/ and engine/.
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            app/package-lock.json
+            engine/package-lock.json
+
+      # The backend depends on the engine through file:../../engine and
+      # imports its built dist/, so the engine is built first.
+      - name: engine - install
+        working-directory: engine
+        run: npm ci --no-audit --no-fund
+      - name: engine - typecheck
+        working-directory: engine
+        run: npm run typecheck
+      - name: engine - test
+        working-directory: engine
+        run: npm test
+      - name: engine - build
+        working-directory: engine
+        run: npm run build
+
+      - name: app - install
+        working-directory: app
+        run: npm ci --no-audit --no-fund
+      - name: app - build
+        working-directory: app
+        run: npm run build
+      - name: app - typecheck
+        working-directory: app
+        run: npm run typecheck
+      - name: app - lint
+        working-directory: app
+        run: npm run lint
+      - name: app - test
+        working-directory: app
+        run: npm test
+
+      # Boots the built backend and exercises health, project open and listing.
+      - name: smoke
+        run: node tests/smoke.mjs
+
+  tile-intel-svc:
+    name: tile-intel-svc
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tile-intel-svc
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: '3.12'
+          enable-cache: true
+          cache-dependency-glob: tile-intel-svc/uv.lock
+      - name: install
+        run: uv sync --frozen --extra dev
+      - name: test
+        run: uv run --frozen pytest
