@@ -148,8 +148,7 @@ describe('applyEdits', () => {
   });
 
   it('rejects an absolute path that points inside the root, and leaves the file alone', async () => {
-    await seed('inside.h', 'Route 1
-');
+    await seed('inside.h', 'Route 1\n');
     let caught: PatchApplyError | undefined;
     try {
       await applyEdits(root, [
@@ -159,8 +158,7 @@ describe('applyEdits', () => {
       caught = e as PatchApplyError;
     }
     expect(caught?.code).toBe('unsafe_path');
-    expect(await read('inside.h')).toBe('Route 1
-');
+    expect(await read('inside.h')).toBe('Route 1\n');
   });
 
   it('reverse edits round-trip - applying then undoing leaves the file untouched', async () => {
